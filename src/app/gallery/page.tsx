@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-
-import Reveal from "../components/Reveal";
+import { motion } from "framer-motion";
+import { MotionSection, StaggerContainer, staggerChild } from "../components/Motion";
 
 const bowlGallery = [
   { title: "Founding Crest", img: "/images/bowl-01-founding-crest.png", tag: "Foundational" },
@@ -29,7 +29,6 @@ export default function GalleryPage() {
   const [filter, setFilter] = useState("All");
   const [activeSection, setActiveSection] = useState("bowls");
 
-  // NOTE: keep React import
   return (
     <>
       <header className="bg-pp-navy text-white py-20 text-center">
@@ -63,7 +62,7 @@ export default function GalleryPage() {
       {activeSection === "bowls" && (
         <section className="section-padding bg-pp-cream">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="flex flex-wrap gap-2 mb-8">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-wrap gap-2 mb-8">
               {["All", "Foundational", "Franchise", "Heritage", "Gaming", "TakeOver", "Collab", "Seasonal", "City", "Special", "Sports"].map((tag) => (
                 <button
                   key={tag}
@@ -75,22 +74,20 @@ export default function GalleryPage() {
                   {tag}
                 </button>
               ))}
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-              {bowlGallery.filter((b) => filter === "All" || b.tag === filter).map((b, i) => (
-                <Reveal key={b.title} delay={String((i % 5) + 1)}>
-                  <div className="bg-white rounded-xl overflow-hidden shadow-sm img-hover-lift">
-                    <div className="aspect-square overflow-hidden">
-                      <img src={b.img} alt={b.title} className="w-full h-full object-cover" />
-                    </div>
-                    <div className="p-3">
-                      <p className="text-xs font-medium text-pp-navy truncate">{b.title}</p>
-                      <p className="text-[10px] text-pp-charcoal/40 uppercase tracking-wider">{b.tag}</p>
-                    </div>
+            </motion.div>
+            <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+              {bowlGallery.filter((b) => filter === "All" || b.tag === filter).map((b) => (
+                <motion.div key={b.title} variants={staggerChild} className="bg-white rounded-xl overflow-hidden shadow-sm img-hover-lift">
+                  <div className="aspect-square overflow-hidden">
+                    <img src={b.img} alt={b.title} className="w-full h-full object-cover" />
                   </div>
-                </Reveal>
+                  <div className="p-3 text-center">
+                    <p className="text-xs font-semibold text-pp-navy truncate">{b.title}</p>
+                    <p className="text-[10px] text-pp-charcoal/40 uppercase tracking-wider">{b.tag}</p>
+                  </div>
+                </motion.div>
               ))}
-            </div>
+            </StaggerContainer>
           </div>
         </section>
       )}
@@ -99,21 +96,19 @@ export default function GalleryPage() {
       {activeSection === "stores" && (
         <section className="section-padding bg-pp-cream">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {storeGallery.map((s, i) => (
-                <Reveal key={s.title} delay={String((i % 5) + 1)}>
-                  <div className="bg-white rounded-2xl overflow-hidden shadow-sm img-hover-lift">
-                    <div className="aspect-[4/3] overflow-hidden">
-                      <img src={s.img} alt={s.title} className="w-full h-full object-cover" />
-                    </div>
-                    <div className="p-5">
-                      <h3 className="font-serif text-lg font-semibold text-pp-navy">{s.title}</h3>
-                      <p className="text-xs text-pp-charcoal/50 mt-1">Store Concept</p>
-                    </div>
+            <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {storeGallery.map((s) => (
+                <motion.div key={s.title} variants={staggerChild} className="bg-white rounded-2xl overflow-hidden shadow-sm img-hover-lift">
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img src={s.img} alt={s.title} className="w-full h-full object-cover" />
                   </div>
-                </Reveal>
+                  <div className="p-5">
+                    <h3 className="font-serif text-lg font-semibold text-pp-navy">{s.title}</h3>
+                    <p className="text-xs text-pp-charcoal/50 mt-1">Store Concept</p>
+                  </div>
+                </motion.div>
               ))}
-            </div>
+            </StaggerContainer>
           </div>
         </section>
       )}
@@ -121,26 +116,26 @@ export default function GalleryPage() {
       {/* Packaging Section */}
       {activeSection === "packaging" && (
         <section className="section-padding bg-pp-cream">
-          <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { title: "Franchisee Cups", img: "/images/packaging-franchisee-cups.png" },
-              { title: "TakeOver Packaging", img: "/images/packaging-takeover.png" },
-              { title: "Base B&W Template", img: "/images/packaging-base-bw.png" },
-              { title: "Collectible Canisters", img: "/images/collectible-cups-canisters.png" },
-              { title: "Kraft Sleeve", img: "/images/artisan-pkg-03-kraft-sleeve.png" },
-              { title: "Retail Shelf Display", img: "/images/artisan-pkg-05-retail-shelf-display.png" },
-            ].map((p, i) => (
-              <Reveal key={p.title} delay={String((i % 5) + 1)}>
-                <div className="bg-white rounded-2xl overflow-hidden shadow-sm img-hover-lift">
+          <div className="max-w-7xl mx-auto px-4">
+            <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                { title: "Franchisee Cups", img: "/images/packaging-franchisee-cups.png" },
+                { title: "TakeOver Packaging", img: "/images/packaging-takeover.png" },
+                { title: "Base B\u0026W Template", img: "/images/packaging-base-bw.png" },
+                { title: "Collectible Canisters", img: "/images/collectible-cups-canisters.png" },
+                { title: "Kraft Sleeve", img: "/images/artisan-pkg-03-kraft-sleeve.png" },
+                { title: "Retail Shelf Display", img: "/images/artisan-pkg-05-retail-shelf-display.png" },
+              ].map((p) => (
+                <motion.div key={p.title} variants={staggerChild} className="bg-white rounded-2xl overflow-hidden shadow-sm img-hover-lift">
                   <div className="aspect-[4/3] overflow-hidden">
                     <img src={p.img} alt={p.title} className="w-full h-full object-cover" />
                   </div>
                   <div className="p-5">
                     <h3 className="font-serif text-lg font-semibold text-pp-navy">{p.title}</h3>
                   </div>
-                </div>
-              </Reveal>
-            ))}
+                </motion.div>
+              ))}
+            </StaggerContainer>
           </div>
         </section>
       )}
@@ -148,17 +143,17 @@ export default function GalleryPage() {
       {/* Takeovers Section */}
       {activeSection === "takeovers" && (
         <section className="section-padding bg-pp-cream">
-          <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { title: "MTN TakeOver", img: "/images/takeover-mtn.png", partner: "MTN" },
-              { title: "Nedbank TakeOver", img: "/images/takeover-nedbank.png", partner: "Nedbank" },
-              { title: "Vodacom TakeOver", img: "/images/takeover-vodacom.png", partner: "Vodacom" },
-              { title: "Springboks TakeOver", img: "/images/takeover-springboks.png", partner: "Springboks" },
-              { title: "Lions Rugby TakeOver", img: "/images/takeover-lions-rugby.png", partner: "Lions" },
-              { title: "Investec TakeOver", img: "/images/takeover-investec.png", partner: "Investec" },
-            ].map((t, i) => (
-              <Reveal key={t.title} delay={String((i % 5) + 1)}>
-                <div className="bg-white rounded-2xl overflow-hidden shadow-sm img-hover-lift">
+          <div className="max-w-7xl mx-auto px-4">
+            <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                { title: "MTN TakeOver", img: "/images/takeover-mtn.png", partner: "MTN" },
+                { title: "Nedbank TakeOver", img: "/images/takeover-nedbank.png", partner: "Nedbank" },
+                { title: "Vodacom TakeOver", img: "/images/takeover-vodacom.png", partner: "Vodacom" },
+                { title: "Springboks TakeOver", img: "/images/takeover-springboks.png", partner: "Springboks" },
+                { title: "Lions Rugby TakeOver", img: "/images/takeover-lions-rugby.png", partner: "Lions" },
+                { title: "Investec TakeOver", img: "/images/takeover-investec.png", partner: "Investec" },
+              ].map((t) => (
+                <motion.div key={t.title} variants={staggerChild} className="bg-white rounded-2xl overflow-hidden shadow-sm img-hover-lift">
                   <div className="aspect-[4/3] overflow-hidden relative">
                     <img src={t.img} alt={t.title} className="w-full h-full object-cover" />
                     <div className="absolute top-3 right-3 bg-pp-gold text-pp-navy text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded">{t.partner}</div>
@@ -166,9 +161,9 @@ export default function GalleryPage() {
                   <div className="p-5">
                     <h3 className="font-serif text-lg font-semibold text-pp-navy">{t.title}</h3>
                   </div>
-                </div>
-              </Reveal>
-            ))}
+                </motion.div>
+              ))}
+            </StaggerContainer>
           </div>
         </section>
       )}

@@ -1,49 +1,40 @@
 "use client";
 
 import { useState } from "react";
-import Reveal from "../components/Reveal";
+import { motion } from "framer-motion";
+import { MotionSection, StaggerContainer, staggerChild } from "../components/Motion";
 
 /* ------------------------------------------------------------------
-   Section: Crest Creator Mockup (interactive colour pickers)
+   Crest Creator
    ------------------------------------------------------------------ */
 function CrestCreator() {
   const [c1, setC1] = useState("#FF6B35");
   const [c2, setC2] = useState("#004E89");
   const [c3, setC3] = useState("#1A936F");
   const crestName = `Crest Series ${c1.slice(1)}-${c2.slice(1)}-${c3.slice(1)}`;
-
   const bowlStyle: React.CSSProperties = {
     background: `linear-gradient(135deg, ${c1}, ${c2}, ${c3})`,
-    borderRadius: "50%",
-    aspectRatio: "1",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    fontFamily: "'Playfair Display', serif",
-    fontWeight: 700,
-    color: "white",
-    fontSize: "1.2rem",
-    textShadow: "0 2px 8px rgba(0,0,0,0.4)",
-    boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
-    transition: "background 0.6s ease",
+    borderRadius: "50%", aspectRatio: "1",
+    display: "flex", alignItems: "center", justifyContent: "center",
+    fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "white",
+    fontSize: "1.2rem", textShadow: "0 2px 8px rgba(0,0,0,0.4)",
+    boxShadow: "0 20px 60px rgba(0,0,0,0.3)", transition: "background 0.6s ease",
   };
 
   return (
     <section className="bg-pp-navy text-pp-cream section-padding">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Reveal>
-          <div className="text-center mb-12">
-            <p className="text-pp-gold uppercase tracking-widest text-sm font-semibold mb-2">Step 1</p>
-            <h2 className="text-pp-white font-serif text-3xl sm:text-5xl font-bold mb-4">Create Your Crest</h2>
-            <p className="text-pp-cream/70 max-w-2xl mx-auto">
-              Every Papa Pasta franchise gets a unique Living Crest colour identity.
-              Drag the pickers below to design yours — this is the colour story your city will see.
-            </p>
-          </div>
-        </Reveal>
+        <MotionSection className="text-center mb-12">
+          <p className="text-pp-gold uppercase tracking-widest text-sm font-semibold mb-2">Step 1</p>
+          <h2 className="text-pp-white font-serif text-3xl sm:text-5xl font-bold mb-4">Create Your Crest</h2>
+          <p className="text-pp-cream/70 max-w-2xl mx-auto">
+            Every Papa Pasta franchise gets a unique Living Crest colour identity.
+            Drag the pickers below to design yours — this is the colour story your city will see.
+          </p>
+        </MotionSection>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <Reveal delay="1">
+          <MotionSection delay={0.1}>
             <div className="space-y-6">
               {[
                 { label: "Primary", value: c1, setter: setC1 },
@@ -55,31 +46,22 @@ function CrestCreator() {
                     <span className="text-sm font-medium text-pp-cream/90">{c.label} Colour</span>
                     <span className="text-xs font-mono text-pp-gold">{c.value}</span>
                   </div>
-                  <input
-                    type="color"
-                    value={c.value}
-                    onChange={(e) => c.setter(e.target.value)}
-                    className="w-full h-10 cursor-pointer rounded-lg border-0 bg-transparent"
-                  />
+                  <input type="color" value={c.value} onChange={(e) => c.setter(e.target.value)} className="w-full h-10 cursor-pointer rounded-lg border-0 bg-transparent" />
                 </div>
               ))}
               <div className="text-xs text-pp-cream/50 mt-2">Named: <strong className="text-pp-gold">{crestName}</strong></div>
             </div>
-          </Reveal>
+          </MotionSection>
 
-          <Reveal delay="2">
+          <MotionSection delay={0.2}>
             <div className="flex flex-col items-center gap-6">
-              <div style={bowlStyle} className="w-64 max-w-full">
+              <motion.div style={bowlStyle} className="w-64 max-w-full" whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 200 }}>
                 PP
-              </div>
+              </motion.div>
               <p className="text-sm text-pp-cream/60">Your crest on a franchise bowl</p>
-              <img
-                src="/images/packaging-franchisee-cups.png"
-                alt="Franchisee cups preview"
-                className="rounded-xl shadow-lg w-full max-w-sm"
-              />
+              <img src="/images/packaging-franchisee-cups.png" alt="Franchisee cups preview" className="rounded-xl shadow-lg w-full max-w-sm" />
             </div>
-          </Reveal>
+          </MotionSection>
         </div>
       </div>
     </section>
@@ -87,7 +69,7 @@ function CrestCreator() {
 }
 
 /* ------------------------------------------------------------------
-   Section: Territory Map
+   Territory Map
    ------------------------------------------------------------------ */
 function TerritoryMap() {
   const provinces = [
@@ -105,48 +87,38 @@ function TerritoryMap() {
   return (
     <section className="section-padding bg-pp-cream">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Reveal>
-          <div className="text-center mb-12">
-            <p className="text-pp-gold uppercase tracking-widest text-sm font-semibold mb-2">Step 2</p>
-            <h2 className="text-pp-navy font-serif text-3xl sm:text-5xl font-bold mb-4">Express Interest in a Territory</h2>
-            <p className="text-pp-charcoal/70 max-w-2xl mx-auto">
-              Pick your province. Green means available. Amber signals active conversations. Red means committed.
-            </p>
-          </div>
-        </Reveal>
+        <MotionSection className="text-center mb-12">
+          <p className="text-pp-gold uppercase tracking-widest text-sm font-semibold mb-2">Step 2</p>
+          <h2 className="text-pp-navy font-serif text-3xl sm:text-5xl font-bold mb-4">Express Interest in a Territory</h2>
+          <p className="text-pp-charcoal/70 max-w-2xl mx-auto">
+            Pick your province. Green means available. Amber signals active conversations. Red means committed.
+          </p>
+        </MotionSection>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {provinces.map((p, i) => (
-            <Reveal key={p.name} delay={String((i % 5) + 1)}>
-              <div className={`rounded-xl p-5 border shadow-sm bg-white hover:shadow-md transition cursor-pointer group ${
-                p.status === "Committed" ? "opacity-60" : ""
-              }`}>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className={`w-3 h-3 rounded-full ${p.col}`}></div>
-                  <h3 className="font-serif text-lg font-semibold text-pp-navy group-hover:text-pp-gold transition">{p.name}</h3>
-                </div>
-                <span className="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-600">{p.status}</span>
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {provinces.map((p) => (
+            <motion.div key={p.name} variants={staggerChild}
+              className={`rounded-xl p-5 border shadow-sm bg-white hover:shadow-md transition cursor-pointer group ${p.status === "Committed" ? "opacity-60" : ""}`}
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <div className={`w-3 h-3 rounded-full ${p.col}`}></div>
+                <h3 className="font-serif text-lg font-semibold text-pp-navy group-hover:text-pp-gold transition">{p.name}</h3>
               </div>
-            </Reveal>
+              <span className="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-600">{p.status}</span>
+            </motion.div>
           ))}
-        </div>
+        </StaggerContainer>
 
-        <Reveal>
-          <div className="mt-10 flex justify-center">
-            <img
-              src="/images/colour-story-zone-map.png"
-              alt="Territory zone map"
-              className="rounded-2xl shadow-lg max-w-2xl w-full"
-            />
-          </div>
-        </Reveal>
+        <MotionSection className="mt-10 flex justify-center">
+          <img src="/images/colour-story-zone-map.png" alt="Territory zone map" className="rounded-2xl shadow-lg max-w-2xl w-full" />
+        </MotionSection>
       </div>
     </section>
   );
 }
 
 /* ------------------------------------------------------------------
-   Section: Financials
+   Financials
    ------------------------------------------------------------------ */
 function Financials() {
   const stats = [
@@ -161,52 +133,43 @@ function Financials() {
   return (
     <section className="section-padding bg-pp-navy text-pp-cream">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Reveal>
-          <div className="text-center mb-12">
-            <p className="text-pp-gold uppercase tracking-widest text-sm font-semibold mb-2">The Numbers</p>
-            <h2 className="text-pp-white font-serif text-3xl sm:text-5xl font-bold mb-4">Unit Economics</h2>
-            <p className="text-pp-cream/70 max-w-2xl mx-auto">
-              Franchise sales is not about dreams — it is about maths. Here is the model that justifies the risk.
-            </p>
-          </div>
-        </Reveal>
+        <MotionSection className="text-center mb-12">
+          <p className="text-pp-gold uppercase tracking-widest text-sm font-semibold mb-2">The Numbers</p>
+          <h2 className="text-pp-white font-serif text-3xl sm:text-5xl font-bold mb-4">Unit Economics</h2>
+          <p className="text-pp-cream/70 max-w-2xl mx-auto">
+            Franchise sales is not about dreams — it is about maths. Here is the model that justifies the risk.
+          </p>
+        </MotionSection>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {stats.map((s, i) => (
-            <Reveal key={s.label} delay={String((i % 5) + 1)}>
-              <div className="bg-pp-navy-light/40 rounded-2xl p-6 border border-pp-navy-light text-center">
-                <div className="text-pp-gold font-serif text-3xl sm:text-4xl font-bold mb-1">{s.value}</div>
-                <div className="font-semibold text-pp-cream/90 mb-2">{s.label}</div>
-                <div className="text-xs text-pp-cream/50">{s.sub}</div>
-              </div>
-            </Reveal>
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {stats.map((s) => (
+            <motion.div key={s.label} variants={staggerChild} className="bg-pp-navy-light/40 rounded-2xl p-6 border border-pp-navy-light text-center">
+              <div className="text-pp-gold font-serif text-3xl sm:text-4xl font-bold mb-1">{s.value}</div>
+              <div className="font-semibold text-pp-cream/90 mb-2">{s.label}</div>
+              <div className="text-xs text-pp-cream/50">{s.sub}</div>
+            </motion.div>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );
 }
 
 /* ------------------------------------------------------------------
-   Section: Franchise Application Form (Step 3)
+   Application Form
    ------------------------------------------------------------------ */
 function ApplicationForm() {
   return (
     <section className="section-padding bg-pp-cream">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Reveal>
-          <div className="text-center mb-10">
-            <p className="text-pp-gold uppercase tracking-widest text-sm font-semibold mb-2">Step 4</p>
-            <h2 className="text-pp-navy font-serif text-3xl sm:text-4xl font-bold mb-4">Submit Your Application</h2>
-            <p className="text-pp-charcoal/70">
-              Attach your custom crest, select your province, and tell us about your business experience.
-            </p>
-          </div>
-        </Reveal>
+        <MotionSection className="text-center mb-10">
+          <p className="text-pp-gold uppercase tracking-widest text-sm font-semibold mb-2">Step 4</p>
+          <h2 className="text-pp-navy font-serif text-3xl sm:text-4xl font-bold mb-4">Submit Your Application</h2>
+          <p className="text-pp-charcoal/70">Attach your custom crest, select your province, and tell us about your business experience.</p>
+        </MotionSection>
 
-        <Reveal>
-          <form
-            onSubmit={(e) => { e.preventDefault(); alert("Coming soon: Zoho CRM integration!"); }}
+        <MotionSection>
+          <form onSubmit={(e) => { e.preventDefault(); alert("Coming soon: Zoho CRM integration!"); }}
             className="space-y-5 bg-white rounded-2xl p-8 shadow-sm border border-pp-navy/5"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -250,14 +213,14 @@ function ApplicationForm() {
               Submit Application
             </button>
           </form>
-        </Reveal>
+        </MotionSection>
       </div>
     </section>
   );
 }
 
 /* ------------------------------------------------------------------
-   Section: Social Proof / Gallery teaser
+   Social Proof Gallery
    ------------------------------------------------------------------ */
 function SocialProofGallery() {
   const crests = [
@@ -272,22 +235,18 @@ function SocialProofGallery() {
   return (
     <section className="bg-pp-navy-dark text-pp-cream py-12 border-t border-pp-navy-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Reveal>
-          <div className="text-center mb-8">
-            <h3 className="text-pp-gold font-serif text-2xl font-bold mb-2">Community Gallery</h3>
-            <p className="text-sm text-pp-cream/60">Past creations from prospective franchisees — every city gets a unique crest.</p>
-          </div>
-        </Reveal>
+        <MotionSection className="text-center mb-8">
+          <h3 className="text-pp-gold font-serif text-2xl font-bold mb-2">Community Gallery</h3>
+          <p className="text-sm text-pp-cream/60">Past creations from prospective franchisees — every city gets a unique crest.</p>
+        </MotionSection>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+        <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {crests.map((src, i) => (
-            <Reveal key={i} delay={String((i % 5) + 1)}>
-              <div className="bg-white rounded-xl p-2 img-hover-lift">
-                <img src={src} alt={`Crest ${i + 1}`} className="w-full h-auto rounded-lg" />
-              </div>
-            </Reveal>
+            <motion.div key={i} variants={staggerChild} className="bg-white rounded-xl p-2 img-hover-lift">
+              <img src={src} alt={`Crest ${i + 1}`} className="w-full h-auto rounded-lg" />
+            </motion.div>
           ))}
-        </div>
+        </StaggerContainer>
 
         <div className="text-center mt-8">
           <a href="/gallery/" className="text-sm font-medium text-pp-gold underline underline-offset-4 hover:text-pp-gold-light transition">
@@ -307,7 +266,11 @@ export default function FranchisePage() {
     <>
       <header className="bg-pp-navy text-pp-white py-24 text-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Reveal>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
             <p className="text-pp-gold uppercase tracking-[0.2em] text-sm font-semibold mb-4">Franchise Sales</p>
             <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-6">
               Own a Papa Pasta
@@ -317,11 +280,11 @@ export default function FranchisePage() {
               Build your brand — and your city — with South Africa’s only dedicated pasta QSR franchise.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="https://franchise.papapasta.co.za/" className="inline-flex items-center rounded-md bg-pp-gold px-8 py-3 text-sm font-semibold text-pp-navy shadow hover:bg-pp-gold-light transition">
+              <a href="https://franchise.papapasta.co.za/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-8 py-3 text-sm font-semibold text-pp-navy shadow hover:bg-pp-gold-light transition">
                 Go to Franchise Portal →
               </a>
             </div>
-          </Reveal>
+          </motion.div>
         </div>
       </header>
 
