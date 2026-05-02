@@ -417,7 +417,7 @@ function Newsletter() {
         </MotionSection>
         <MotionSection>
           <p className="text-pp-charcoal/70 mb-8">
-            Get seasonal drops, secret sauce stories, and event invites — straight to your inbox.
+            Get seasonal menu drops, behind-the-sauce secrets, and first access to tasting events — straight to your inbox.
           </p>
         </MotionSection>
         <MotionSection>
