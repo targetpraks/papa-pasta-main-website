@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /legal/
+Sitemap: https://papapasta.co.za/sitemap.xml

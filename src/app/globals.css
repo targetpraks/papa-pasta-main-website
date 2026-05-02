@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-pp-navy: #1a2b4a;
+  --color-pp-gold: #d4af37;
+  --color-pp-navy-dark: #111c33;
+  --color-pp-navy-light: #2a4066;
+  --color-pp-gold-light: #f0d878;
+  --color-pp-gold-dark: #b8982e;
+  --color-pp-cream: #faf7f0;
+  --color-pp-charcoal: #333333;
+  --color-pp-white: #ffffff;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+}
+
+:root {
+  --background: #faf7f0;
+  --foreground: #1a2b4a;
+  --accent: #d4af37;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1, h2, h3, h4, h5, h6 { font-family: "Playfair Display", ui-serif, Georgia, serif; }
+.section-padding {
+  padding-top: 5rem; padding-bottom: 5rem;
+}
+@media (min-width: 768px) {
+  .section-padding { padding-top: 7rem; padding-bottom: 7rem; }
+}
