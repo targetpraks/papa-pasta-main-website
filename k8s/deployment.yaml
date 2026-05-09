@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: papa-pasta-main-website
+  namespace: papa-pasta
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: papa-pasta-main-website
+  template:
+    metadata:
+      labels:
+        app: papa-pasta-main-website
+    spec:
+      containers:
+        - name: papa-pasta-main-website
+          image: papa-pasta-main-website:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80

@@ -1,180 +1,130 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
-import { MotionSection, StaggerContainer, staggerChild } from "./components/Motion";
+import { useState, useEffect, useCallback } from "react";
+import {
+  MotionSection,
+  StaggerContainer,
+  staggerChild,
+  staggerChildScale,
+  ClipReveal,
+} from "./components/Motion";
 
-/* ------------------------------------------------------------------
-   Animated counter
-   ------------------------------------------------------------------ */
+/* ═══════════════════════════════════════════════
+   COUNT-UP HOOK (requestAnimationFrame)
+   ═══════════════════════════════════════════════ */
 function useCountUp(end: number, duration = 2000) {
   const [count, setCount] = useState(0);
   useEffect(() => {
-    let start = 0;
-    const stepTime = Math.abs(Math.floor(duration / end));
-    const timer = setInterval(() => {
-      start += Math.ceil(end / (duration / stepTime));
-      if (start >= end) { start = end; clearInterval(timer); }
-      setCount(start);
-    }, stepTime);
-    return () => clearInterval(timer);
+    let raf: number;
+    const startTime = performance.now();
+    const tick = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * end));
+      if (progress < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, [end, duration]);
   return count;
 }
 
-/* ------------------------------------------------------------------
-   Section 1 — Hero (motion entrance)
-   ------------------------------------------------------------------ */
+/* ═══════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════ */
 function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-pp-primary" aria-label="Hero">
       <div className="absolute inset-0">
-        <img
-          src="/images/store-concept-refined-neon-pop.png"
-          alt="Papa Pasta store interior"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-pp-navy/60"></div>
+        <img src="/images/store-concept-refined-neon-pop.png" alt="Papa Pasta store interior with warm lighting" className="w-full h-full object-cover opacity-40" loading="eager" />
+        <div className="absolute inset-0 bg-gradient-to-t from-pp-primary via-pp-primary/60 to-pp-primary/40" />
       </div>
-
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-pp-gold uppercase tracking-[0.2em] text-sm font-semibold mb-4"
-        >
-          Crafted Daily · Cape Town
-        </motion.p>
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-pp-white font-serif text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-6"
-        >
-          Fresh Handmade Pasta
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.6 }}
-          className="text-pp-cream/90 text-lg sm:text-xl mb-8 max-w-2xl mx-auto leading-relaxed"
-        >
-          Built from scratch in our central kitchen. Sauces simmered for hours.
-          Shapes matched to every sauce. This is food with obsession baked in.
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <a
-            href="/locations/"
-            className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-8 py-3 text-sm font-semibold text-pp-navy shadow hover:bg-pp-gold-light transition"
-          >
-            Find a Store
-          </a>
-          <a
-            href="https://www.ubereats.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center rounded-md border border-pp-gold/40 text-pp-gold px-8 py-3 text-sm font-semibold hover:bg-pp-gold/10 transition"
-          >
-            Order Now
-          </a>
+        <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }} className="mb-6">
+          <span className="badge badge-default inline-block">Crafted Daily · Cape Town</span>
         </motion.div>
+        <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }} className="font-serif font-bold mb-6 text-4xl sm:text-6xl lg:text-[72px] tracking-[-0.02em] leading-[1.05]">
+          <span className="text-pp-on-primary">Fresh </span><span className="gold-text-gradient">Handmade</span><br /><span className="text-pp-on-primary">Pasta</span>
+        </motion.h1>
+        <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }} className="text-pp-on-primary/70 text-lg sm:text-xl mb-10 max-w-2xl mx-auto leading-[1.7]">
+          Built from scratch in our central kitchen. Sauces simmered for hours. Shapes matched to every sauce. This is food with obsession baked in.
+        </motion.p>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.7 }} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="/locations/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-8 py-3.5 text-[12px] uppercase tracking-[0.2em] font-semibold text-pp-black shadow-lg shadow-pp-gold/20 transition-colors duration-300">Find a Store</a>
+          <a href="https://www.ubereats.com" target="_blank" rel="noopener noreferrer" className="btn-outline-gold inline-flex items-center rounded-md border border-pp-gold/50 text-pp-gold px-8 py-3.5 text-[12px] uppercase tracking-[0.2em] font-semibold transition-colors duration-300"><span>Order Now</span></a>
+        </motion.div>
+      </div>
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }} className="w-[2px] h-12 bg-gradient-to-b from-pp-gold/60 to-transparent" aria-hidden="true" />
       </div>
     </section>
   );
 }
 
-/* ------------------------------------------------------------------
-   Section 2 — Social Proof Bar
-   ------------------------------------------------------------------ */
+/* ═══════════════════════════════════════════════
+   SOCIAL PROOF / STATS
+   ═══════════════════════════════════════════════ */
 function SocialProof() {
   const stores = useCountUp(12);
   const provinces = useCountUp(9);
   return (
-    <section className="bg-pp-navy text-pp-cream border-y border-pp-gold/20">
-      <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        <MotionSection>
-          <div className="flex flex-col sm:flex-row items-center justify-around gap-8 text-center">
-            <div>
-              <div className="text-3xl sm:text-4xl font-serif font-bold text-pp-gold">{stores}+</div>
-              <div className="text-xs uppercase tracking-wider mt-1">Stores Planned</div>
-            </div>
-            <div className="hidden sm:block h-10 w-px bg-pp-navy-light"></div>
-            <div>
-              <div className="text-3xl sm:text-4xl font-serif font-bold text-pp-gold">{provinces}</div>
-              <div className="text-xs uppercase tracking-wider mt-1">SA Provinces</div>
-            </div>
-            <div className="hidden sm:block h-10 w-px bg-pp-navy-light"></div>
-            <div>
-              <div className="text-3xl sm:text-4xl font-serif font-bold text-pp-gold">32</div>
-              <div className="text-xs uppercase tracking-wider mt-1">Core Dishes</div>
-            </div>
-            <div className="hidden sm:block h-10 w-px bg-pp-navy-light"></div>
-            <div>
-              <div className="text-3xl sm:text-4xl font-serif font-bold text-pp-gold">∞</div>
-              <div className="text-xs uppercase tracking-wider mt-1">Crest Variations</div>
-            </div>
-          </div>
-        </MotionSection>
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------
-   Section 3 — Hero Dishes
-   ------------------------------------------------------------------ */
-function HeroDishes() {
-  const dishes = [
-    { title: "Fettuccini Alfredo", desc: "Silky Alfredo sauce over fresh flat ribbons. The comfort classic, perfected.", img: "/images/menu-core-8-dishes.png" },
-    { title: "Papa Pops — Cheesy Braai", desc: "Crunchy pasta bites with a braai twist. Snackable perfection.", img: "/images/papa-pops-cheesy-braai.png" },
-    { title: "Golden Blend Sauces", desc: "Slow-simmered sauces designed to cling, coat, and captivate.", img: "/images/menu-sauce-production.png" },
-  ];
-  return (
-    <section className="section-padding bg-pp-cream">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <MotionSection className="text-center mb-12">
-          <p className="text-pp-gold uppercase tracking-widest text-sm font-semibold mb-2">The Menu</p>
-          <h2 className="text-pp-navy font-serif text-3xl sm:text-5xl font-bold">Hero Dishes</h2>
-          <p className="text-pp-charcoal/70 mt-4 max-w-xl mx-auto">
-            Three heroes to start your obsession. Every sauce, shape, and topping is deliberate.
-          </p>
-        </MotionSection>
-
-        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {dishes.map((d) => (
-            <motion.div key={d.title} variants={staggerChild}
-              className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300"
-            >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img src={d.img} alt={d.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-pp-navy font-serif text-xl font-semibold mb-2">{d.title}</h3>
-                <p className="text-pp-charcoal/70 text-sm leading-relaxed">{d.desc}</p>
-              </div>
+    <section className="bg-pp-primary text-pp-on-primary border-t border-b border-pp-gold/10" aria-label="Key statistics">
+      <div className="max-w-7xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
+        <StaggerContainer className="flex flex-col sm:flex-row items-center justify-around gap-8 text-center">
+          {[{ value: `${stores}+`, label: "Stores Planned" }, { value: provinces, label: "SA Provinces" }, { value: "32", label: "Core Dishes" }, { value: "\u221E", label: "Crest Variations" }].map((stat) => (
+            <motion.div key={stat.label} variants={staggerChildScale}>
+              <div className="gold-text-gradient font-serif text-3xl sm:text-5xl font-bold mb-1">{stat.value}</div>
+              <div className="text-[11px] uppercase tracking-[0.15em] text-pp-on-primary/40">{stat.label}</div>
             </motion.div>
           ))}
         </StaggerContainer>
+      </div>
+    </section>
+  );
+}
 
+/* ═══════════════════════════════════════════════
+   HERO DISHES
+   ═══════════════════════════════════════════════ */
+function HeroDishes() {
+  const dishes = [
+    { title: "Fettuccini Alfredo", desc: "Silky Alfredo sauce over fresh flat ribbons. The comfort classic, perfected.", img: "/images/menu-core-8-dishes.png", alt: "Fettuccini Alfredo pasta dish" },
+    { title: "Papa Pops — Cheesy Braai", desc: "Crunchy pasta bites with a braai twist. Snackable perfection.", img: "/images/papa-pops-cheesy-braai.png", alt: "Papa Pops cheesy braai snack" },
+    { title: "Golden Blend Sauces", desc: "Slow-simmered sauces designed to cling, coat, and captivate.", img: "/images/menu-sauce-production.png", alt: "Golden blend pasta sauces" },
+  ];
+  return (
+    <section className="section-padding bg-pp-tertiary" aria-labelledby="hero-dishes-heading">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <MotionSection className="text-center mb-14">
+          <div className="line-accent mx-auto mb-4" />
+          <p className="text-pp-gold uppercase tracking-[0.2em] text-[12px] font-semibold mb-3">The Menu</p>
+          <h2 id="hero-dishes-heading" className="text-pp-on-surface font-serif text-3xl sm:text-[48px] font-bold leading-[1.1] tracking-[-0.02em]">Hero Dishes</h2>
+          <p className="text-pp-primary-60 mt-4 max-w-xl mx-auto leading-[1.65]">Three heroes to start your obsession. Every sauce, shape, and topping is deliberate.</p>
+        </MotionSection>
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {dishes.map((d) => (
+            <motion.div key={d.title} variants={staggerChildScale} className="group card img-hover-lift">
+              <div className="aspect-[4/3] overflow-hidden rounded-xl -mx-6 -mt-6 mb-6">
+                <img src={d.img} alt={d.alt} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+              </div>
+              <h3 className="text-pp-on-surface font-serif text-[22px] font-semibold mb-2">{d.title}</h3>
+              <p className="text-pp-primary-60 text-sm leading-[1.6]">{d.desc}</p>
+            </motion.div>
+          ))}
+        </StaggerContainer>
         <MotionSection className="mt-10 text-center">
-          <a href="/menu/" className="inline-flex items-center rounded-md border border-pp-navy/20 text-pp-navy px-6 py-2.5 text-sm font-medium hover:bg-pp-navy hover:text-white transition">
-            See Full Menu
-          </a>
+          <a href="/menu/" className="btn-outline-gold inline-flex items-center rounded-md border-2 border-pp-primary/10 text-pp-on-surface px-6 py-2.5 text-sm font-medium hover:border-pp-gold hover:text-pp-gold transition-colors duration-300"><span>See Full Menu</span></a>
         </MotionSection>
       </div>
     </section>
   );
 }
 
-/* ------------------------------------------------------------------
-   Section 4 — Colour Story
-   ------------------------------------------------------------------ */
+/* ═══════════════════════════════════════════════
+   COLOUR STORY
+   ═══════════════════════════════════════════════ */
 function ColourStory() {
   const variations = [
     { title: "Founding Crest", img: "/images/bowl-01-founding-crest.png", desc: "Where it all began." },
@@ -184,46 +134,32 @@ function ColourStory() {
     { title: "TakeOver Special", img: "/images/bowl-05-takeover-partner-bowls.png", desc: "When brands collide." },
     { title: "Artist Collab", img: "/images/bowl-06-local-artist-collab.png", desc: "Curated by local talent." },
   ];
-
   return (
-    <section className="section-padding bg-pp-navy text-pp-cream">
+    <section className="section-padding bg-pp-primary text-pp-on-primary" aria-labelledby="colour-story-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <MotionSection>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="text-pp-gold uppercase tracking-widest text-sm font-semibold mb-3">The Colour Story</p>
-              <h2 className="text-pp-white font-serif text-3xl sm:text-5xl font-bold mb-6 leading-tight">
-                Every Franchise Gets a Crest
-              </h2>
-              <p className="text-pp-cream/70 mb-6 leading-relaxed">
-                The Living Crest system means no two stores look identical.
-                Each franchise receives a colour identity tied to its city, its owner, and its community —
-                making every location a collectible moment.
-              </p>
-              <p className="text-pp-cream/70 mb-8 leading-relaxed">
-                From neon gamer drops to SA heritage palettes, the crest is more than a logo.
-                It is the visual proof that this store belongs to <em>this</em> place.
-              </p>
-              <a href="/gallery/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-6 py-2.5 text-sm font-semibold text-pp-navy hover:bg-pp-gold-light transition">
-                Browse the Gallery
-              </a>
+              <div className="line-accent mb-4" />
+              <p className="text-pp-gold uppercase tracking-[0.2em] text-[12px] font-semibold mb-3">The Colour Story</p>
+              <h2 id="colour-story-heading" className="text-pp-on-primary font-serif text-3xl sm:text-[48px] font-bold mb-6 leading-[1.1] tracking-[-0.02em]">Every Franchise Gets a Crest</h2>
+              <p className="text-pp-on-primary/60 mb-6 leading-[1.65]">The Living Crest system means no two stores look identical. Each franchise receives a colour identity tied to its city, its owner, and its community — making every location a collectible moment.</p>
+              <p className="text-pp-on-primary/60 mb-8 leading-[1.65]">From neon gamer drops to SA heritage palettes, the crest is more than a logo. It is the visual proof that this store belongs to <em className="text-pp-gold not-italic">this</em> place.</p>
+              <a href="/gallery/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-6 py-2.5 text-[12px] uppercase tracking-[0.2em] font-semibold text-pp-black transition-colors duration-300">Browse the Gallery</a>
             </div>
-            <div>
-              <img src="/images/colour-story-colour-wheel.png" alt="Papa Pasta colour wheel" className="rounded-2xl shadow-2xl w-full" />
-            </div>
+            <ClipReveal direction="right" delay={0.2}>
+              <img src="/images/colour-story-colour-wheel.png" alt="Papa Pasta colour wheel showing the Living Crest system" className="rounded-2xl shadow-2xl shadow-pp-gold/10 w-full" loading="lazy" />
+            </ClipReveal>
           </div>
         </MotionSection>
-
         <div className="mt-16">
           <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4" staggerDelay={0.08}>
             {variations.map((v) => (
-              <motion.div key={v.title} variants={staggerChild} className="bg-white rounded-xl overflow-hidden shadow-sm img-hover-lift">
-                <div className="aspect-square overflow-hidden">
-                  <img src={v.img} alt={v.title} className="w-full h-full object-cover" />
-                </div>
+              <motion.div key={v.title} variants={staggerChildScale} className="card-dark rounded-xl overflow-hidden img-hover-lift">
+                <div className="aspect-square overflow-hidden"><img src={v.img} alt={`${v.title} bowl design`} className="w-full h-full object-cover" loading="lazy" /></div>
                 <div className="p-3 text-center">
-                  <p className="text-xs font-semibold text-pp-navy truncate">{v.title}</p>
-                  <p className="text-[10px] text-pp-charcoal/40">{v.desc}</p>
+                  <p className="text-xs font-semibold text-pp-gold truncate">{v.title}</p>
+                  <p className="text-[9px] uppercase tracking-[0.1em] text-pp-on-primary/30">{v.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -234,38 +170,27 @@ function ColourStory() {
   );
 }
 
-/* ------------------------------------------------------------------
-   Section 5 — Brand Teaser
-   ------------------------------------------------------------------ */
+/* ═══════════════════════════════════════════════
+   BRAND TEASER
+   ═══════════════════════════════════════════════ */
 function BrandTeaser() {
   return (
-    <section className="section-padding bg-pp-cream">
+    <section className="section-padding bg-pp-tertiary" aria-labelledby="brand-teaser-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <MotionSection delay={0}>
+        <ClipReveal direction="left" delay={0}>
           <div className="relative rounded-2xl overflow-hidden">
-            <img src="/images/central-kitchen-concept.png" alt="Papa Pasta central kitchen" className="w-full h-auto object-cover rounded-2xl" />
-            <div className="absolute bottom-4 left-4 bg-pp-gold text-pp-navy text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded">
-              Commissary
-            </div>
+            <img src="/images/central-kitchen-concept.png" alt="Papa Pasta central kitchen with stainless steel equipment" className="w-full h-auto object-cover rounded-2xl" loading="lazy" />
+            <div className="absolute bottom-4 left-4 badge badge-default">Commissary</div>
           </div>
-        </MotionSection>
-
+        </ClipReveal>
         <MotionSection delay={0.2}>
           <div>
-            <p className="text-pp-gold uppercase tracking-widest text-sm font-semibold mb-3">Our Story</p>
-            <h2 className="text-pp-navy font-serif text-3xl sm:text-4xl font-bold mb-6 leading-tight">
-              A Passion for Pasta, Engineered for Scale
-            </h2>
-            <blockquote className="border-l-4 border-pp-gold pl-6 italic text-lg leading-relaxed mb-6">
-              “Every strand matters. Every sauce simmers for hours. We refuse shortcuts because pasta should taste like someone cared.”
-            </blockquote>
-            <p className="text-pp-charcoal/70 mb-8 leading-relaxed">
-              From a single commissary in Cape Town, we designed a system that brings
-              restaurant-quality pasta to neighbourhoods across South Africa.
-            </p>
-            <a href="/story/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-6 py-2.5 text-sm font-semibold text-pp-navy hover:bg-pp-gold-light transition">
-              Read Our Story
-            </a>
+            <div className="line-accent mb-4" />
+            <p className="text-pp-gold uppercase tracking-[0.2em] text-[12px] font-semibold mb-3">Our Story</p>
+            <h2 id="brand-teaser-heading" className="text-pp-on-surface font-serif text-3xl sm:text-[36px] font-bold mb-6 leading-[1.2] tracking-[-0.01em]">A Passion for Pasta, Engineered for Scale</h2>
+            <blockquote className="border-l-4 border-pp-gold pl-6 italic text-lg leading-relaxed mb-6 text-pp-primary-60">&ldquo;Every strand matters. Every sauce simmers for hours. We refuse shortcuts because pasta should taste like someone cared.&rdquo;</blockquote>
+            <p className="text-pp-primary-60 mb-8 leading-[1.65]">From a single commissary in Cape Town, we designed a system that brings restaurant-quality pasta to neighbourhoods across South Africa.</p>
+            <a href="/story/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-6 py-2.5 text-[12px] uppercase tracking-[0.2em] font-semibold text-pp-black transition-colors duration-300">Read Our Story</a>
           </div>
         </MotionSection>
       </div>
@@ -273,46 +198,40 @@ function BrandTeaser() {
   );
 }
 
-/* ------------------------------------------------------------------
-   Section 6 — Location Preview
-   ------------------------------------------------------------------ */
+/* ═══════════════════════════════════════════════
+   LOCATION PREVIEW
+   ═══════════════════════════════════════════════ */
 function LocationPreview() {
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-pp-surface-elevated" aria-labelledby="locations-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-10">
           <MotionSection>
             <div>
-              <p className="text-pp-gold uppercase tracking-widest text-sm font-semibold mb-2">Locations</p>
-              <h2 className="text-pp-navy font-serif text-3xl sm:text-4xl font-bold">Find a Papa Pasta</h2>
-              <p className="text-pp-charcoal/70 mt-3 max-w-lg">Cape Town stores open now, with expansions rolling into every South African province.</p>
+              <div className="line-accent mb-4" />
+              <p className="text-pp-gold uppercase tracking-[0.2em] text-[12px] font-semibold mb-2">Locations</p>
+              <h2 id="locations-heading" className="text-pp-on-surface font-serif text-3xl sm:text-[36px] font-bold leading-[1.2] tracking-[-0.01em]">Find a Papa Pasta</h2>
+              <p className="text-pp-primary-60 mt-3 max-w-lg leading-[1.65]">Cape Town stores open now, with expansions rolling into every South African province.</p>
             </div>
           </MotionSection>
           <MotionSection>
-            <a href="/locations/" className="inline-flex items-center rounded-md bg-pp-navy px-6 py-2.5 text-sm font-medium text-white hover:bg-pp-navy-light transition">
-              View All Locations
-            </a>
+            <a href="/locations/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-primary px-6 py-2.5 text-sm font-medium text-pp-on-primary hover:bg-pp-primary-80 transition-colors duration-300">View All Locations</a>
           </MotionSection>
         </div>
-
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
-            { city: "Cape Town", status: "Open Now", addr: "CBD \u0026 Observatory", img: "/images/brand-image-28.png" },
-            { city: "Johannesburg", status: "Coming Soon", addr: "Rosebank, Sandton \u0026 CBD", img: "/images/franchise-store-concept.png" },
-            { city: "Durban", status: "Coming Soon", addr: "Umhlanga \u0026 Ballito", img: "/images/franchise-store-concept.png" },
+            { city: "Cape Town", status: "Open Now", statusType: "success" as const, addr: "CBD & Observatory", img: "/images/brand-image-28.png", alt: "Cape Town Papa Pasta store" },
+            { city: "Johannesburg", status: "Coming Soon", statusType: "warning" as const, addr: "Rosebank, Sandton & CBD", img: "/images/franchise-store-concept.png", alt: "Johannesburg store concept" },
+            { city: "Durban", status: "Coming Soon", statusType: "warning" as const, addr: "Umhlanga & Ballito", img: "/images/franchise-store-concept.png", alt: "Durban store concept" },
           ].map((loc) => (
-            <motion.div key={loc.city} variants={staggerChild} className="bg-pp-cream rounded-xl overflow-hidden shadow-sm img-hover-lift">
-              <div className="aspect-[16/10] overflow-hidden">
-                <img src={loc.img} alt={loc.city} className="w-full h-full object-cover" />
-              </div>
+            <motion.div key={loc.city} variants={staggerChildScale} className="card bg-pp-tertiary rounded-xl overflow-hidden img-hover-lift">
+              <div className="aspect-[16/10] overflow-hidden"><img src={loc.img} alt={loc.alt} className="w-full h-full object-cover" loading="lazy" /></div>
               <div className="p-5">
                 <div className="flex items-center justify-between mb-1">
-                  <h3 className="text-pp-navy font-serif text-lg font-semibold">{loc.city}</h3>
-                  <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${
-                    loc.status === "Open Now" ? "bg-emerald-100 text-emerald-700" : "bg-amber-100 text-amber-700"
-                  }`}>{loc.status}</span>
+                  <h3 className="text-pp-on-surface font-serif text-lg font-semibold">{loc.city}</h3>
+                  <span className={`badge ${loc.statusType === "success" ? "badge-success" : "badge-warning"}`}>{loc.status}</span>
                 </div>
-                <p className="text-pp-charcoal/60 text-sm">{loc.addr}</p>
+                <p className="text-pp-primary-60 text-sm">{loc.addr}</p>
               </div>
             </motion.div>
           ))}
@@ -322,40 +241,39 @@ function LocationPreview() {
   );
 }
 
-/* ------------------------------------------------------------------
-   Section 7 — Blog Preview
-   ------------------------------------------------------------------ */
+/* ═══════════════════════════════════════════════
+   BLOG PREVIEW
+   ═══════════════════════════════════════════════ */
 function BlogPreview() {
   const posts = [
-    { title: "Why Shape Matters: The Golden Blend of Pasta + Sauce", excerpt: "Flat noodles hold cream. Tubes trap meat. We match every shape to its perfect partner.", date: "May 2026", img: "/images/menu-pasta-shape-pairing.png" },
-    { title: "Inside the Commissary: Where Obsession Lives", excerpt: "A behind-the-scenes look at the central kitchen that powers every Papa Pasta store.", date: "April 2026", img: "/images/central-kitchen-concept.png" },
-    { title: "The Art of the Crest: Colour Story Philosophy", excerpt: "Every franchise gets a unique crest. Here is how the colour explosion happens.", date: "March 2026", img: "/images/colour-story-colour-wheel.png" },
+    { title: "Why Shape Matters: The Golden Blend of Pasta + Sauce", excerpt: "Flat noodles hold cream. Tubes trap meat. We match every shape to its perfect partner.", date: "May 2026", img: "/images/menu-pasta-shape-pairing.png", alt: "Pasta shape and sauce pairing guide" },
+    { title: "Inside the Commissary: Where Obsession Lives", excerpt: "A behind-the-scenes look at the central kitchen that powers every Papa Pasta store.", date: "April 2026", img: "/images/central-kitchen-concept.png", alt: "Inside the Papa Pasta commissary" },
+    { title: "The Art of the Crest: Colour Story Philosophy", excerpt: "Every franchise gets a unique crest. Here is how the colour explosion happens.", date: "March 2026", img: "/images/colour-story-colour-wheel.png", alt: "Colour story wheel" },
   ];
   return (
-    <section className="section-padding bg-pp-cream">
+    <section className="section-padding bg-pp-tertiary" aria-labelledby="blog-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-end justify-between mb-10">
+        <div className="flex flex-col md:flex-row items-end justify-between mb-12">
           <MotionSection>
             <div>
-              <p className="text-pp-gold uppercase tracking-widest text-sm font-semibold mb-2">The Journal</p>
-              <h2 className="text-pp-navy font-serif text-3xl sm:text-4xl font-bold">Latest from the Blog</h2>
+              <div className="line-accent mb-4" />
+              <p className="text-pp-gold uppercase tracking-[0.2em] text-[12px] font-semibold mb-2">The Journal</p>
+              <h2 id="blog-heading" className="text-pp-on-surface font-serif text-3xl sm:text-[36px] font-bold leading-[1.2] tracking-[-0.01em]">Latest from the Blog</h2>
             </div>
           </MotionSection>
           <MotionSection>
-            <a href="/blog/" className="text-sm font-medium text-pp-navy underline underline-offset-4 hover:text-pp-gold transition mt-4 md:mt-0">Read all posts →</a>
+            <a href="/blog/" className="text-sm font-medium text-pp-gold underline underline-offset-4 hover:text-pp-gold-light transition-colors duration-300 mt-4 md:mt-0">Read all posts &rarr;</a>
           </MotionSection>
         </div>
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post) => (
-            <motion.a variants={staggerChild} key={post.title} href="/blog/" className="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
-              <div className="aspect-[16/10] overflow-hidden">
-                <img src={post.img} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+            <motion.a variants={staggerChild} key={post.title} href="/blog/" className="group block card overflow-hidden">
+              <div className="aspect-[16/10] overflow-hidden rounded-xl -mx-6 -mt-6 mb-6">
+                <img src={post.img} alt={post.alt} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
               </div>
-              <div className="p-6">
-                <p className="text-xs text-pp-charcoal/50 mb-2">{post.date}</p>
-                <h3 className="text-pp-navy font-serif text-lg font-semibold mb-2 group-hover:text-pp-gold transition">{post.title}</h3>
-                <p className="text-pp-charcoal/70 text-sm leading-relaxed">{post.excerpt}</p>
-              </div>
+              <p className="text-xs text-pp-gold mb-2 font-semibold tracking-wider">{post.date}</p>
+              <h3 className="text-pp-on-surface font-serif text-lg font-semibold mb-2 group-hover:text-pp-gold transition-colors duration-300">{post.title}</h3>
+              <p className="text-pp-primary-60 text-sm leading-[1.6]">{post.excerpt}</p>
             </motion.a>
           ))}
         </StaggerContainer>
@@ -364,101 +282,94 @@ function BlogPreview() {
   );
 }
 
-/* ------------------------------------------------------------------
-   Section 8 — Events
-   ------------------------------------------------------------------ */
+/* ═══════════════════════════════════════════════
+   EVENTS PREVIEW
+   ═══════════════════════════════════════════════ */
 function EventsPreview() {
   return (
-    <section className="section-padding bg-pp-navy text-pp-cream">
+    <section className="section-padding bg-pp-primary text-pp-on-primary" aria-labelledby="events-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <MotionSection>
           <div>
-            <p className="text-pp-gold uppercase tracking-widest text-sm font-semibold mb-2">Community</p>
-            <h2 className="text-pp-white font-serif text-3xl sm:text-4xl font-bold mb-5">Upcoming Events</h2>
+            <div className="line-accent mb-4" />
+            <p className="text-pp-gold uppercase tracking-[0.2em] text-[12px] font-semibold mb-2">Community</p>
+            <h2 id="events-heading" className="text-pp-on-primary font-serif text-3xl sm:text-[36px] font-bold mb-5 leading-[1.2] tracking-[-0.01em]">Upcoming Events</h2>
             <ul className="space-y-5">
-              {[
-                { name: "Cape Town Pasta Festival", date: "15 May 2026", loc: "V\u0026A Waterfront" },
-                { name: "Franchise Discovery Day", date: "3 June 2026", loc: "Zoom \u0026 Cape Town HQ" },
-                { name: "Heritage Bowl Launch", date: "16 June 2026", loc: "All Locations" },
-              ].map((e) => (
+              {[{ name: "Cape Town Pasta Festival", date: "15 May 2026", loc: "V&A Waterfront" }, { name: "Franchise Discovery Day", date: "3 June 2026", loc: "Zoom & Cape Town HQ" }, { name: "Heritage Bowl Launch", date: "16 June 2026", loc: "All Locations" }].map((e) => (
                 <li key={e.name} className="border-l-4 border-pp-gold pl-4">
                   <div className="font-semibold text-pp-gold-light">{e.name}</div>
-                  <div className="text-sm text-pp-cream/70">{e.date} · {e.loc}</div>
+                  <div className="text-sm text-pp-on-primary/50">{e.date} · {e.loc}</div>
                 </li>
               ))}
             </ul>
             <div className="mt-8">
-              <a href="/events/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-6 py-2.5 text-sm font-semibold text-pp-navy hover:bg-pp-gold-light transition">
-                View All Events
-              </a>
+              <a href="/events/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-6 py-2.5 text-[12px] uppercase tracking-[0.2em] font-semibold text-pp-black transition-colors duration-300">View All Events</a>
             </div>
           </div>
         </MotionSection>
-
-        <MotionSection delay={0.2}>
+        <ClipReveal direction="right" delay={0.2}>
           <div className="rounded-2xl overflow-hidden">
-            <img src="/images/product-range.png" alt="Papa Pasta product range" className="w-full h-auto object-cover" />
+            <img src="/images/product-range.png" alt="Papa Pasta product range including bowls and packaging" className="w-full h-auto object-cover" loading="lazy" />
           </div>
-        </MotionSection>
+        </ClipReveal>
       </div>
     </section>
   );
 }
 
-/* ------------------------------------------------------------------
-   Section 9 — Newsletter
-   ------------------------------------------------------------------ */
+/* ═══════════════════════════════════════════════
+   NEWSLETTER
+   ═══════════════════════════════════════════════ */
 function Newsletter() {
+  const [submitted, setSubmitted] = useState(false);
+  const [email, setEmail] = useState("");
+  const handleSubmit = useCallback((e: React.FormEvent) => { e.preventDefault(); if (email.trim()) setSubmitted(true); }, [email]);
   return (
-    <section className="section-padding bg-pp-gold/10">
+    <section className="section-padding bg-pp-neutral-90" aria-labelledby="newsletter-heading">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
         <MotionSection>
-          <h2 className="text-pp-navy font-serif text-3xl sm:text-4xl font-bold mb-4">Join the Table</h2>
+          <div className="line-accent mx-auto mb-4" />
+          <h2 id="newsletter-heading" className="text-pp-on-surface font-serif text-3xl sm:text-[36px] font-bold mb-4 leading-[1.2] tracking-[-0.01em]">Join the Table</h2>
         </MotionSection>
-        <MotionSection>
-          <p className="text-pp-charcoal/70 mb-8">
-            Get seasonal menu drops, behind-the-sauce secrets, and first access to tasting events — straight to your inbox.
-          </p>
-        </MotionSection>
-        <MotionSection>
-          <form onSubmit={(e) => { e.preventDefault(); alert("Coming soon: newsletter signup powered by Zoho!"); }} className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <input type="email" placeholder="your@email.com" required className="w-full sm:w-80 rounded-md border border-pp-navy/20 bg-white px-4 py-3 text-sm text-pp-navy placeholder:text-pp-charcoal/40 focus:outline-none focus:ring-2 focus:ring-pp-gold" />
-            <button type="submit" className="w-full sm:w-auto inline-flex items-center justify-center rounded-md bg-pp-navy px-6 py-3 text-sm font-semibold text-white hover:bg-pp-navy-light transition">
-              Subscribe
-            </button>
-          </form>
-        </MotionSection>
-        <p className="text-xs text-pp-charcoal/40 mt-4">By subscribing you agree to our Privacy Policy. Unsubscribe anytime.</p>
+        <MotionSection><p className="text-pp-primary-60 mb-8 leading-[1.65]">Get seasonal menu drops, behind-the-sauce secrets, and first access to tasting events — straight to your inbox.</p></MotionSection>
+        {submitted ? (
+          <MotionSection>
+            <div className="bg-pp-gold/10 border border-pp-gold/30 rounded-lg p-6">
+              <p className="text-pp-gold font-semibold">You&apos;re on the list.</p>
+              <p className="text-pp-primary-60 text-sm mt-1">We&apos;ll be in touch soon.</p>
+            </div>
+          </MotionSection>
+        ) : (
+          <MotionSection>
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <label htmlFor="newsletter-email" className="sr-only">Email address</label>
+              <input id="newsletter-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="your@email.com" required className="input-field w-full sm:w-80" />
+              <button type="submit" className="w-full sm:w-auto btn-gold-glow inline-flex items-center justify-center rounded-md bg-pp-primary px-6 py-3 text-[12px] uppercase tracking-[0.2em] font-semibold text-white hover:bg-pp-primary-80 transition-colors duration-300">Subscribe</button>
+            </form>
+          </MotionSection>
+        )}
+        <p className="text-xs text-pp-primary-60/50 mt-4">By subscribing you agree to our <a href="/legal/" className="underline hover:text-pp-gold transition-colors">Privacy Policy</a>. Unsubscribe anytime.</p>
       </div>
     </section>
   );
 }
 
-/* ------------------------------------------------------------------
-   Section 10 — Franchise Teaser
-   ------------------------------------------------------------------ */
+/* ═══════════════════════════════════════════════
+   FRANCHISE TEASER
+   ═══════════════════════════════════════════════ */
 function FranchiseTeaser() {
   return (
-    <section className="section-padding bg-pp-navy text-pp-cream">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section className="section-padding bg-pp-primary text-pp-on-primary relative overflow-hidden" aria-labelledby="franchise-heading">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.08)_0%,transparent_70%)]" aria-hidden="true" />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <MotionSection>
-          <p className="text-pp-gold uppercase tracking-widest text-sm font-semibold mb-3">Franchise</p>
-          <h2 className="text-pp-white font-serif text-3xl sm:text-5xl font-bold mb-5">
-            Own a Papa Pasta
-          </h2>
-          <p className="text-pp-cream/80 max-w-2xl mx-auto mb-8 leading-relaxed">
-            All-in investment from R1.14M. 20.7% COGS. 21.6% EBITDA. An 8-month payback
-            and a first-mover opportunity in South Africa’s only dedicated pasta QSR franchise.
-          </p>
+          <div className="line-accent mx-auto mb-4" />
+          <p className="text-pp-gold uppercase tracking-[0.2em] text-[12px] font-semibold mb-3">Franchise</p>
+          <h2 id="franchise-heading" className="text-pp-on-primary font-serif text-3xl sm:text-[48px] font-bold mb-5 leading-[1.1] tracking-[-0.02em]">Own a <span className="gold-text-gradient">Papa Pasta</span></h2>
+          <p className="text-pp-on-primary/60 max-w-2xl mx-auto mb-8 leading-[1.65]">All-in investment from R1.14M. 20.7% COGS. 21.6% EBITDA. An 8-month payback and a first-mover opportunity in South Africa&apos;s only dedicated pasta QSR franchise.</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="/franchise/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-8 py-3 text-sm font-semibold text-pp-navy shadow hover:bg-pp-gold-light transition">
-              See the Opportunity
-            </a>
-            <a href="https://franchise.papapasta.co.za/?utm_source=brand-site\u0026utm_medium=franchise-teaser\u0026utm_campaign=franchise-bridge" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center rounded-md border border-pp-gold/40 text-pp-gold px-8 py-3 text-sm font-semibold hover:bg-pp-gold/10 transition"
-            >
-              Express Interest →
-            </a>
+            <a href="/franchise/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-8 py-3 text-[12px] uppercase tracking-[0.2em] font-semibold text-pp-black shadow-lg shadow-pp-gold/20 hover:bg-pp-gold-light transition-colors duration-300">See the Opportunity</a>
+            <a href="https://franchise.papapasta.co.za/?utm_source=brand-site&utm_medium=franchise-teaser&utm_campaign=franchise-bridge" target="_blank" rel="noopener noreferrer" className="btn-outline-gold inline-flex items-center rounded-md border border-pp-gold/50 text-pp-gold px-8 py-3 text-[12px] uppercase tracking-[0.2em] font-semibold hover:bg-pp-gold hover:text-pp-black transition-colors duration-300"><span>Express Interest &rarr;</span></a>
           </div>
         </MotionSection>
       </div>
@@ -466,9 +377,9 @@ function FranchiseTeaser() {
   );
 }
 
-/* ------------------------------------------------------------------
-   Assembly
-   ------------------------------------------------------------------ */
+/* ═══════════════════════════════════════════════
+   HOME PAGE
+   ═══════════════════════════════════════════════ */
 export default function HomePage() {
   return (
     <>

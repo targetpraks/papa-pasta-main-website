@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Papa Pasta",
   },
   description:
-    "Papa Pasta serves fresh, handmade pasta crafted daily in our central kitchen. Find your nearest Cape Town store or order via UberEats \u0026 Mr D.",
+    "Papa Pasta serves fresh, handmade pasta crafted daily in our central kitchen. Find your nearest Cape Town store or order via UberEats & Mr D.",
   keywords: [
     "fresh pasta",
     "Cape Town pasta",
@@ -53,6 +53,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://papapasta.co.za",
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -62,9 +66,35 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="min-h-screen flex flex-col font-sans">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Restaurant",
+              name: "Papa Pasta",
+              image: "https://raw.githubusercontent.com/targetpraks/papa-pasta-assets/main/images/menu-core-8-dishes.png",
+              url: "https://papapasta.co.za",
+              telephone: "+27-21-000-0000",
+              servesCuisine: "Italian",
+              priceRange: "R79–R98",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Cape Town",
+                addressRegion: "Western Cape",
+                addressCountry: "ZA",
+              },
+            }),
+          }}
+        />
+      </head>
+      <body className="min-h-screen flex flex-col font-sans bg-pp-cream text-pp-black antialiased">
+        <a href="#main-content" className="skip-to-content">
+          Skip to main content
+        </a>
         <Nav />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1" tabIndex={-1}>{children}</main>
         <Footer />
       </body>
     </html>

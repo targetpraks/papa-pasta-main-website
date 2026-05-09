@@ -1,38 +1,53 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { MotionSection, StaggerContainer, staggerChild } from "../components/Motion";
+
 export default function Page() {
   return (
     <>
-      <header className="bg-pp-navy text-pp-white py-20 text-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold mb-4">Careers</h1>
-          <p className="text-pp-cream/70 max-w-2xl mx-auto">Join a team obsessed with pasta. Store, kitchen and franchise support roles available now.</p>
+      <header className="bg-pp-primary text-pp-on-primary py-20 sm:py-24 text-center px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-pp-gold uppercase tracking-[0.2em] text-xs font-semibold mb-4">
+            Join the Team
+          </motion.p>
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+            className="font-serif text-4xl sm:text-6xl font-bold mb-4">
+            <span className="gold-text-gradient">Careers</span>
+          </motion.h1>
+          <motion.p initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+            className="text-pp-on-primary/60 max-w-2xl mx-auto text-lg">
+            Join a team obsessed with pasta. Store, kitchen and franchise support roles available now.
+          </motion.p>
         </div>
       </header>
-            <section className="section-padding bg-pp-cream">
+
+      <section className="section-padding bg-pp-tertiary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-pp-charcoal/70 mb-10">
+          <p className="text-center text-pp-primary-60/60 mb-10">
             We are growing fast. If you love pasta, neon, and high standards, we want to hear from you.
           </p>
-          <div className="space-y-4">
+          <StaggerContainer className="space-y-4">
             {[
-              { title: "Store Manager — Cape Town CBD", type: "Full-time", desc: "Lead a compact, high-energy team in our flagship location. Hospitality experience preferred." },
-              { title: "Pasta Chef — Cape Town", type: "Full-time", desc: "Shape, sauce and serve with precision. Training provided on the Golden Blend method." },
+              { title: "Store Manager \u2014 Cape Town CBD", type: "Full-time", desc: "Lead a compact, high-energy team in our flagship location. Hospitality experience preferred." },
+              { title: "Pasta Chef \u2014 Cape Town", type: "Full-time", desc: "Shape, sauce and serve with precision. Training provided on the Golden Blend method." },
               { title: "Commissary Kitchen Lead", type: "Full-time", desc: "Oversee daily pasta extrusion, sauce prep and quality control for the entire network." },
               { title: "Regional Franchise Coach", type: "Full-time", desc: "Travel between stores to train, audit and elevate brand standards across provinces." },
             ].map((job) => (
-              <div key={job.title} className="bg-white rounded-2xl p-6 shadow-sm border border-pp-navy/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <motion.div key={job.title} variants={staggerChild}
+                className="bg-white rounded-2xl p-6 shadow-sm border-l-4 border-pp-gold hover:shadow-lg transition-shadow duration-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+              >
                 <div>
-                  <h3 className="font-serif text-lg font-semibold text-pp-navy">{job.title}</h3>
-                  <p className="text-xs text-pp-gold font-bold uppercase tracking-wider mt-1">{job.type}</p>
-                  <p className="text-sm text-pp-charcoal/70 mt-2">{job.desc}</p>
+                  <h3 className="font-serif text-lg font-semibold text-pp-on-surface">{job.title}</h3>
+                  <p className="text-xs text-pp-gold font-bold uppercase tracking-[0.15em] mt-1">{job.type}</p>
+                  <p className="text-sm text-pp-primary-60/60 mt-2">{job.desc}</p>
                 </div>
-                <a href="mailto:careers@papapasta.co.za" className="inline-flex items-center rounded-md bg-pp-navy px-5 py-2 text-sm font-semibold text-white hover:bg-pp-navy-light transition whitespace-nowrap">
-                  Apply
+                <a href="mailto:careers@papapasta.co.za" className="btn-outline-gold inline-flex items-center rounded-md border-2 border-pp-gold/50 text-pp-gold px-5 py-2 text-sm font-semibold hover:bg-pp-gold hover:text-pp-on-surface whitespace-nowrap transition-colors duration-300">
+                  <span>Apply</span>
                 </a>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
     </>

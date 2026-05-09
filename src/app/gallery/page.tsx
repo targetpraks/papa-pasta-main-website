@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MotionSection, StaggerContainer, staggerChild } from "../components/Motion";
+import { MotionSection, StaggerContainer, staggerChild, staggerChildScale } from "../components/Motion";
 
 const bowlGallery = [
   { title: "Founding Crest", img: "/images/bowl-01-founding-crest.png", tag: "Foundational" },
@@ -31,25 +31,28 @@ export default function GalleryPage() {
 
   return (
     <>
-      <header className="bg-pp-navy text-white py-20 text-center">
-        <div className="max-w-7xl mx-auto px-4">
-          <p className="text-pp-gold uppercase tracking-[0.2em] text-sm font-semibold mb-3">Visual Library</p>
-          <h1 className="font-serif text-4xl sm:text-6xl font-bold mb-4">The Gallery</h1>
-          <p className="text-pp-cream/80 max-w-2xl mx-auto">
+      <header className="bg-pp-primary text-pp-on-primary py-20 sm:py-24 text-center px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-pp-gold uppercase tracking-[0.2em] text-xs font-semibold mb-3">Visual Library</motion.p>
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+            className="font-serif text-4xl sm:text-6xl font-bold mb-4">
+            The <span className="gold-text-gradient">Gallery</span>
+          </motion.h1>
+          <motion.p initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+            className="text-pp-on-primary/60 max-w-2xl mx-auto">
             Every bowl, store concept, takeover and crest is a colour story. Browse the full visual archive.
-          </p>
+          </motion.p>
         </div>
       </header>
 
-      {/* Section Tabs */}
-      <div className="bg-pp-navy-dark border-b border-pp-navy-light">
+      <div className="bg-pp-surface-dark border-b border-pp-gold/10">
         <div className="max-w-7xl mx-auto px-4 flex gap-0">
           {["bowls", "stores", "packaging", "takeovers"].map((sec) => (
             <button
               key={sec}
               onClick={() => setActiveSection(sec)}
-              className={`flex-1 py-4 text-sm font-semibold uppercase tracking-wider transition ${
-                activeSection === sec ? "text-pp-gold border-b-2 border-pp-gold" : "text-pp-cream/50 hover:text-pp-cream"
+              className={`flex-1 py-4 text-sm font-semibold uppercase tracking-[0.15em] transition-colors duration-300 ${
+                activeSection === sec ? "text-pp-gold border-b-2 border-pp-gold" : "text-pp-on-primary/40 hover:text-pp-on-primary/70"
               }`}
             >
               {sec}
@@ -58,17 +61,16 @@ export default function GalleryPage() {
         </div>
       </div>
 
-      {/* Bowls Section */}
       {activeSection === "bowls" && (
-        <section className="section-padding bg-pp-cream">
+        <section className="section-padding bg-pp-tertiary">
           <div className="max-w-7xl mx-auto px-4">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-wrap gap-2 mb-8">
               {["All", "Foundational", "Franchise", "Heritage", "Gaming", "TakeOver", "Collab", "Seasonal", "City", "Special", "Sports"].map((tag) => (
                 <button
                   key={tag}
                   onClick={() => setFilter(tag)}
-                  className={`text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full transition ${
-                    filter === tag ? "bg-pp-navy text-white" : "bg-white text-pp-charcoal/60 border border-pp-navy/10 hover:border-pp-gold"
+                  className={`text-xs font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-full transition-all duration-300 ${
+                    filter === tag ? "bg-pp-primary text-pp-gold shadow-lg" : "bg-white text-pp-primary-60/50 border border-pp-primary/5 hover:border-pp-gold hover:text-pp-gold"
                   }`}
                 >
                   {tag}
@@ -77,13 +79,13 @@ export default function GalleryPage() {
             </motion.div>
             <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
               {bowlGallery.filter((b) => filter === "All" || b.tag === filter).map((b) => (
-                <motion.div key={b.title} variants={staggerChild} className="bg-white rounded-xl overflow-hidden shadow-sm img-hover-lift">
+                <motion.div key={b.title} variants={staggerChildScale} className="bg-white rounded-xl overflow-hidden border border-pp-primary/5 img-hover-lift">
                   <div className="aspect-square overflow-hidden">
                     <img src={b.img} alt={b.title} className="w-full h-full object-cover" />
                   </div>
                   <div className="p-3 text-center">
-                    <p className="text-xs font-semibold text-pp-navy truncate">{b.title}</p>
-                    <p className="text-[10px] text-pp-charcoal/40 uppercase tracking-wider">{b.tag}</p>
+                    <p className="text-xs font-semibold text-pp-on-surface truncate">{b.title}</p>
+                    <p className="text-[10px] text-pp-gold uppercase tracking-wider">{b.tag}</p>
                   </div>
                 </motion.div>
               ))}
@@ -92,19 +94,18 @@ export default function GalleryPage() {
         </section>
       )}
 
-      {/* Stores Section */}
       {activeSection === "stores" && (
-        <section className="section-padding bg-pp-cream">
+        <section className="section-padding bg-pp-tertiary">
           <div className="max-w-7xl mx-auto px-4">
             <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {storeGallery.map((s) => (
-                <motion.div key={s.title} variants={staggerChild} className="bg-white rounded-2xl overflow-hidden shadow-sm img-hover-lift">
+                <motion.div key={s.title} variants={staggerChildScale} className="bg-white rounded-2xl overflow-hidden border border-pp-primary/5 img-hover-lift">
                   <div className="aspect-[4/3] overflow-hidden">
                     <img src={s.img} alt={s.title} className="w-full h-full object-cover" />
                   </div>
                   <div className="p-5">
-                    <h3 className="font-serif text-lg font-semibold text-pp-navy">{s.title}</h3>
-                    <p className="text-xs text-pp-charcoal/50 mt-1">Store Concept</p>
+                    <h3 className="font-serif text-lg font-semibold text-pp-on-surface">{s.title}</h3>
+                    <p className="text-xs text-pp-gold mt-1 uppercase tracking-wider">Store Concept</p>
                   </div>
                 </motion.div>
               ))}
@@ -113,25 +114,24 @@ export default function GalleryPage() {
         </section>
       )}
 
-      {/* Packaging Section */}
       {activeSection === "packaging" && (
-        <section className="section-padding bg-pp-cream">
+        <section className="section-padding bg-pp-tertiary">
           <div className="max-w-7xl mx-auto px-4">
             <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 { title: "Franchisee Cups", img: "/images/packaging-franchisee-cups.png" },
                 { title: "TakeOver Packaging", img: "/images/packaging-takeover.png" },
-                { title: "Base B\u0026W Template", img: "/images/packaging-base-bw.png" },
+                { title: "B&W Template", img: "/images/packaging-base-bw.png" },
                 { title: "Collectible Canisters", img: "/images/collectible-cups-canisters.png" },
                 { title: "Kraft Sleeve", img: "/images/artisan-pkg-03-kraft-sleeve.png" },
                 { title: "Retail Shelf Display", img: "/images/artisan-pkg-05-retail-shelf-display.png" },
               ].map((p) => (
-                <motion.div key={p.title} variants={staggerChild} className="bg-white rounded-2xl overflow-hidden shadow-sm img-hover-lift">
+                <motion.div key={p.title} variants={staggerChildScale} className="bg-white rounded-2xl overflow-hidden border border-pp-primary/5 img-hover-lift">
                   <div className="aspect-[4/3] overflow-hidden">
                     <img src={p.img} alt={p.title} className="w-full h-full object-cover" />
                   </div>
                   <div className="p-5">
-                    <h3 className="font-serif text-lg font-semibold text-pp-navy">{p.title}</h3>
+                    <h3 className="font-serif text-lg font-semibold text-pp-on-surface">{p.title}</h3>
                   </div>
                 </motion.div>
               ))}
@@ -140,9 +140,8 @@ export default function GalleryPage() {
         </section>
       )}
 
-      {/* Takeovers Section */}
       {activeSection === "takeovers" && (
-        <section className="section-padding bg-pp-cream">
+        <section className="section-padding bg-pp-tertiary">
           <div className="max-w-7xl mx-auto px-4">
             <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
@@ -153,13 +152,13 @@ export default function GalleryPage() {
                 { title: "Lions Rugby TakeOver", img: "/images/takeover-lions-rugby.png", partner: "Lions" },
                 { title: "Investec TakeOver", img: "/images/takeover-investec.png", partner: "Investec" },
               ].map((t) => (
-                <motion.div key={t.title} variants={staggerChild} className="bg-white rounded-2xl overflow-hidden shadow-sm img-hover-lift">
+                <motion.div key={t.title} variants={staggerChildScale} className="bg-white rounded-2xl overflow-hidden border border-pp-primary/5 img-hover-lift">
                   <div className="aspect-[4/3] overflow-hidden relative">
                     <img src={t.img} alt={t.title} className="w-full h-full object-cover" />
-                    <div className="absolute top-3 right-3 bg-pp-gold text-pp-navy text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded">{t.partner}</div>
+                    <div className="absolute top-3 right-3 bg-pp-gold text-pp-on-surface text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-1 rounded">{t.partner}</div>
                   </div>
                   <div className="p-5">
-                    <h3 className="font-serif text-lg font-semibold text-pp-navy">{t.title}</h3>
+                    <h3 className="font-serif text-lg font-semibold text-pp-on-surface">{t.title}</h3>
                   </div>
                 </motion.div>
               ))}
