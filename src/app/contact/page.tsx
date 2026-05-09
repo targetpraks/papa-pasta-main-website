@@ -2,10 +2,32 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { MotionSection } from "../components/Motion";
 
 export default function Page() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    const formData = new FormData(e.currentTarget);
+    const email = (formData.get("email") as string) || "";
+
+    setTimeout(() => {
+      setLoading(false);
+      if (email.toLowerCase().includes("fail")) {
+        setError("Network error. Please try again later.");
+      } else {
+        setSubmitted(true);
+      }
+    }, 800);
+  };
+
   return (
     <>
       <header className="bg-pp-primary text-pp-on-primary py-20 sm:py-24 text-center px-4 sm:px-6 lg:px-8">
@@ -40,7 +62,7 @@ export default function Page() {
                     <div className="w-2 h-2 rounded-full bg-pp-gold mt-1.5 flex-shrink-0" />
                     <div>
                       <p className="font-semibold text-pp-on-surface">{item.label}</p>
-                      <p className="text-pp-primary-60/60">{item.email}</p>
+                      <p className="text-pp-primary-60">{item.email}</p>
                     </div>
                   </div>
                 ))}
@@ -48,7 +70,7 @@ export default function Page() {
                   <div className="w-2 h-2 rounded-full bg-pp-gold mt-1.5 flex-shrink-0" />
                   <div>
                     <p className="font-semibold text-pp-on-surface">Head Office</p>
-                    <p className="text-pp-primary-60/60">Cape Town, South Africa</p>
+                    <p className="text-pp-primary-60">Cape Town, South Africa</p>
                   </div>
                 </div>
               </div>
@@ -57,27 +79,77 @@ export default function Page() {
 
           <MotionSection delay={0.2}>
             {submitted ? (
-              <div className="bg-pp-gold/10 border border-pp-gold/30 rounded-2xl p-8 text-center">
+              <div aria-live="polite" className="bg-pp-gold/10 border border-pp-gold/30 rounded-2xl p-8 text-center">
                 <p className="text-pp-gold font-semibold text-lg font-serif">Message Sent</p>
-                <p className="text-pp-primary-60/60 text-sm mt-2">We&apos;ll get back to you within 24 hours.</p>
+                <p className="text-pp-primary-60 text-sm mt-2">We&apos;ll get back to you within 24 hours.</p>
               </div>
             ) : (
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-pp-black/5">
-                <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} className="space-y-4">
+              <div className="bg-pp-surface-elevated rounded-2xl p-6 shadow-sm border border-pp-black/5">
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input required type="text" placeholder="Name" className="input-field" />
-                    <input required type="email" placeholder="Email" className="input-field" />
+                    <div>
+                      <label htmlFor="contact-name" className="block text-sm font-medium text-pp-on-surface mb-1">Name</label>
+                      <input
+                        id="contact-name"
+                        name="name"
+                        required
+                        type="text"
+                        placeholder="Your name"
+                        aria-invalid={error ? "true" : undefined}
+                        className="input-field"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="contact-email" className="block text-sm font-medium text-pp-on-surface mb-1">Email</label>
+                      <input
+                        id="contact-email"
+                        name="email"
+                        required
+                        type="email"
+                        placeholder="you@example.com"
+                        aria-invalid={error ? "true" : undefined}
+                        className="input-field"
+                      />
+                    </div>
                   </div>
-                  <select className="w-full input-field text-pp-primary-60/60">
-                    <option>General Enquiry</option>
-                    <option>Franchise Interest</option>
-                    <option>Press / Media</option>
-                    <option>Careers</option>
-                    <option>Complaint / Feedback</option>
-                  </select>
-                  <textarea required rows={4} placeholder="Your message..." className="w-full input-field" />
-                  <button type="submit" className="w-full btn-gold-glow rounded-md bg-pp-primary px-6 py-3 text-sm font-semibold text-pp-on-primary hover:bg-pp-primary-80 transition-colors duration-300">
-                    Send Message
+                  <div>
+                    <label htmlFor="contact-reason" className="block text-sm font-medium text-pp-on-surface mb-1">Reason</label>
+                    <select
+                      id="contact-reason"
+                      name="reason"
+                      required
+                      aria-invalid={error ? "true" : undefined}
+                      className="w-full input-field text-pp-primary-60"
+                    >
+                      <option value="" disabled>Select a reason...</option>
+                      <option value="general">General Enquiry</option>
+                      <option value="franchise">Franchise Interest</option>
+                      <option value="press">Press / Media</option>
+                      <option value="careers">Careers</option>
+                      <option value="feedback">Complaint / Feedback</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="contact-message" className="block text-sm font-medium text-pp-on-surface mb-1">Message</label>
+                    <textarea
+                      id="contact-message"
+                      name="message"
+                      required
+                      rows={4}
+                      placeholder="Your message..."
+                      aria-invalid={error ? "true" : undefined}
+                      className="w-full input-field"
+                    />
+                  </div>
+                  {error && (
+                    <p className="text-sm text-red-600" role="alert">{error}</p>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full btn-gold-glow rounded-md bg-pp-primary px-6 py-3 text-sm font-semibold text-pp-on-primary hover:bg-pp-primary-80 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {loading ? "Sending..." : "Send Message"}
                   </button>
                 </form>
               </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { MotionSection, StaggerContainer, staggerChild } from "../components/Motion";
 
@@ -38,7 +39,7 @@ export default function Page() {
                   <div className="flex items-center justify-between mb-1">
                     <h3 className="font-serif text-xl font-bold text-pp-on-surface">{loc.city}</h3>
                     <span className={`text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-0.5 rounded ${
-                      loc.status === "Open Now" ? "bg-pp-gold/15 text-pp-gold-dark" : "bg-pp-charcoal/10 text-pp-primary-60/50"
+                      loc.status === "Open Now" ? "bg-pp-gold/15 text-pp-gold-dark" : "bg-pp-primary-60/10 text-pp-primary-60/50"
                     }`}>{loc.status}</span>
                   </div>
                   <p className="text-sm text-pp-primary-60/70 mt-1">{loc.area}</p>
@@ -49,7 +50,7 @@ export default function Page() {
 
             <MotionSection delay={0.2}>
               <div className="relative rounded-2xl overflow-hidden shadow-lg h-full min-h-[400px]">
-                <img src="/images/brand-image-28.png" alt="Location map" className="w-full h-full object-cover" />
+                <img src="/images/brand-image-28.png" alt="Location map" width={800} height={600} className="w-full h-full object-cover" />
                 <div className="absolute bottom-4 left-4 right-4 bg-pp-primary/90 backdrop-blur rounded-lg px-4 py-3">
                   <p className="text-xs text-pp-on-primary/60">
                     Interactive map coming soon. Contact us for exact addresses for the Cape Town stores.
@@ -59,9 +60,9 @@ export default function Page() {
             </MotionSection>
           </div>
           <MotionSection className="mt-10 text-center">
-            <a href="/franchise/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-6 py-2.5 text-sm font-semibold text-pp-on-surface hover:bg-pp-gold-light transition-colors duration-300">
+            <Link href="/franchise/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-6 py-2.5 text-sm font-semibold text-pp-on-surface hover:bg-pp-gold-light transition-colors duration-300">
               Own a Store in Your City
-            </a>
+            </Link>
           </MotionSection>
         </div>
       </section>

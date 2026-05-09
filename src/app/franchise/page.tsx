@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MotionSection, StaggerContainer, staggerChild, staggerChildScale } from "../components/Motion";
+import Link from "next/link";
+import { MotionSection, StaggerContainer, staggerChildScale } from "../components/Motion";
 
 function CrestCreator() {
   const [c1, setC1] = useState("#FF6B35");
@@ -13,7 +14,7 @@ function CrestCreator() {
     background: `linear-gradient(135deg, ${c1}, ${c2}, ${c3})`,
     borderRadius: "50%", aspectRatio: "1",
     display: "flex", alignItems: "center", justifyContent: "center",
-    fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "white",
+    fontFamily: "var(--font-serif)", fontWeight: 700, color: "white",
     fontSize: "1.2rem", textShadow: "0 2px 8px rgba(0,0,0,0.4)",
     boxShadow: "0 20px 60px rgba(0,0,0,0.3)", transition: "background 0.6s ease",
   };
@@ -44,7 +45,13 @@ function CrestCreator() {
                     <span className="text-sm font-medium text-pp-on-primary/80">{c.label} Colour</span>
                     <span className="text-xs font-mono text-pp-gold">{c.value}</span>
                   </div>
-                  <input type="color" value={c.value} onChange={(e) => c.setter(e.target.value)} className="w-full h-10 cursor-pointer rounded-lg border-0 bg-transparent" />
+                  <input
+                    type="color"
+                    value={c.value}
+                    onChange={(e) => c.setter(e.target.value)}
+                    aria-label={`${c.label} colour picker`}
+                    className="w-full h-10 cursor-pointer rounded-lg border-0 bg-transparent"
+                  />
                 </div>
               ))}
               <div className="text-xs text-pp-on-primary/40 mt-2">Named: <strong className="text-pp-gold">{crestName}</strong></div>
@@ -57,7 +64,7 @@ function CrestCreator() {
                 PP
               </motion.div>
               <p className="text-sm text-pp-on-primary/40">Your crest on a franchise bowl</p>
-              <img src="/images/packaging-franchisee-cups.png" alt="Franchisee cups preview" className="rounded-xl shadow-lg shadow-pp-gold/5 w-full max-w-sm" />
+              <img src="/images/packaging-franchisee-cups.png" alt="Franchisee cups preview" width={400} height={300} className="rounded-xl shadow-lg shadow-pp-gold/5 w-full max-w-sm" />
             </div>
           </MotionSection>
         </div>
@@ -69,12 +76,12 @@ function CrestCreator() {
 function TerritoryMap() {
   const provinces = [
     { name: "Western Cape", status: "Available", col: "bg-pp-gold" },
-    { name: "Eastern Cape", status: "Under Discussion", col: "bg-pp-grey" },
+    { name: "Eastern Cape", status: "Under Discussion", col: "bg-pp-primary-30" },
     { name: "Northern Cape", status: "Available", col: "bg-pp-gold" },
     { name: "Free State", status: "Available", col: "bg-pp-gold" },
-    { name: "KwaZulu-Natal", status: "Committed", col: "bg-pp-charcoal" },
+    { name: "KwaZulu-Natal", status: "Committed", col: "bg-pp-primary-60" },
     { name: "North West", status: "Available", col: "bg-pp-gold" },
-    { name: "Gauteng", status: "Under Discussion", col: "bg-pp-grey" },
+    { name: "Gauteng", status: "Under Discussion", col: "bg-pp-primary-30" },
     { name: "Mpumalanga", status: "Available", col: "bg-pp-gold" },
     { name: "Limpopo", status: "Available", col: "bg-pp-gold" },
   ];
@@ -100,13 +107,13 @@ function TerritoryMap() {
                 <div className={`w-3 h-3 rounded-full ${p.col}`}></div>
                 <h3 className="font-serif text-lg font-semibold text-pp-on-surface group-hover:text-pp-gold transition-colors duration-300">{p.name}</h3>
               </div>
-              <span className="inline-block text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-0.5 rounded bg-pp-offwhite text-pp-primary-60/60">{p.status}</span>
+              <span className="inline-block text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-0.5 rounded bg-pp-neutral-90 text-pp-primary-60/60">{p.status}</span>
             </motion.div>
           ))}
         </StaggerContainer>
 
         <MotionSection className="mt-10 flex justify-center">
-          <img src="/images/colour-story-zone-map.png" alt="Territory zone map" className="rounded-2xl shadow-lg max-w-2xl w-full" />
+          <img src="/images/colour-story-zone-map.png" alt="Territory zone map" width={672} height={400} className="rounded-2xl shadow-lg max-w-2xl w-full" />
         </MotionSection>
       </div>
     </section>
@@ -151,6 +158,17 @@ function Financials() {
 
 function ApplicationForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setSubmitted(true);
+    }, 1000);
+  };
+
   return (
     <section className="section-padding bg-pp-tertiary">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -163,55 +181,79 @@ function ApplicationForm() {
 
         {submitted ? (
           <MotionSection>
-            <div className="bg-pp-gold/10 border border-pp-gold/30 rounded-2xl p-8 text-center">
+            <div aria-live="polite" className="bg-pp-gold/10 border border-pp-gold/30 rounded-2xl p-8 text-center">
               <p className="text-pp-gold font-semibold text-lg font-serif">Application Received</p>
               <p className="text-pp-primary-60/60 text-sm mt-2">Our franchise team will review your submission and be in touch within 48 hours.</p>
             </div>
           </MotionSection>
         ) : (
           <MotionSection>
-            <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}
+            <form onSubmit={handleSubmit}
               className="space-y-5 bg-white rounded-2xl p-8 shadow-sm border border-pp-primary/5"
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input required type="text" placeholder="Full Name" className="rounded-md border border-pp-primary/10 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-pp-gold transition-shadow" />
-                <input required type="email" placeholder="Email" className="rounded-md border border-pp-primary/10 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-pp-gold transition-shadow" />
-                <input required type="tel" placeholder="Phone" className="rounded-md border border-pp-primary/10 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-pp-gold transition-shadow" />
-                <select className="rounded-md border border-pp-primary/10 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-pp-gold text-pp-primary-60/60 transition-shadow">
-                  <option>Select Province</option>
-                  {["Western Cape", "Eastern Cape", "Northern Cape", "Free State", "KwaZulu-Natal", "North West", "Gauteng", "Mpumalanga", "Limpopo"].map((p) => (
-                    <option key={p}>{p}</option>
-                  ))}
+                <div>
+                  <label htmlFor="franchise-name" className="sr-only">Full Name</label>
+                  <input id="franchise-name" name="name" required type="text" placeholder="Full Name" className="input-field" />
+                </div>
+                <div>
+                  <label htmlFor="franchise-email" className="sr-only">Email</label>
+                  <input id="franchise-email" name="email" required type="email" placeholder="Email" className="input-field" />
+                </div>
+                <div>
+                  <label htmlFor="franchise-phone" className="sr-only">Phone</label>
+                  <input id="franchise-phone" name="phone" required type="tel" placeholder="Phone" className="input-field" />
+                </div>
+                <div>
+                  <label htmlFor="franchise-province" className="sr-only">Province</label>
+                  <select id="franchise-province" name="province" required defaultValue="" className="input-field">
+                    <option value="" disabled>Select Province</option>
+                    {["Western Cape", "Eastern Cape", "Northern Cape", "Free State", "KwaZulu-Natal", "North West", "Gauteng", "Mpumalanga", "Limpopo"].map((p) => (
+                      <option key={p} value={p}>{p}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label htmlFor="franchise-investment" className="sr-only">Investment Range</label>
+                <select id="franchise-investment" name="investment" required defaultValue="" className="input-field">
+                  <option value="" disabled>Investment Range (Select one)</option>
+                  <option value="R750K – R1M">R750K – R1M</option>
+                  <option value="R1M – R1.5M">R1M – R1.5M</option>
+                  <option value="R1.5M – R2M">R1.5M – R2M</option>
+                  <option value="R2M+">R2M+</option>
                 </select>
               </div>
-              <select className="w-full rounded-md border border-pp-primary/10 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-pp-gold text-pp-primary-60/60 transition-shadow">
-                <option>Investment Range (Select one)</option>
-                <option>R750K – R1M</option>
-                <option>R1M – R1.5M</option>
-                <option>R1.5M – R2M</option>
-                <option>R2M+</option>
-              </select>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <select className="w-full rounded-md border border-pp-primary/10 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-pp-gold text-pp-primary-60/60 transition-shadow">
-                  <option>Current Business Owner?</option>
-                  <option>Yes</option>
-                  <option>No</option>
-                </select>
-                <select className="w-full rounded-md border border-pp-primary/10 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-pp-gold text-pp-primary-60/60 transition-shadow">
-                  <option>Previous Franchise Experience?</option>
-                  <option>Yes</option>
-                  <option>No</option>
-                </select>
+                <div>
+                  <label htmlFor="franchise-business-owner" className="sr-only">Current Business Owner?</label>
+                  <select id="franchise-business-owner" name="business_owner" required defaultValue="" className="input-field">
+                    <option value="" disabled>Current Business Owner?</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="franchise-experience" className="sr-only">Previous Franchise Experience?</label>
+                  <select id="franchise-experience" name="franchise_experience" required defaultValue="" className="input-field">
+                    <option value="" disabled>Previous Franchise Experience?</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
               </div>
-              <textarea rows={4} placeholder="Tell us why you want to own a Papa Pasta franchise..." className="w-full rounded-md border border-pp-primary/10 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-pp-gold transition-shadow" />
+              <div>
+                <label htmlFor="franchise-message" className="sr-only">Message</label>
+                <textarea id="franchise-message" name="message" rows={4} placeholder="Tell us why you want to own a Papa Pasta franchise..." className="input-field" />
+              </div>
 
               <div className="bg-pp-tertiary rounded-xl p-4 border border-pp-gold/20">
-                <p className="text-xs text-pp-primary-60/60 mb-2">Attach your custom crest (optional — create one above first):</p>
-                <input type="file" accept="image/*" className="text-sm" />
+                <label htmlFor="franchise-crest" className="block text-xs text-pp-primary-60/60 mb-2">Attach your custom crest (optional — create one above first):</label>
+                <input id="franchise-crest" name="crest" type="file" accept="image/*" className="input-field" />
               </div>
 
-              <button type="submit" className="w-full btn-gold-glow rounded-md bg-pp-primary px-6 py-3 font-semibold text-pp-on-primary hover:bg-pp-primary-80 transition-colors duration-300">
-                Submit Application
+              <button type="submit" disabled={loading} className="w-full btn-gold-glow rounded-md bg-pp-primary px-6 py-3 font-semibold text-pp-on-primary hover:bg-pp-primary-80 transition-colors duration-300 disabled:opacity-60">
+                {loading ? "Submitting..." : "Submit Application"}
               </button>
             </form>
           </MotionSection>
@@ -242,15 +284,15 @@ function SocialProofGallery() {
         <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {crests.map((src, i) => (
             <motion.div key={i} variants={staggerChildScale} className="bg-pp-primary-80 rounded-xl p-2 border border-pp-gold/10 img-hover-lift">
-              <img src={src} alt={`Crest ${i + 1}`} className="w-full h-auto rounded-lg" />
+              <img src={src} alt={`Crest ${i + 1}`} width={300} height={300} className="w-full h-auto rounded-lg" />
             </motion.div>
           ))}
         </StaggerContainer>
 
         <div className="text-center mt-8">
-          <a href="/gallery/" className="text-sm font-medium text-pp-gold underline underline-offset-4 hover:text-pp-gold-light transition-colors duration-300">
+          <Link href="/gallery/" className="text-sm font-medium text-pp-gold underline underline-offset-4 hover:text-pp-gold-light transition-colors duration-300">
             View Full Gallery &rarr;
-          </a>
+          </Link>
         </div>
       </div>
     </section>
@@ -276,7 +318,7 @@ export default function FranchisePage() {
               Build your brand — and your city — with South Africa&apos;s only dedicated pasta QSR franchise.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="https://franchise.papapasta.co.za/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-8 py-3 text-sm font-semibold text-pp-on-surface shadow-lg shadow-pp-gold/20 hover:bg-pp-gold-light transition-colors duration-300">
+              <a href="https://franchise.papapasta.co.za/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-8 py-3 text-sm font-semibold text-pp-on-primary shadow-lg shadow-pp-gold/20 hover:bg-pp-gold-light transition-colors duration-300">
                 Go to Franchise Portal &rarr;
               </a>
             </div>

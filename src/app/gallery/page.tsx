@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { MotionSection, StaggerContainer, staggerChild, staggerChildScale } from "../components/Motion";
+import { StaggerContainer, staggerChildScale } from "../components/Motion";
 
 const bowlGallery = [
   { title: "Founding Crest", img: "/images/bowl-01-founding-crest.png", tag: "Foundational" },
@@ -81,7 +82,7 @@ export default function GalleryPage() {
               {bowlGallery.filter((b) => filter === "All" || b.tag === filter).map((b) => (
                 <motion.div key={b.title} variants={staggerChildScale} className="bg-white rounded-xl overflow-hidden border border-pp-primary/5 img-hover-lift">
                   <div className="aspect-square overflow-hidden">
-                    <img src={b.img} alt={b.title} className="w-full h-full object-cover" />
+                    <img src={b.img} alt={b.title} width={400} height={300} className="w-full h-full object-cover" />
                   </div>
                   <div className="p-3 text-center">
                     <p className="text-xs font-semibold text-pp-on-surface truncate">{b.title}</p>
@@ -101,7 +102,7 @@ export default function GalleryPage() {
               {storeGallery.map((s) => (
                 <motion.div key={s.title} variants={staggerChildScale} className="bg-white rounded-2xl overflow-hidden border border-pp-primary/5 img-hover-lift">
                   <div className="aspect-[4/3] overflow-hidden">
-                    <img src={s.img} alt={s.title} className="w-full h-full object-cover" />
+                    <img src={s.img} alt={s.title} width={800} height={600} className="w-full h-full object-cover" />
                   </div>
                   <div className="p-5">
                     <h3 className="font-serif text-lg font-semibold text-pp-on-surface">{s.title}</h3>
@@ -128,7 +129,7 @@ export default function GalleryPage() {
               ].map((p) => (
                 <motion.div key={p.title} variants={staggerChildScale} className="bg-white rounded-2xl overflow-hidden border border-pp-primary/5 img-hover-lift">
                   <div className="aspect-[4/3] overflow-hidden">
-                    <img src={p.img} alt={p.title} className="w-full h-full object-cover" />
+                    <img src={p.img} alt={p.title} width={800} height={600} className="w-full h-full object-cover" />
                   </div>
                   <div className="p-5">
                     <h3 className="font-serif text-lg font-semibold text-pp-on-surface">{p.title}</h3>
@@ -154,7 +155,7 @@ export default function GalleryPage() {
               ].map((t) => (
                 <motion.div key={t.title} variants={staggerChildScale} className="bg-white rounded-2xl overflow-hidden border border-pp-primary/5 img-hover-lift">
                   <div className="aspect-[4/3] overflow-hidden relative">
-                    <img src={t.img} alt={t.title} className="w-full h-full object-cover" />
+                    <img src={t.img} alt={t.title} width={800} height={600} className="w-full h-full object-cover" />
                     <div className="absolute top-3 right-3 bg-pp-gold text-pp-on-surface text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-1 rounded">{t.partner}</div>
                   </div>
                   <div className="p-5">

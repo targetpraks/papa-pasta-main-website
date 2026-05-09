@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { MotionSection, StaggerContainer, staggerChild } from "../components/Motion";
 
@@ -89,7 +90,7 @@ export default function StoryPage() {
       <section className="section-padding bg-pp-tertiary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <MotionSection>
-            <img src="/images/menu-sauce-production.png" alt="Sauce production" className="rounded-2xl shadow-lg w-full" />
+            <img src="/images/menu-sauce-production.png" alt="Sauce production" width={800} height={600} className="rounded-2xl shadow-lg w-full" />
           </MotionSection>
 
           <MotionSection delay={0.2}>
@@ -109,9 +110,9 @@ export default function StoryPage() {
               The core menu stays at 32 dishes — enough variety for daily visits, disciplined enough
               to maintain insane quality. Seasonal specials rotate quarterly so there is always something new.
             </p>
-            <a href="/menu/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-6 py-2.5 text-sm font-semibold text-pp-on-surface hover:bg-pp-gold-light transition-colors duration-300">
+            <Link href="/menu/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-6 py-2.5 text-sm font-semibold text-pp-on-surface hover:bg-pp-gold-light transition-colors duration-300">
               Explore the Full Menu
-            </a>
+            </Link>
           </MotionSection>
         </div>
       </section>
@@ -139,7 +140,7 @@ export default function StoryPage() {
             ].map((v) => (
               <motion.div key={v.title} variants={staggerChild} className="bg-pp-tertiary rounded-xl overflow-hidden border border-pp-primary/5 img-hover-lift">
                 <div className="aspect-square overflow-hidden">
-                  <img src={v.img} alt={v.title} className="w-full h-full object-cover" />
+                  <img src={v.img} alt={v.title} width={400} height={300} className="w-full h-full object-cover" />
                 </div>
                 <div className="p-3 text-center">
                   <p className="text-xs font-semibold text-pp-on-surface">{v.title}</p>
@@ -163,12 +164,12 @@ export default function StoryPage() {
               crest design, territory exclusivity and real-time access to our commissary system.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="/franchise/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-8 py-3 text-sm font-semibold text-pp-on-surface hover:bg-pp-gold-light transition-colors duration-300">
+              <Link href="/franchise/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-8 py-3 text-sm font-semibold text-pp-on-surface hover:bg-pp-gold-light transition-colors duration-300">
                 Explore Franchise Opportunities
-              </a>
-              <a href="/gallery/" className="btn-outline-gold inline-flex items-center rounded-md border border-pp-gold/50 text-pp-gold px-8 py-3 text-sm font-semibold hover:bg-pp-gold hover:text-pp-on-surface transition-colors duration-300">
+              </Link>
+              <Link href="/gallery/" className="btn-outline-gold inline-flex items-center rounded-md border border-pp-gold/50 text-pp-gold px-8 py-3 text-sm font-semibold hover:bg-pp-gold hover:text-pp-on-surface transition-colors duration-300">
                 <span>See the Gallery</span>
-              </a>
+              </Link>
             </div>
           </MotionSection>
         </div>

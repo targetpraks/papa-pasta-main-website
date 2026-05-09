@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { MotionSection, StaggerContainer, staggerChild } from "../components/Motion";
+import { StaggerContainer, staggerChild } from "../components/Motion";
 
 export default function Page() {
   return (

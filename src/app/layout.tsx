@@ -17,6 +17,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://papapasta.co.za"),
   title: {
     default: "Papa Pasta — Fresh Handmade Pasta, Cape Town",
     template: "%s | Papa Pasta",
@@ -35,7 +36,6 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_ZA",
-    url: "https://papapasta.co.za",
     siteName: "Papa Pasta",
     images: [
       {
@@ -49,13 +49,19 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     creator: "@papapasta_sa",
+    images: [
+      "https://raw.githubusercontent.com/targetpraks/papa-pasta-assets/main/images/menu-core-8-dishes.png",
+    ],
   },
   alternates: {
-    canonical: "https://papapasta.co.za",
+    canonical: "/",
   },
   robots: {
     index: true,
     follow: true,
+  },
+  formatDetection: {
+    telephone: true,
   },
 };
 
@@ -67,6 +73,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <head>
+        <meta name="theme-color" content="#0a0a0a" />
+        <link rel="preconnect" href="https://raw.githubusercontent.com" />
+        <link rel="dns-prefetch" href="https://raw.githubusercontent.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -76,7 +85,8 @@ export default function RootLayout({
               name: "Papa Pasta",
               image: "https://raw.githubusercontent.com/targetpraks/papa-pasta-assets/main/images/menu-core-8-dishes.png",
               url: "https://papapasta.co.za",
-              telephone: "+27-21-000-0000",
+              telephone: "+27-21-456-7890",
+              email: "hello@papapasta.co.za",
               servesCuisine: "Italian",
               priceRange: "R79–R98",
               address: {
@@ -85,6 +95,25 @@ export default function RootLayout({
                 addressRegion: "Western Cape",
                 addressCountry: "ZA",
               },
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: "-33.9249",
+                longitude: "18.4241",
+              },
+              openingHoursSpecification: [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                  opens: "10:00",
+                  closes: "22:00",
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: "Sunday",
+                  opens: "11:00",
+                  closes: "21:00",
+                },
+              ],
             }),
           }}
         />

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { MotionSection } from "./Motion";
 
 const socialLinks = [
@@ -41,6 +42,22 @@ const socialLinks = [
   },
 ];
 
+const exploreLinks = [
+  { href: "/", label: "Home" },
+  { href: "/story/", label: "Our Story" },
+  { href: "/menu/", label: "Menu" },
+  { href: "/locations/", label: "Locations" },
+  { href: "/blog/", label: "Blog" },
+  { href: "/gallery/", label: "Gallery" },
+];
+
+const contactLinks = [
+  { href: "/contact/", label: "Contact Us" },
+  { href: "/careers/", label: "Careers" },
+  { href: "/franchise/", label: "Franchise Opportunities" },
+  { href: "/events/", label: "Events" },
+];
+
 export default function Footer() {
   return (
     <footer className="bg-pp-surface-dark text-pp-on-surface-dark/70">
@@ -49,17 +66,19 @@ export default function Footer() {
           {/* Brand Column */}
           <MotionSection>
             <div className="flex flex-col">
-              <a href="/" className="flex items-center gap-3 mb-5 group">
+              <Link href="/" className="flex items-center gap-3 mb-5 group">
                 <img
                   src="/images/logo-crest-white.png"
                   alt="Papa Pasta"
                   className="h-14 w-auto opacity-80 group-hover:opacity-100 transition-opacity duration-300"
                   loading="lazy"
+                  width={60}
+                  height={75}
                 />
                 <span className="gold-text-gradient font-serif text-lg font-bold">
                   Papa Pasta
                 </span>
-              </a>
+              </Link>
               <p className="text-sm leading-relaxed text-pp-on-surface-dark/50 max-w-xs">
                 Fresh handmade pasta, crafted daily. Cape Town&apos;s home for authentic flavour and honest ingredients.
               </p>
@@ -71,7 +90,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Papa Pasta on ${social.name}`}
-                    className="w-9 h-9 rounded-full bg-pp-white/5 hover:bg-pp-gold/20 flex items-center justify-center text-pp-white/60 hover:text-pp-gold transition-all duration-300"
+                    className="w-11 h-11 rounded-full bg-pp-on-surface-dark/5 hover:bg-pp-gold/20 flex items-center justify-center text-pp-on-surface-dark/60 hover:text-pp-gold transition-all duration-300"
                   >
                     {social.icon}
                   </a>
@@ -87,21 +106,14 @@ export default function Footer() {
                 Explore
               </h4>
               <ul className="space-y-3 text-sm">
-                {[
-                  { href: "/", label: "Home" },
-                  { href: "/story/", label: "Our Story" },
-                  { href: "/menu/", label: "Menu" },
-                  { href: "/locations/", label: "Locations" },
-                  { href: "/blog/", label: "Blog" },
-                  { href: "/gallery/", label: "Gallery" },
-                ].map((link) => (
+                {exploreLinks.map((link) => (
                   <li key={link.href}>
-                    <a
+                    <Link
                       href={link.href}
                       className="text-pp-on-surface-dark/60 hover:text-pp-gold transition-colors duration-300 hover:pl-1 inline-block"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -115,19 +127,14 @@ export default function Footer() {
                 Get in Touch
               </h4>
               <ul className="space-y-3 text-sm">
-                {[
-                  { href: "/contact/", label: "Contact Us" },
-                  { href: "/careers/", label: "Careers" },
-                  { href: "/franchise/", label: "Franchise Opportunities" },
-                  { href: "/events/", label: "Events" },
-                ].map((link) => (
+                {contactLinks.map((link) => (
                   <li key={link.href}>
-                    <a
+                    <Link
                       href={link.href}
                       className="text-pp-on-surface-dark/60 hover:text-pp-gold transition-colors duration-300 hover:pl-1 inline-block"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -166,9 +173,9 @@ export default function Footer() {
         <div className="border-t border-pp-gold/10 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-pp-on-surface-dark/30">
           <p>&copy; {new Date().getFullYear()} Papa Pasta. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="/legal/" className="hover:text-pp-gold transition-colors duration-300">Privacy &amp; Legal</a>
-            <a href="/franchise/" className="hover:text-pp-gold transition-colors duration-300">Franchise</a>
-            <a href="/contact/" className="hover:text-pp-gold transition-colors duration-300">Contact</a>
+            <Link href="/legal/" className="hover:text-pp-gold transition-colors duration-300">Privacy &amp; Legal</Link>
+            <Link href="/franchise/" className="hover:text-pp-gold transition-colors duration-300">Franchise</Link>
+            <Link href="/contact/" className="hover:text-pp-gold transition-colors duration-300">Contact</Link>
           </div>
         </div>
       </div>

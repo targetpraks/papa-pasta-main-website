@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { MotionSection, StaggerContainer, staggerChild } from "../components/Motion";
+import { StaggerContainer, staggerChild } from "../components/Motion";
 
 export default function Page() {
   return (
@@ -49,7 +50,7 @@ export default function Page() {
                     <p className="text-sm text-pp-primary-60/50 mt-1">{ev.loc}</p>
                   </div>
                   <span className={`text-[10px] font-bold uppercase tracking-[0.15em] px-3 py-1 rounded-full ${
-                    ev.open ? "bg-pp-gold/15 text-pp-gold-dark" : "bg-pp-charcoal/10 text-pp-primary-60/50"
+                    ev.open ? "bg-pp-gold/15 text-pp-gold-dark" : "bg-pp-primary-60/10 text-pp-primary-60/50"
                   }`}>
                     {ev.open ? "RSVP Open" : "Soon"}
                   </span>

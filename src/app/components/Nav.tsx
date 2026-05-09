@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollProgressBar } from "./Motion";
 
@@ -59,30 +60,32 @@ export default function Nav() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20">
             {/* Logo */}
-            <a href="/" className="flex items-center gap-3 group" aria-label="Papa Pasta — Home">
+            <Link href="/" className="flex items-center gap-3 group" aria-label="Papa Pasta — Home">
               <img
                 src="/images/logo-crest-white.png"
                 alt=""
                 className="h-10 w-auto opacity-90 group-hover:opacity-100 transition-opacity duration-300"
                 loading="eager"
+                width={50}
+                height={60}
               />
               <span className="gold-text-gradient font-serif text-xl font-bold tracking-tight hidden sm:block">
                 Papa Pasta
               </span>
-            </a>
+            </Link>
 
             {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
               {navLinks.map((l) => {
                 const isActive = active === l.href || active === l.href.replace(/\/$/, "");
                 return (
-                  <a
+                  <Link
                     key={l.href}
                     href={l.href}
                     className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 group ${
                       isActive
                         ? "text-pp-gold"
-                        : "text-pp-white/70 hover:text-pp-gold"
+                        : "text-pp-on-primary/70 hover:text-pp-gold"
                     }`}
                     aria-current={isActive ? "page" : undefined}
                   >
@@ -94,15 +97,15 @@ export default function Nav() {
                         isActive ? "w-3/4" : "w-0 group-hover:w-3/4"
                       }`}
                     />
-                  </a>
+                  </Link>
                 );
               })}
-              <a
+              <Link
                 href="/franchise/"
                 className="ml-3 btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-5 py-2.5 text-label-md uppercase tracking-label-md font-semibold text-pp-black hover:bg-pp-gold-light transition-colors duration-300"
               >
                 Franchise
-              </a>
+              </Link>
             </nav>
 
             {/* Mobile Menu Toggle */}
@@ -110,7 +113,7 @@ export default function Nav() {
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               aria-controls="mobile-menu"
-              className="lg:hidden text-pp-gold p-2 hover:bg-pp-white/5 rounded-lg transition-colors focus-visible:ring-2 focus-visible:ring-pp-gold"
+              className="lg:hidden text-pp-gold p-3 hover:bg-pp-on-primary/5 rounded-lg transition-colors focus-visible:ring-2 focus-visible:ring-pp-gold min-h-[44px] min-w-[44px]"
               onClick={() => setOpen(!open)}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -151,34 +154,40 @@ export default function Nav() {
                   {navLinks.map((l, i) => {
                     const isActive = active === l.href || active === l.href.replace(/\/$/, "");
                     return (
-                      <motion.a
+                      <motion.div
                         key={l.href}
-                        href={l.href}
-                        onClick={() => setOpen(false)}
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.05, duration: 0.3 }}
-                        className={`block text-lg font-medium py-3 border-b border-pp-white/5 transition-colors ${
-                          isActive
-                            ? "text-pp-gold"
-                            : "text-pp-white/90 hover:text-pp-gold"
-                        }`}
-                        aria-current={isActive ? "page" : undefined}
                       >
-                        {l.label}
-                      </motion.a>
+                        <Link
+                          href={l.href}
+                          onClick={() => setOpen(false)}
+                          className={`block text-lg font-medium py-3 border-b border-pp-on-primary/5 transition-colors ${
+                            isActive
+                              ? "text-pp-gold"
+                              : "text-pp-on-primary/90 hover:text-pp-gold"
+                          }`}
+                          aria-current={isActive ? "page" : undefined}
+                        >
+                          {l.label}
+                        </Link>
+                      </motion.div>
                     );
                   })}
-                  <motion.a
-                    href="/franchise/"
-                    onClick={() => setOpen(false)}
+                  <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: navLinks.length * 0.05, duration: 0.3 }}
-                    className="block mt-4 text-center btn-gold-glow rounded-md bg-pp-gold px-6 py-3 text-label-md uppercase tracking-label-md font-semibold text-pp-black hover:bg-pp-gold-light transition-colors"
                   >
-                    Franchise
-                  </motion.a>
+                    <Link
+                      href="/franchise/"
+                      onClick={() => setOpen(false)}
+                      className="block mt-4 text-center btn-gold-glow rounded-md bg-pp-gold px-6 py-3 text-label-md uppercase tracking-label-md font-semibold text-pp-black hover:bg-pp-gold-light transition-colors"
+                    >
+                      Franchise
+                    </Link>
+                  </motion.div>
                 </div>
               </motion.div>
             </>

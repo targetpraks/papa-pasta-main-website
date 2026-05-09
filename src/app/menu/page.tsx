@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { MotionSection, StaggerContainer, staggerChild, staggerChildScale } from "../components/Motion";
+import { MotionSection, StaggerContainer, staggerChildScale } from "../components/Motion";
 
 const dishes = [
   { category: "Classic Sauces", name: "Alfredo Classico", price: "R89", desc: "Silky Parmesan cream sauce over fresh fettuccine. The comfort benchmark.", img: "/images/menu-core-8-dishes.png", tag: "Best Seller" },
@@ -67,7 +68,7 @@ export default function MenuPage() {
                 className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-pp-primary/5 hover:shadow-xl hover:border-pp-gold/30 transition-all duration-500"
               >
                 <div className="aspect-[16/10] overflow-hidden">
-                  <img src={d.img} alt={d.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <img src={d.img} alt={d.name} width={800} height={600} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 </div>
                 <div className="p-6">
                   <div className="flex items-center gap-2 mb-2">

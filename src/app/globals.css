@@ -307,10 +307,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ═══════════════════════════════════════════════
-   GOLD TEXT GRADIENT
-   ═══════════════════════════════════════════════ */
+    GOLD TEXT GRADIENT
+    ═══════════════════════════════════════════════ */
 .gold-text-gradient {
   background: linear-gradient(135deg, var(--color-pp-secondary) 0%, var(--color-pp-secondary-light) 50%, var(--color-pp-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gold-text-gradient-dark {
+  background: linear-gradient(135deg, #b8982e 0%, #d4af37 50%, #b8982e 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -443,8 +449,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ═══════════════════════════════════════════════
-   PREFERS-REDUCED-MOTION
-   ═══════════════════════════════════════════════ */
+    PREFERS-REDUCED-MOTION
+    ═══════════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -460,6 +466,10 @@ h1, h2, h3, h4, h5, h6 {
   .gold-pulse,
   .gold-shimmer {
     animation: none;
+  }
+  .img-hover-lift:hover,
+  .btn-gold-glow:hover {
+    transform: none;
   }
 }
 

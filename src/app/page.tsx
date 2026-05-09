@@ -9,6 +9,8 @@ import {
   staggerChildScale,
   ClipReveal,
 } from "./components/Motion";
+import Link from "next/link";
+import { blogPosts } from "./lib/blog";
 
 /* ═══════════════════════════════════════════════
    COUNT-UP HOOK (requestAnimationFrame)
@@ -16,6 +18,11 @@ import {
 function useCountUp(end: number, duration = 2000) {
   const [count, setCount] = useState(0);
   useEffect(() => {
+    const shouldReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (shouldReduce) {
+      setCount(end);
+      return;
+    }
     let raf: number;
     const startTime = performance.now();
     const tick = (now: number) => {
@@ -52,7 +59,7 @@ function Hero() {
           Built from scratch in our central kitchen. Sauces simmered for hours. Shapes matched to every sauce. This is food with obsession baked in.
         </motion.p>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.7 }} className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="/locations/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-8 py-3.5 text-[12px] uppercase tracking-[0.2em] font-semibold text-pp-black shadow-lg shadow-pp-gold/20 transition-colors duration-300">Find a Store</a>
+          <Link href="/locations/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-8 py-3.5 text-[12px] uppercase tracking-[0.2em] font-semibold text-pp-black shadow-lg shadow-pp-gold/20 transition-colors duration-300">Find a Store</Link>
           <a href="https://www.ubereats.com" target="_blank" rel="noopener noreferrer" className="btn-outline-gold inline-flex items-center rounded-md border border-pp-gold/50 text-pp-gold px-8 py-3.5 text-[12px] uppercase tracking-[0.2em] font-semibold transition-colors duration-300"><span>Order Now</span></a>
         </motion.div>
       </div>
@@ -115,7 +122,7 @@ function HeroDishes() {
           ))}
         </StaggerContainer>
         <MotionSection className="mt-10 text-center">
-          <a href="/menu/" className="btn-outline-gold inline-flex items-center rounded-md border-2 border-pp-primary/10 text-pp-on-surface px-6 py-2.5 text-sm font-medium hover:border-pp-gold hover:text-pp-gold transition-colors duration-300"><span>See Full Menu</span></a>
+          <Link href="/menu/" className="btn-outline-gold inline-flex items-center rounded-md border-2 border-pp-primary/10 text-pp-on-surface px-6 py-2.5 text-sm font-medium hover:border-pp-gold hover:text-pp-gold transition-colors duration-300"><span>See Full Menu</span></Link>
         </MotionSection>
       </div>
     </section>
@@ -145,7 +152,7 @@ function ColourStory() {
               <h2 id="colour-story-heading" className="text-pp-on-primary font-serif text-3xl sm:text-[48px] font-bold mb-6 leading-[1.1] tracking-[-0.02em]">Every Franchise Gets a Crest</h2>
               <p className="text-pp-on-primary/60 mb-6 leading-[1.65]">The Living Crest system means no two stores look identical. Each franchise receives a colour identity tied to its city, its owner, and its community — making every location a collectible moment.</p>
               <p className="text-pp-on-primary/60 mb-8 leading-[1.65]">From neon gamer drops to SA heritage palettes, the crest is more than a logo. It is the visual proof that this store belongs to <em className="text-pp-gold not-italic">this</em> place.</p>
-              <a href="/gallery/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-6 py-2.5 text-[12px] uppercase tracking-[0.2em] font-semibold text-pp-black transition-colors duration-300">Browse the Gallery</a>
+              <Link href="/gallery/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-6 py-2.5 text-[12px] uppercase tracking-[0.2em] font-semibold text-pp-black transition-colors duration-300">Browse the Gallery</Link>
             </div>
             <ClipReveal direction="right" delay={0.2}>
               <img src="/images/colour-story-colour-wheel.png" alt="Papa Pasta colour wheel showing the Living Crest system" className="rounded-2xl shadow-2xl shadow-pp-gold/10 w-full" loading="lazy" />
@@ -190,7 +197,7 @@ function BrandTeaser() {
             <h2 id="brand-teaser-heading" className="text-pp-on-surface font-serif text-3xl sm:text-[36px] font-bold mb-6 leading-[1.2] tracking-[-0.01em]">A Passion for Pasta, Engineered for Scale</h2>
             <blockquote className="border-l-4 border-pp-gold pl-6 italic text-lg leading-relaxed mb-6 text-pp-primary-60">&ldquo;Every strand matters. Every sauce simmers for hours. We refuse shortcuts because pasta should taste like someone cared.&rdquo;</blockquote>
             <p className="text-pp-primary-60 mb-8 leading-[1.65]">From a single commissary in Cape Town, we designed a system that brings restaurant-quality pasta to neighbourhoods across South Africa.</p>
-            <a href="/story/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-6 py-2.5 text-[12px] uppercase tracking-[0.2em] font-semibold text-pp-black transition-colors duration-300">Read Our Story</a>
+            <Link href="/story/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-6 py-2.5 text-[12px] uppercase tracking-[0.2em] font-semibold text-pp-black transition-colors duration-300">Read Our Story</Link>
           </div>
         </MotionSection>
       </div>
@@ -215,7 +222,7 @@ function LocationPreview() {
             </div>
           </MotionSection>
           <MotionSection>
-            <a href="/locations/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-primary px-6 py-2.5 text-sm font-medium text-pp-on-primary hover:bg-pp-primary-80 transition-colors duration-300">View All Locations</a>
+            <Link href="/locations/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-primary px-6 py-2.5 text-sm font-medium text-pp-on-primary hover:bg-pp-primary-80 transition-colors duration-300">View All Locations</Link>
           </MotionSection>
         </div>
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -245,11 +252,7 @@ function LocationPreview() {
    BLOG PREVIEW
    ═══════════════════════════════════════════════ */
 function BlogPreview() {
-  const posts = [
-    { title: "Why Shape Matters: The Golden Blend of Pasta + Sauce", excerpt: "Flat noodles hold cream. Tubes trap meat. We match every shape to its perfect partner.", date: "May 2026", img: "/images/menu-pasta-shape-pairing.png", alt: "Pasta shape and sauce pairing guide" },
-    { title: "Inside the Commissary: Where Obsession Lives", excerpt: "A behind-the-scenes look at the central kitchen that powers every Papa Pasta store.", date: "April 2026", img: "/images/central-kitchen-concept.png", alt: "Inside the Papa Pasta commissary" },
-    { title: "The Art of the Crest: Colour Story Philosophy", excerpt: "Every franchise gets a unique crest. Here is how the colour explosion happens.", date: "March 2026", img: "/images/colour-story-colour-wheel.png", alt: "Colour story wheel" },
-  ];
+  const posts = blogPosts.slice(0, 3);
   return (
     <section className="section-padding bg-pp-tertiary" aria-labelledby="blog-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -262,19 +265,21 @@ function BlogPreview() {
             </div>
           </MotionSection>
           <MotionSection>
-            <a href="/blog/" className="text-sm font-medium text-pp-gold underline underline-offset-4 hover:text-pp-gold-light transition-colors duration-300 mt-4 md:mt-0">Read all posts &rarr;</a>
+            <Link href="/blog/" className="text-sm font-medium text-pp-gold underline underline-offset-4 hover:text-pp-gold-light transition-colors duration-300 mt-4 md:mt-0">Read all posts &rarr;</Link>
           </MotionSection>
         </div>
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post) => (
-            <motion.a variants={staggerChild} key={post.title} href="/blog/" className="group block card overflow-hidden">
-              <div className="aspect-[16/10] overflow-hidden rounded-xl -mx-6 -mt-6 mb-6">
-                <img src={post.img} alt={post.alt} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
-              </div>
-              <p className="text-xs text-pp-gold mb-2 font-semibold tracking-wider">{post.date}</p>
-              <h3 className="text-pp-on-surface font-serif text-lg font-semibold mb-2 group-hover:text-pp-gold transition-colors duration-300">{post.title}</h3>
-              <p className="text-pp-primary-60 text-sm leading-[1.6]">{post.excerpt}</p>
-            </motion.a>
+            <motion.div variants={staggerChild} key={post.slug}>
+              <Link href={`/blog/${post.slug}/`} className="group block card overflow-hidden">
+                <div className="aspect-[16/10] overflow-hidden rounded-xl -mx-6 -mt-6 mb-6">
+                  <img src={post.img} alt={post.alt} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" width={800} height={500} />
+                </div>
+                <p className="text-xs text-pp-gold mb-2 font-semibold tracking-wider">{post.date}</p>
+                <h3 className="text-pp-on-surface font-serif text-lg font-semibold mb-2 group-hover:text-pp-gold transition-colors duration-300">{post.title}</h3>
+                <p className="text-pp-primary-60 text-sm leading-[1.6]">{post.excerpt}</p>
+              </Link>
+            </motion.div>
           ))}
         </StaggerContainer>
       </div>
@@ -303,7 +308,7 @@ function EventsPreview() {
               ))}
             </ul>
             <div className="mt-8">
-              <a href="/events/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-6 py-2.5 text-[12px] uppercase tracking-[0.2em] font-semibold text-pp-black transition-colors duration-300">View All Events</a>
+              <Link href="/events/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-6 py-2.5 text-[12px] uppercase tracking-[0.2em] font-semibold text-pp-black transition-colors duration-300">View All Events</Link>
             </div>
           </div>
         </MotionSection>
@@ -348,7 +353,7 @@ function Newsletter() {
             </form>
           </MotionSection>
         )}
-        <p className="text-xs text-pp-primary-60/50 mt-4">By subscribing you agree to our <a href="/legal/" className="underline hover:text-pp-gold transition-colors">Privacy Policy</a>. Unsubscribe anytime.</p>
+        <p className="text-xs text-pp-primary-60/50 mt-4">By subscribing you agree to our <Link href="/legal/" className="underline hover:text-pp-gold transition-colors">Privacy Policy</Link>. Unsubscribe anytime.</p>
       </div>
     </section>
   );
@@ -368,7 +373,7 @@ function FranchiseTeaser() {
           <h2 id="franchise-heading" className="text-pp-on-primary font-serif text-3xl sm:text-[48px] font-bold mb-5 leading-[1.1] tracking-[-0.02em]">Own a <span className="gold-text-gradient">Papa Pasta</span></h2>
           <p className="text-pp-on-primary/60 max-w-2xl mx-auto mb-8 leading-[1.65]">All-in investment from R1.14M. 20.7% COGS. 21.6% EBITDA. An 8-month payback and a first-mover opportunity in South Africa&apos;s only dedicated pasta QSR franchise.</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="/franchise/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-8 py-3 text-[12px] uppercase tracking-[0.2em] font-semibold text-pp-black shadow-lg shadow-pp-gold/20 hover:bg-pp-gold-light transition-colors duration-300">See the Opportunity</a>
+            <Link href="/franchise/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-8 py-3 text-[12px] uppercase tracking-[0.2em] font-semibold text-pp-black shadow-lg shadow-pp-gold/20 hover:bg-pp-gold-light transition-colors duration-300">See the Opportunity</Link>
             <a href="https://franchise.papapasta.co.za/?utm_source=brand-site&utm_medium=franchise-teaser&utm_campaign=franchise-bridge" target="_blank" rel="noopener noreferrer" className="btn-outline-gold inline-flex items-center rounded-md border border-pp-gold/50 text-pp-gold px-8 py-3 text-[12px] uppercase tracking-[0.2em] font-semibold hover:bg-pp-gold hover:text-pp-black transition-colors duration-300"><span>Express Interest &rarr;</span></a>
           </div>
         </MotionSection>
