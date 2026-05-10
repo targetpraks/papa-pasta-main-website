@@ -630,7 +630,7 @@ function BlogPreview() {
                 <div className="aspect-[16/10] overflow-hidden rounded-xl -mx-6 -mt-6 mb-6">
                   <img
                     src={post.img}
-                    alt={post.alt}
+                    alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     loading="lazy"
                     width={800}
