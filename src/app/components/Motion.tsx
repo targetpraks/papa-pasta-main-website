@@ -157,7 +157,7 @@ export function ParallaxImage({
   });
 
   if (shouldReduce) {
-    return <img ref={ref} src={src} alt={alt} className={className} loading="lazy" />;
+    return <img ref={ref} src={src} alt={alt} className={className} />;
   }
 
   const y = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
@@ -172,7 +172,6 @@ export function ParallaxImage({
       whileInView={{ y: 0 }}
       initial={{ y: 30 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      loading="lazy"
     />
   );
 }

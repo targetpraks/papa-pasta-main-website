@@ -31,7 +31,7 @@ function Hero() {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -51,7 +51,7 @@ function Hero() {
             delay: 0.2,
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
-          className="font-serif font-bold mb-6 text-6xl sm:text-8xl lg:text-[140px] tracking-[-0.04em] leading-[0.9] uppercase"
+          className="font-serif font-bold mb-6 text-6xl sm:text-8xl lg:text-[160px] tracking-[-0.04em] leading-[0.85] uppercase"
         >
           <span className="neon-text-gradient block">Pasta</span>
         </motion.h1>
@@ -64,7 +64,7 @@ function Hero() {
             delay: 0.5,
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
-          className="text-white/50 text-lg sm:text-xl mb-10 max-w-2xl mx-auto leading-[1.7]"
+          className="text-white/50 text-lg sm:text-2xl mb-10 max-w-3xl mx-auto leading-[1.7]"
         >
           Fresh handmade pasta. No compromises. No shortcuts. Just obsession,
           built from scratch in our central kitchen.
@@ -163,12 +163,11 @@ function FindYourPasta() {
           <MotionSection className="mb-12">
             <div className="relative rounded-2xl overflow-hidden bg-black text-white grid grid-cols-1 lg:grid-cols-2">
               <div className="aspect-[16/10] lg:aspect-auto">
-                <img
-                  src={heroDish.image}
-                  alt={heroDish.name}
-                  className="w-full h-full object-cover opacity-80"
-                  loading="lazy"
-                />
+                  <img
+                    src={heroDish.image}
+                    alt={heroDish.name}
+                    className="w-full h-full object-cover opacity-80"
+                  />
               </div>
               <div className="p-8 lg:p-12 flex flex-col justify-center">
                 <span className="badge badge-limited inline-block mb-4 w-fit">
@@ -213,7 +212,6 @@ function FindYourPasta() {
                     src={d.image}
                     alt={d.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 grayscale group-hover:grayscale-0"
-                    loading="lazy"
                   />
                 </div>
                 <div className="flex items-center gap-2 mb-2 flex-wrap">
@@ -287,7 +285,7 @@ function ArtisanalSection() {
                 src="/images/artisan-pkg-05-retail-shelf-display.png"
                 alt="Artisanal pasta packaging on retail shelf"
                 className="rounded-2xl shadow-2xl shadow-cyan-500/10 w-full"
-                loading="lazy"
+              
               />
             </ClipReveal>
           </div>
@@ -330,7 +328,7 @@ function ArtisanalSection() {
                     src={item.img}
                     alt={item.title}
                     className="w-full h-full object-cover"
-                    loading="lazy"
+                  
                   />
                 </div>
                 <div className="p-3 text-center">
@@ -387,7 +385,7 @@ function CollectableBowls() {
                   src={currentSeasonBowl.image}
                   alt={currentSeasonBowl.name}
                   className="w-full h-full object-cover"
-                  loading="lazy"
+                
                 />
               </div>
               <div className="p-8 lg:p-12 flex flex-col justify-center">
@@ -456,7 +454,7 @@ function CollectableBowls() {
                   src={b.image}
                   alt={b.name}
                   className="w-full h-full object-cover"
-                  loading="lazy"
+                
                 />
                 {b.status === "retired" && (
                   <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
@@ -551,7 +549,7 @@ function MerchSection() {
                     src={item.image}
                     alt={item.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
+                  
                   />
                   {item.limited && (
                     <span className="absolute top-3 left-3 badge badge-limited text-[9px]">
@@ -632,7 +630,7 @@ function BlogPreview() {
                     src={post.img}
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    loading="lazy"
+                  
                     width={800}
                     height={500}
                   />

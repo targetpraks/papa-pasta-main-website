@@ -64,7 +64,6 @@ export default function Footer() {
                   src="/images/logo-crest-white.png"
                   alt="Papa Pasta"
                   className="h-16 w-auto opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-                  loading="lazy"
                   width={70}
                   height={90}
                 />
