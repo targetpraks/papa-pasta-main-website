@@ -10,11 +10,15 @@ const navLinks = [
   { href: "/story/", label: "Our Story" },
   { href: "/menu/", label: "Menu" },
   { href: "/locations/", label: "Locations" },
+  { href: "/artisanal/", label: "Artisanal" },
+  { href: "/bowls/", label: "Bowls" },
+  { href: "/merch/", label: "Merch" },
+  { href: "/level-up/", label: "Level Up" },
   { href: "/blog/", label: "Blog" },
-  { href: "/gallery/", label: "Gallery" },
   { href: "/events/", label: "Events" },
-  { href: "/contact/", label: "Contact" },
 ];
+
+const FRANCHISE_HREF = "https://franchise.papapasta.co.za";
 
 function useActiveRoute() {
   const [active, setActive] = useState("/");
@@ -53,59 +57,71 @@ export default function Nav() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-pp-primary-90/95 backdrop-blur-md shadow-lg shadow-black/20"
-            : "bg-pp-primary/80 backdrop-blur-sm"
+            ? "bg-black/95 backdrop-blur-md shadow-lg shadow-black/40"
+            : "bg-black/80 backdrop-blur-sm"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-20">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group" aria-label="Papa Pasta — Home">
+          <div className="flex items-center justify-between h-18 sm:h-22">
+            {/* Logo — massive */}
+            <Link
+              href="/"
+              className="flex items-center gap-3 group"
+              aria-label="Papa Pasta — Home"
+            >
               <img
                 src="/images/logo-crest-white.png"
                 alt=""
-                className="h-10 w-auto opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                className="h-14 sm:h-18 w-auto opacity-90 group-hover:opacity-100 transition-opacity duration-300"
                 loading="eager"
-                width={50}
-                height={60}
+                width={70}
+                height={90}
               />
-              <span className="gold-text-gradient font-serif text-xl font-bold tracking-tight hidden sm:block">
+              <span className="hidden sm:block text-white font-serif text-2xl sm:text-3xl font-bold tracking-tight"
+              >
                 Papa Pasta
               </span>
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
+            <nav
+              className="hidden xl:flex items-center gap-1"
+              aria-label="Main navigation"
+            >
               {navLinks.map((l) => {
-                const isActive = active === l.href || active === l.href.replace(/\/$/, "");
+                const isActive =
+                  active === l.href || active === l.href.replace(/\/$/, "");
                 return (
                   <Link
                     key={l.href}
                     href={l.href}
                     className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 group ${
                       isActive
-                        ? "text-pp-gold"
-                        : "text-pp-on-primary/70 hover:text-pp-gold"
+                        ? "text-cyan-400"
+                        : "text-white/60 hover:text-cyan-400"
                     }`}
                     aria-current={isActive ? "page" : undefined}
                   >
-                    <span className="font-sans text-label-md uppercase tracking-label-md">
+                    <span className="font-sans text-label-md uppercase tracking-label-md"
+                    >
                       {l.label}
                     </span>
                     <span
-                      className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] bg-pp-gold transition-all duration-300 rounded-full ${
+                      className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] bg-cyan-400 transition-all duration-300 rounded-full ${
                         isActive ? "w-3/4" : "w-0 group-hover:w-3/4"
                       }`}
                     />
                   </Link>
                 );
               })}
-              <Link
-                href="/franchise/"
-                className="ml-3 btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-5 py-2.5 text-label-md uppercase tracking-label-md font-semibold text-pp-black hover:bg-pp-gold-light transition-colors duration-300"
+              <a
+                href={FRANCHISE_HREF}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-3 inline-flex items-center rounded-md bg-white text-black px-5 py-2.5 text-label-md uppercase tracking-label-md font-semibold hover:bg-cyan-400 hover:text-black transition-all duration-300"
               >
                 Franchise
-              </Link>
+              </a>
             </nav>
 
             {/* Mobile Menu Toggle */}
@@ -113,14 +129,28 @@ export default function Nav() {
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               aria-controls="mobile-menu"
-              className="lg:hidden text-pp-gold p-3 hover:bg-pp-on-primary/5 rounded-lg transition-colors focus-visible:ring-2 focus-visible:ring-pp-gold min-h-[44px] min-w-[44px]"
+              className="xl:hidden text-white p-3 hover:bg-white/5 rounded-lg transition-colors focus-visible:ring-2 focus-visible:ring-white min-h-[44px] min-w-[44px]"
               onClick={() => setOpen(!open)}
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
+              >
                 {open ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 )}
               </svg>
             </button>
@@ -131,28 +161,27 @@ export default function Nav() {
         <AnimatePresence>
           {open && (
             <>
-              {/* Backdrop */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 xl:hidden"
                 onClick={() => setOpen(false)}
                 aria-hidden="true"
               />
-              {/* Menu Panel */}
               <motion.div
                 id="mobile-menu"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="lg:hidden bg-pp-surface-dark border-t border-pp-gold/10 absolute left-0 right-0 top-full z-50 shadow-2xl"
+                className="xl:hidden bg-black border-t border-white/10 absolute left-0 right-0 top-full z-50 shadow-2xl"
               >
                 <div className="px-4 py-6 space-y-1">
                   {navLinks.map((l, i) => {
-                    const isActive = active === l.href || active === l.href.replace(/\/$/, "");
+                    const isActive =
+                      active === l.href || active === l.href.replace(/\/$/, "");
                     return (
                       <motion.div
                         key={l.href}
@@ -163,10 +192,10 @@ export default function Nav() {
                         <Link
                           href={l.href}
                           onClick={() => setOpen(false)}
-                          className={`block text-lg font-medium py-3 border-b border-pp-on-primary/5 transition-colors ${
+                          className={`block text-lg font-medium py-3 border-b border-white/5 transition-colors ${
                             isActive
-                              ? "text-pp-gold"
-                              : "text-pp-on-primary/90 hover:text-pp-gold"
+                              ? "text-cyan-400"
+                              : "text-white/90 hover:text-cyan-400"
                           }`}
                           aria-current={isActive ? "page" : undefined}
                         >
@@ -178,15 +207,20 @@ export default function Nav() {
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: navLinks.length * 0.05, duration: 0.3 }}
+                    transition={{
+                      delay: navLinks.length * 0.05,
+                      duration: 0.3,
+                    }}
                   >
-                    <Link
-                      href="/franchise/"
+                    <a
+                      href={FRANCHISE_HREF}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       onClick={() => setOpen(false)}
-                      className="block mt-4 text-center btn-gold-glow rounded-md bg-pp-gold px-6 py-3 text-label-md uppercase tracking-label-md font-semibold text-pp-black hover:bg-pp-gold-light transition-colors"
+                      className="block mt-4 text-center rounded-md bg-white text-black px-6 py-3 text-label-md uppercase tracking-label-md font-semibold hover:bg-cyan-400 transition-colors"
                     >
                       Franchise
-                    </Link>
+                    </a>
                   </motion.div>
                 </div>
               </motion.div>

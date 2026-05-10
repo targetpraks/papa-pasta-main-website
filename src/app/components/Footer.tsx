@@ -31,15 +31,6 @@ const socialLinks = [
       </svg>
     ),
   },
-  {
-    name: "Facebook",
-    href: "https://facebook.com/papapastaSA",
-    icon: (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-      </svg>
-    ),
-  },
 ];
 
 const exploreLinks = [
@@ -47,20 +38,22 @@ const exploreLinks = [
   { href: "/story/", label: "Our Story" },
   { href: "/menu/", label: "Menu" },
   { href: "/locations/", label: "Locations" },
+  { href: "/bowls/", label: "Bowls" },
+  { href: "/merch/", label: "Merch" },
   { href: "/blog/", label: "Blog" },
-  { href: "/gallery/", label: "Gallery" },
+  { href: "/events/", label: "Events" },
 ];
 
-const contactLinks = [
-  { href: "/contact/", label: "Contact Us" },
+const infoLinks = [
+  { href: "/contact/", label: "Contact" },
   { href: "/careers/", label: "Careers" },
-  { href: "/franchise/", label: "Franchise Opportunities" },
-  { href: "/events/", label: "Events" },
+  { href: "/legal/", label: "Legal" },
+  { href: "/franchise/", label: "Franchise Info" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-pp-surface-dark text-pp-on-surface-dark/70">
+    <footer className="bg-black text-white/60 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 py-16 lg:py-20">
           {/* Brand Column */}
@@ -70,17 +63,17 @@ export default function Footer() {
                 <img
                   src="/images/logo-crest-white.png"
                   alt="Papa Pasta"
-                  className="h-14 w-auto opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                  className="h-16 w-auto opacity-80 group-hover:opacity-100 transition-opacity duration-300"
                   loading="lazy"
-                  width={60}
-                  height={75}
+                  width={70}
+                  height={90}
                 />
-                <span className="gold-text-gradient font-serif text-lg font-bold">
+                <span className="text-white font-serif text-xl font-bold">
                   Papa Pasta
                 </span>
               </Link>
-              <p className="text-sm leading-relaxed text-pp-on-surface-dark/50 max-w-xs">
-                Fresh handmade pasta, crafted daily. Cape Town&apos;s home for authentic flavour and honest ingredients.
+              <p className="text-sm leading-relaxed text-white/40 max-w-xs">
+                Fresh handmade pasta, crafted daily. South Africa&apos;s home for authentic flavour and honest ingredients.
               </p>
               <div className="flex items-center gap-3 mt-6">
                 {socialLinks.map((social) => (
@@ -90,7 +83,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Papa Pasta on ${social.name}`}
-                    className="w-11 h-11 rounded-full bg-pp-on-surface-dark/5 hover:bg-pp-gold/20 flex items-center justify-center text-pp-on-surface-dark/60 hover:text-pp-gold transition-all duration-300"
+                    className="w-11 h-11 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/50 hover:text-cyan-400 transition-all duration-300"
                   >
                     {social.icon}
                   </a>
@@ -102,7 +95,7 @@ export default function Footer() {
           {/* Explore Column */}
           <MotionSection delay={0.1}>
             <div>
-              <h4 className="text-pp-gold font-serif font-semibold mb-5 text-label-md uppercase tracking-label-md">
+              <h4 className="text-white font-serif font-semibold mb-5 text-label-md uppercase tracking-label-md">
                 Explore
               </h4>
               <ul className="space-y-3 text-sm">
@@ -110,7 +103,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-pp-on-surface-dark/60 hover:text-pp-gold transition-colors duration-300 hover:pl-1 inline-block"
+                      className="text-white/50 hover:text-cyan-400 transition-colors duration-300 hover:pl-1 inline-block"
                     >
                       {link.label}
                     </Link>
@@ -120,18 +113,18 @@ export default function Footer() {
             </div>
           </MotionSection>
 
-          {/* Get in Touch Column */}
+          {/* Info Column */}
           <MotionSection delay={0.2}>
             <div>
-              <h4 className="text-pp-gold font-serif font-semibold mb-5 text-label-md uppercase tracking-label-md">
-                Get in Touch
+              <h4 className="text-white font-serif font-semibold mb-5 text-label-md uppercase tracking-label-md">
+                Info
               </h4>
               <ul className="space-y-3 text-sm">
-                {contactLinks.map((link) => (
+                {infoLinks.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-pp-on-surface-dark/60 hover:text-pp-gold transition-colors duration-300 hover:pl-1 inline-block"
+                      className="text-white/50 hover:text-cyan-400 transition-colors duration-300 hover:pl-1 inline-block"
                     >
                       {link.label}
                     </Link>
@@ -141,10 +134,10 @@ export default function Footer() {
             </div>
           </MotionSection>
 
-          {/* Order Now Column */}
+          {/* Order Column */}
           <MotionSection delay={0.3}>
             <div>
-              <h4 className="text-pp-gold font-serif font-semibold mb-5 text-label-md uppercase tracking-label-md">
+              <h4 className="text-white font-serif font-semibold mb-5 text-label-md uppercase tracking-label-md">
                 Order Now
               </h4>
               <div className="flex flex-col gap-2">
@@ -152,17 +145,17 @@ export default function Footer() {
                   href="https://www.ubereats.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-outline-gold inline-flex items-center justify-center rounded-md border border-pp-gold/40 text-pp-gold text-sm font-medium px-4 py-2.5 hover:bg-pp-gold transition-colors duration-300"
+                  className="inline-flex items-center justify-center rounded-md border border-white/20 text-white text-sm font-medium px-4 py-2.5 hover:bg-white hover:text-black transition-colors duration-300"
                 >
-                  <span>UberEats</span>
+                  UberEats
                 </a>
                 <a
                   href="https://www.mrdfood.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-outline-gold inline-flex items-center justify-center rounded-md border border-pp-gold/40 text-pp-gold text-sm font-medium px-4 py-2.5 hover:bg-pp-gold transition-colors duration-300"
+                  className="inline-flex items-center justify-center rounded-md border border-white/20 text-white text-sm font-medium px-4 py-2.5 hover:bg-white hover:text-black transition-colors duration-300"
                 >
-                  <span>Mr D</span>
+                  Mr D
                 </a>
               </div>
             </div>
@@ -170,12 +163,12 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-pp-gold/10 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-pp-on-surface-dark/30">
+        <div className="border-t border-white/10 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/30">
           <p>&copy; {new Date().getFullYear()} Papa Pasta. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link href="/legal/" className="hover:text-pp-gold transition-colors duration-300">Privacy &amp; Legal</Link>
-            <Link href="/franchise/" className="hover:text-pp-gold transition-colors duration-300">Franchise</Link>
-            <Link href="/contact/" className="hover:text-pp-gold transition-colors duration-300">Contact</Link>
+            <Link href="/legal/" className="hover:text-cyan-400 transition-colors duration-300">Privacy &amp; Legal</Link>
+            <Link href="/franchise/" className="hover:text-cyan-400 transition-colors duration-300">Franchise</Link>
+            <Link href="/contact/" className="hover:text-cyan-400 transition-colors duration-300">Contact</Link>
           </div>
         </div>
       </div>
