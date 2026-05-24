@@ -17,7 +17,7 @@ export default function MerchPage() {
           <span className="neon-text-gradient">Merch</span>
         </h1>
         <p className="text-white/40 text-lg mb-8 leading-relaxed">
-          The gear is loading. Streetwear drops, collectable enamel pins, and limited edition capsule collections coming soon.
+          Coming soon. Streetwear drops, collectable enamel pins, and limited edition capsule collections.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
@@ -36,6 +36,13 @@ export default function MerchPage() {
           </a>
         </div>
       </motion.div>
+
+      {/* Minimal pulse animation to signal "still alive" */}
+      <motion.div
+        className="mt-12 w-2 h-2 rounded-full bg-pp-neon-pink"
+        animate={{ opacity: [0.3, 1, 0.3], scale: [1, 1.5, 1] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      />
     </div>
   );
 }

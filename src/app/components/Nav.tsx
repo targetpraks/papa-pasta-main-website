@@ -11,8 +11,9 @@ const navLinks = [
   { href: "/menu/", label: "Menu" },
   { href: "/locations/", label: "Locations" },
   { href: "/artisanal/", label: "Artisanal" },
-  { href: "/bowls/", label: "Bowls" },
-  { href: "/merch/", label: "Merch" },
+  // TODO: Uncomment /bowls/ and /merch/ when pages are ready
+  // { href: "/bowls/", label: "Bowls" },
+  // { href: "/merch/", label: "Merch" },
   { href: "/level-up/", label: "Level Up" },
   { href: "/blog/", label: "Blog" },
   { href: "/events/", label: "Events" },
