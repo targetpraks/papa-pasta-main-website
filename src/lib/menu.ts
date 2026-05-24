@@ -6,6 +6,7 @@ export interface MenuItem {
   tags: string[];
   seasonal?: boolean;
   price: number;
+  dietary?: string[];
 }
 
 export const menuItems: MenuItem[] = [
@@ -17,6 +18,7 @@ export const menuItems: MenuItem[] = [
     tags: ["Seasonal", "Vegetarian", "Proteins"],
     seasonal: true,
     price: 145,
+    dietary: ["Veg"],
   },
   {
     id: "alfredo",
@@ -25,6 +27,7 @@ export const menuItems: MenuItem[] = [
     image: "/images/menu-core-8-dishes.png",
     tags: ["Vegetarian", "Proteins"],
     price: 98,
+    dietary: ["Veg"],
   },
   {
     id: "bolognese",
@@ -33,6 +36,7 @@ export const menuItems: MenuItem[] = [
     image: "/images/menu-sauce-production.png",
     tags: ["Proteins"],
     price: 115,
+    dietary: ["Halal"],
   },
   {
     id: "pesto",
@@ -41,6 +45,7 @@ export const menuItems: MenuItem[] = [
     image: "/images/menu-pasta-shape-pairing.png",
     tags: ["Vegan", "Vegetarian"],
     price: 89,
+    dietary: ["Veg"],
   },
   {
     id: "carbonara",
@@ -57,6 +62,7 @@ export const menuItems: MenuItem[] = [
     image: "/images/menu-sauce-production.png",
     tags: ["Vegan", "Spicy"],
     price: 85,
+    dietary: ["Vegan","GF"],
   },
   {
     id: "vongole",
@@ -65,6 +71,7 @@ export const menuItems: MenuItem[] = [
     image: "/images/menu-pasta-shape-pairing.png",
     tags: ["Proteins", "Gluten-Free"],
     price: 135,
+    dietary: ["GF"],
   },
   {
     id: "puttanesca",
@@ -73,6 +80,7 @@ export const menuItems: MenuItem[] = [
     image: "/images/menu-core-8-dishes.png",
     tags: ["Vegan", "Spicy"],
     price: 95,
+    dietary: ["Vegan","GF"],
   },
   {
     id: "cacio-e-pepe",
@@ -81,6 +89,7 @@ export const menuItems: MenuItem[] = [
     image: "/images/menu-pasta-shape-pairing.png",
     tags: ["Vegetarian"],
     price: 92,
+    dietary: ["Veg"],
   },
   {
     id: "aglione",
@@ -89,6 +98,7 @@ export const menuItems: MenuItem[] = [
     image: "/images/menu-sauce-production.png",
     tags: ["Vegan"],
     price: 102,
+    dietary: ["Vegan"],
   },
   {
     id: "lasagna",
@@ -97,6 +107,7 @@ export const menuItems: MenuItem[] = [
     image: "/images/menu-core-8-dishes.png",
     tags: ["Proteins"],
     price: 125,
+    dietary: ["Halal"],
   },
   {
     id: "ravioli",
@@ -105,7 +116,10 @@ export const menuItems: MenuItem[] = [
     image: "/images/menu-pasta-shape-pairing.png",
     tags: ["Vegetarian", "Proteins"],
     price: 118,
+    dietary: ["Veg"],
   },
 ];
 
 export const menuFilters = ["All", "Proteins", "Vegan", "Vegetarian", "Gluten-Free", "Spicy", "Seasonal"];
+
+export const dietaryFilters = ["Veg", "Vegan", "GF", "Halal", "Kosher"];

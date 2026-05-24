@@ -489,6 +489,45 @@ h1, h2, h3, h4, h5, h6 {
   color: #e07a5f;
 }
 
+/* Dietary / allergen badges */
+.badge-dietary {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: var(--text-label-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label-xs);
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.badge-dietary-veg {
+  background-color: rgba(57,255,20,0.10);
+  color: #39ff14;
+  border-color: rgba(57,255,20,0.25);
+}
+.badge-dietary-vegan {
+  background-color: rgba(0,255,255,0.10);
+  color: #00ffff;
+  border-color: rgba(0,255,255,0.25);
+}
+.badge-dietary-gf {
+  background-color: rgba(255,165,0,0.10);
+  color: #ffa500;
+  border-color: rgba(255,165,0,0.25);
+}
+.badge-dietary-halal {
+  background-color: rgba(191,0,255,0.10);
+  color: #bf00ff;
+  border-color: rgba(191,0,255,0.25);
+}
+.badge-dietary-kosher {
+  background-color: rgba(212,175,55,0.10);
+  color: #d4af37;
+  border-color: rgba(212,175,55,0.25);
+}
+
 /* ═══════════════════════════════════════════════
    CARDS (Token-driven)
    ═══════════════════════════════════════════════ */

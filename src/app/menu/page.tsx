@@ -6,17 +6,17 @@ import { motion } from "framer-motion";
 import { MotionSection, StaggerContainer, staggerChildScale } from "../components/Motion";
 
 const dishes = [
-  { category: "Classic Sauces", name: "Alfredo Classico", price: "R89", desc: "Silky Parmesan cream sauce over fresh fettuccine. The comfort benchmark.", img: "/images/menu-core-8-dishes.png", tag: "Best Seller" },
-  { category: "Classic Sauces", name: "Napolitana Fresca", price: "R79", desc: "San Marzano tomato base, fresh basil, extra virgin olive oil. Simple, perfect.", img: "/images/menu-sauce-production.png", tag: "Classic" },
-  { category: "Classic Sauces", name: "Arrabbiata Piccante", price: "R82", desc: "Chilli-infused tomato sauce with garlic and parsley. For the brave.", img: "/images/papa-pops-peri-peri.png", tag: "Spicy" },
-  { category: "Classic Sauces", name: "Cacio e Pepe", price: "R85", desc: "Pecorino Romano and cracked Tellicherry pepper. Roman perfection.", img: "/images/papa-pops-cheesy-braai.png", tag: "Signature" },
-  { category: "Meat Sauces", name: "Bolognese della Casa", price: "R95", desc: "Slow-braised beef and pork ragu over wide tagliatelle. Simmered for 6 hours.", img: "/images/menu-core-8-dishes.png", tag: "House Favourite" },
+  { category: "Classic Sauces", name: "Alfredo Classico", price: "R89", desc: "Silky Parmesan cream sauce over fresh fettuccine. The comfort benchmark.", img: "/images/menu-core-8-dishes.png", tag: "Best Seller", dietary: ["Veg"] },
+  { category: "Classic Sauces", name: "Napolitana Fresca", price: "R79", desc: "San Marzano tomato base, fresh basil, extra virgin olive oil. Simple, perfect.", img: "/images/menu-sauce-production.png", tag: "Classic", dietary: ["Vegan","GF"] },
+  { category: "Classic Sauces", name: "Arrabbiata Piccante", price: "R82", desc: "Chilli-infused tomato sauce with garlic and parsley. For the brave.", img: "/images/papa-pops-peri-peri.png", tag: "Spicy", dietary: ["Vegan","GF"] },
+  { category: "Classic Sauces", name: "Cacio e Pepe", price: "R85", desc: "Pecorino Romano and cracked Tellicherry pepper. Roman perfection.", img: "/images/papa-pops-cheesy-braai.png", tag: "Signature", dietary: ["Veg"] },
+  { category: "Meat Sauces", name: "Bolognese della Casa", price: "R95", desc: "Slow-braised beef and pork ragu over wide tagliatelle. Simmered for 6 hours.", img: "/images/menu-core-8-dishes.png", tag: "House Favourite", dietary: ["Halal"] },
   { category: "Meat Sauces", name: "Carbonara Proper", price: "R92", desc: "Guanciale, egg yolk and Pecorino. No cream. Ever.", img: "/images/menu-sauce-production.png", tag: "Authentic" },
-  { category: "Seasonal", name: "Summer Harvest Primavera", price: "R88", desc: "Zucchini, cherry tomatoes, lemon zest and basil on penne. Lighter than air.", img: "/images/bowl-07-seasonal-harvest.png", tag: "Limited" },
-  { category: "Seasonal", name: "Braai-Spiced Meatball", price: "R98", desc: "Char-grilled meatballs in smoky tomato sauce. A South African twist on an Italian classic.", img: "/images/bowl-03-sa-heritage-series.png", tag: "Heritage" },
-  { category: "Papa Pops", name: "Cheesy Braai Bites", price: "R45", desc: "Crunchy fried pasta bites stuffed with three cheeses and smoky braai spice. Addictive.", img: "/images/papa-pops-cheesy-braai.png", tag: "Snack" },
-  { category: "Papa Pops", name: "Peri-Peri Crunch", price: "R42", desc: "Zesty peri-peri coating on golden pasta shells. Cape Town in a bite.", img: "/images/papa-pops-peri-peri.png", tag: "Snack" },
-  { category: "Papa Pops", name: "Sweet Chutney Twist", price: "R40", desc: "Mild curry-spiced chutney glaze on crispy pasta twists. Sweet, savoury, crunchy.", img: "/images/papa-pops-sweet-chutney.png", tag: "Snack" },
+  { category: "Seasonal", name: "Summer Harvest Primavera", price: "R88", desc: "Zucchini, cherry tomatoes, lemon zest and basil on penne. Lighter than air.", img: "/images/bowl-07-seasonal-harvest.png", tag: "Limited", dietary: ["Vegan","GF"] },
+  { category: "Seasonal", name: "Braai-Spiced Meatball", price: "R98", desc: "Char-grilled meatballs in smoky tomato sauce. A South African twist on an Italian classic.", img: "/images/bowl-03-sa-heritage-series.png", tag: "Heritage", dietary: ["Halal"] },
+  { category: "Papa Pops", name: "Cheesy Braai Bites", price: "R45", desc: "Crunchy fried pasta bites stuffed with three cheeses and smoky braai spice. Addictive.", img: "/images/papa-pops-cheesy-braai.png", tag: "Snack", dietary: ["Veg"] },
+  { category: "Papa Pops", name: "Peri-Peri Crunch", price: "R42", desc: "Zesty peri-peri coating on golden pasta shells. Cape Town in a bite.", img: "/images/papa-pops-peri-peri.png", tag: "Snack", dietary: ["Vegan"] },
+  { category: "Papa Pops", name: "Sweet Chutney Twist", price: "R40", desc: "Mild curry-spiced chutney glaze on crispy pasta twists. Sweet, savoury, crunchy.", img: "/images/papa-pops-sweet-chutney.png", tag: "Snack", dietary: ["Vegan"] },
 ];
 
 const categories = ["All", "Classic Sauces", "Meat Sauces", "Seasonal", "Papa Pops"];
@@ -82,6 +82,18 @@ export default function MenuPage() {
                     <span className="gold-text-gradient font-bold">{d.price}</span>
                   </div>
                   <p className="text-sm text-pp-primary-60/50 leading-relaxed">{d.desc}</p>
+                  {d.dietary && d.dietary.length > 0 && (
+                    <div className="flex items-center gap-1 mt-2 flex-wrap">
+                      {d.dietary.map((badge) => (
+                        <span
+                          key={badge}
+                          className={`badge-dietary badge-dietary-${badge.toLowerCase()}`}
+                        >
+                          {badge}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -91,7 +103,7 @@ export default function MenuPage() {
             <div className="bg-pp-tertiary rounded-2xl p-8 inline-block border border-pp-primary/5">
               <p className="text-pp-primary-60/50 text-sm mb-3">Prices are estimated. Final menu and pricing set at launch.</p>
               <p className="text-pp-primary-60/60 text-sm">
-                <span className="font-semibold text-pp-on-surface">Dietary info:</span> Vegetarian, halal and gluten-free options available.
+                <span className="font-semibold text-pp-on-surface">Dietary info:</span> Vegan, Veg, GF, halal and kosher options available.
               </p>
             </div>
           </MotionSection>
