@@ -16,6 +16,6 @@ spec:
       containers:
         - name: papa-pasta-main-website
           image: papa-pasta-main-website:latest
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80

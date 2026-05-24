@@ -4,7 +4,7 @@ metadata:
   name: papa-pasta-main-website
   namespace: papa-pasta
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   ingressClassName: nginx
   rules:
