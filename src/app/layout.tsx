@@ -78,7 +78,47 @@ export default function RootLayout({
         <meta name="theme-color" content="#0a0a0a" />
         <link rel="preconnect" href="https://raw.githubusercontent.com" />
         <link rel="dns-prefetch" href="https://raw.githubusercontent.com" />
-        <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Restaurant", "name": "Papa Pasta", "image": "https://raw.githubusercontent.com/targetpraks/papa-pasta-assets/main/images/menu-core-8-dishes.png", "url": "https://papapasta.co.za", "telephone": "+27-21-456-7890", "email": "hello@papapasta.co.za", "servesCuisine": "Italian", "priceRange": "R79–R98", "address": {"@type": "PostalAddress", "addressLocality": "Cape Town", "addressRegion": "Western Cape", "addressCountry": "ZA"}, "geo": {"@type": "GeoCoordinates", "latitude": "-33.9249", "longitude": "18.4241"}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "10:00", "closes": "22:00"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "11:00", "closes": "21:00"}]}</script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Restaurant",
+              name: "Papa Pasta",
+              image: "https://raw.githubusercontent.com/targetpraks/papa-pasta-assets/main/images/menu-core-8-dishes.png",
+              url: "https://papapasta.co.za",
+              telephone: "+27-21-456-7890",
+              email: "hello@papapasta.co.za",
+              servesCuisine: "Italian",
+              priceRange: "R79–R98",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Cape Town",
+                addressRegion: "Western Cape",
+                addressCountry: "ZA",
+              },
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: "-33.9249",
+                longitude: "18.4241",
+              },
+              openingHoursSpecification: [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                  opens: "10:00",
+                  closes: "22:00",
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: "Sunday",
+                  opens: "11:00",
+                  closes: "21:00",
+                },
+              ],
+            }),
+          }}
+        />
       </head>
       <body className="min-h-screen flex flex-col font-sans bg-pp-cream text-pp-black antialiased">
         <a href="#main-content" className="skip-to-content">

@@ -54,7 +54,6 @@ export default function Error({
         )}
       </motion.div>
 
-      <!-- Minimal ambient glow -->
       <motion.div
         className="mt-10 w-2 h-2 rounded-full bg-pp-neon-cyan"
         animate={{ opacity: [0.3, 1, 0.3], scale: [1, 1.5, 1] }}
