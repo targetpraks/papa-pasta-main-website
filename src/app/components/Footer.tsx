@@ -91,7 +91,45 @@ export default function Footer() {
             </div>
           </MotionSection>
 
-          {/* Explore Column */}
+                    {/* Newsletter */}
+          <div>
+            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Stay Updated</h3>
+            <p className="text-white/40 text-sm mb-4">Bowl drops, new locations, and exclusive drops.</p>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const email = (e.target as HTMLFormElement).email.value;
+                if (email) {
+                  fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      access_key: "YOUR_ACCESS_KEY",
+                      email,
+                      subject: "Papa Pasta Newsletter Signup",
+                      from_name: "Papa Pasta Website",
+                    }),
+                  }).then(() => alert("Thanks for subscribing!"));
+                }
+              }}
+              className="flex gap-2"
+            >
+              <input
+                name="email"
+                type="email"
+                placeholder="your@email.com"
+                required
+                className="flex-1 bg-white/5 border border-white/10 rounded px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-pp-gold"
+              />
+              <button
+                type="submit"
+                className="bg-pp-gold text-black px-4 py-2 rounded text-xs font-semibold uppercase tracking-wider hover:bg-pp-gold/90 transition"
+              >
+                Join
+              </button>
+            </form>
+          </div>
+{/* Explore Column */}
           <MotionSection delay={0.1}>
             <div>
               <h4 className="text-white font-serif font-semibold mb-5 text-label-md uppercase tracking-label-md">
