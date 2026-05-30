@@ -227,7 +227,7 @@ export default function Page() {
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-cyan-400 uppercase tracking-[0.2em] text-xs font-semibold mb-4"
+            className="text-white uppercase tracking-[0.2em] text-xs font-semibold mb-4"
           >
             Locations
           </motion.p>

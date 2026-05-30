@@ -82,7 +82,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Papa Pasta on ${social.name}`}
-                    className="w-11 h-11 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/50 hover:text-cyan-400 transition-all duration-300"
+                    className="w-11 h-11 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/50 hover:text-white transition-all duration-300"
                   >
                     {social.icon}
                   </a>
@@ -140,7 +140,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-white/50 hover:text-cyan-400 transition-colors duration-300 hover:pl-1 inline-block"
+                      className="text-white/50 hover:text-white transition-colors duration-300 hover:pl-1 inline-block"
                     >
                       {link.label}
                     </Link>
@@ -161,7 +161,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-white/50 hover:text-cyan-400 transition-colors duration-300 hover:pl-1 inline-block"
+                      className="text-white/50 hover:text-white transition-colors duration-300 hover:pl-1 inline-block"
                     >
                       {link.label}
                     </Link>
@@ -203,9 +203,9 @@ export default function Footer() {
         <div className="border-t border-white/10 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/30">
           <p>&copy; {new Date().getFullYear()} Papa Pasta. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link href="/legal/" className="hover:text-cyan-400 transition-colors duration-300">Privacy &amp; Legal</Link>
-            <Link href="/franchise/" className="hover:text-cyan-400 transition-colors duration-300">Franchise</Link>
-            <Link href="/contact/" className="hover:text-cyan-400 transition-colors duration-300">Contact</Link>
+            <Link href="/legal/" className="hover:text-white transition-colors duration-300">Privacy &amp; Legal</Link>
+            <Link href="/franchise/" className="hover:text-white transition-colors duration-300">Franchise</Link>
+            <Link href="/contact/" className="hover:text-white transition-colors duration-300">Contact</Link>
           </div>
         </div>
       </div>

@@ -70,14 +70,14 @@
   --color-pp-gold-light:  #ffffff;
   --color-pp-gold-dark:   #ffffff;
 
-  --color-pp-error:       #b8422e;
-  --color-pp-error-light: #e07a5f;
-  --color-pp-success:       #2d6a4f;
-  --color-pp-success-light: #52b788;
-  --color-pp-warning:       #d4a017;
-  --color-pp-warning-light: #e6c35c;
-  --color-pp-info:       #3a6ea5;
-  --color-pp-info-light: #6b9bd2;
+  --color-pp-error:       #ffffff;
+  --color-pp-error-light: #ffffff;
+  --color-pp-success:       #ffffff;
+  --color-pp-success-light: #ffffff;
+  --color-pp-warning:       #ffffff;
+  --color-pp-warning-light: #ffffff;
+  --color-pp-info:       #ffffff;
+  --color-pp-info-light: #ffffff;
 
   /* ═══════════════════════════════════════════════
      TYPOGRAPHY TOKENS
@@ -152,11 +152,11 @@
   --shadow-sm:  0 1px 3px rgba(0,0,0,0.05);
   --shadow-md:  0 4px 12px rgba(0,0,0,0.08);
   --shadow-lg:  0 20px 40px rgba(0,0,0,0.12);
-  --shadow-neon-pink:   0 0 20px rgba(255,0,255,0.4), 0 0 40px rgba(255,0,255,0.15);
-  --shadow-neon-cyan:   0 0 20px rgba(0,255,255,0.4), 0 0 40px rgba(0,255,255,0.15);
+  --shadow-neon-pink:   0 0 20px rgba(255,255,255,0.4), 0 0 40px rgba(255,255,255,0.15);
+  --shadow-neon-cyan:   0 0 20px rgba(255,255,255,0.4), 0 0 40px rgba(255,255,255,0.15);
   --shadow-neon-lime:   0 0 20px rgba(57,255,20,0.4), 0 0 40px rgba(57,255,20,0.15);
-  --shadow-neon-orange: 0 0 20px rgba(255,69,0,0.4), 0 0 40px rgba(255,69,0,0.15);
-  --shadow-neon-violet: 0 0 20px rgba(191,0,255,0.4), 0 0 40px rgba(191,0,255,0.15);
+  --shadow-neon-orange: 0 0 20px rgba(255,255,255,0.4), 0 0 40px rgba(255,255,255,0.15);
+  --shadow-neon-violet: 0 0 20px rgba(255,255,255,0.4), 0 0 40px rgba(255,255,255,0.15);
   --shadow-gold:        0 0 24px rgba(212,175,55,0.5), 0 0 48px rgba(212,175,55,0.15);
 }
 
@@ -435,7 +435,7 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow:
     0 0 5px var(--color-pp-neon-cyan),
     0 0 10px var(--color-pp-neon-pink),
-    inset 0 0 5px rgba(0,255,255,0.1);
+    inset 0 0 5px rgba(255,255,255,0.1);
 }
 
 /* ═══════════════════════════════════════════════
@@ -463,30 +463,30 @@ h1, h2, h3, h4, h5, h6 {
 }
 .badge-coming-soon {
   background-color: rgba(212,160,23,0.12);
-  color: #d4a017;
+  color: #ffffff;
   border: 1px solid rgba(212,160,23,0.25);
 }
 .badge-available {
-  background-color: rgba(255,0,255,0.12);
+  background-color: rgba(255,255,255,0.12);
   color: #ff00ff;
-  border: 1px solid rgba(255,0,255,0.3);
+  border: 1px solid rgba(255,255,255,0.3);
 }
 .badge-limited {
-  background-color: rgba(255,69,0,0.12);
+  background-color: rgba(255,255,255,0.12);
   color: #ff4500;
-  border: 1px solid rgba(255,69,0,0.3);
+  border: 1px solid rgba(255,255,255,0.3);
 }
 .badge-success {
   background-color: rgba(45,106,79,0.12);
-  color: #52b788;
+  color: #ffffff;
 }
 .badge-warning {
   background-color: rgba(212,160,23,0.12);
-  color: #d4a017;
+  color: #ffffff;
 }
 .badge-error {
   background-color: rgba(184,66,46,0.12);
-  color: #e07a5f;
+  color: #ffffff;
 }
 
 /* Dietary / allergen badges */
@@ -508,19 +508,19 @@ h1, h2, h3, h4, h5, h6 {
   border-color: rgba(57,255,20,0.25);
 }
 .badge-dietary-vegan {
-  background-color: rgba(0,255,255,0.10);
+  background-color: rgba(255,255,255,0.10);
   color: #00ffff;
-  border-color: rgba(0,255,255,0.25);
+  border-color: rgba(255,255,255,0.25);
 }
 .badge-dietary-gf {
   background-color: rgba(255,165,0,0.10);
-  color: #ffa500;
+  color: #ffffff;
   border-color: rgba(255,165,0,0.25);
 }
 .badge-dietary-halal {
-  background-color: rgba(191,0,255,0.10);
+  background-color: rgba(255,255,255,0.10);
   color: #bf00ff;
-  border-color: rgba(191,0,255,0.25);
+  border-color: rgba(255,255,255,0.25);
 }
 .badge-dietary-kosher {
   background-color: rgba(212,175,55,0.10);
@@ -541,14 +541,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 .card:hover {
   box-shadow: var(--shadow-lg);
-  border-color: rgba(0,255,255,0.2);
+  border-color: rgba(255,255,255,0.2);
 }
 .card-dark {
   background-color: var(--color-pp-surface-elevated-dark);
   border: 1px solid rgba(255,255,255,0.06);
 }
 .card-dark:hover {
-  border-color: rgba(0,255,255,0.25);
+  border-color: rgba(255,255,255,0.25);
 }
 
 /* ═══════════════════════════════════════════════
@@ -571,7 +571,7 @@ h1, h2, h3, h4, h5, h6 {
 .input-field:focus {
   outline: none;
   border-color: var(--color-pp-black);
-  box-shadow: 0 0 0 3px rgba(0,255,255,0.20);
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.20);
 }
 .input-field.error {
   border-color: var(--color-pp-error);
@@ -601,7 +601,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: filter 0.2s ease;
 }
 .chromatic-hover:hover {
-  filter: drop-shadow(2px 0 0 rgba(255,0,255,0.5)) drop-shadow(-2px 0 0 rgba(0,255,255,0.5));
+  filter: drop-shadow(2px 0 0 rgba(255,255,255,0.5)) drop-shadow(-2px 0 0 rgba(0,255,255,0.5));
 }
 
 /* ═══════════════════════════════════════════════
@@ -785,7 +785,7 @@ h1, h2, h3, h4, h5, h6 {
   border-left: 4px solid #39ff14;
 }
 .zone-card-coming-soon {
-  border-left: 4px solid #d4a017;
+  border-left: 4px solid #ffffff;
 }
 .zone-card-available {
   border-left: 4px solid #ff00ff;

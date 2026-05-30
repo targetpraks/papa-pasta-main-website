@@ -16,30 +16,109 @@ import { bowls, currentSeasonBowl } from "../lib/bowls";
 import { blogPosts } from "../lib/blog";
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   HERO
+   HERO — Full-bleed pasta carousel with floating text overlay
    ───────────────────────────────────────────────────────────────────────────── */
 function Hero() {
+  const [current, setCurrent] = useState(0);
+
+  const pastaImages = [
+    { src: "/images/menu-core-8-dishes.png", alt: "Fresh pasta dishes" },
+    { src: "/images/menu-sauce-production.png", alt: "Sauce production" },
+    { src: "/images/menu-pasta-shape-pairing.png", alt: "Pasta shapes" },
+    { src: "/images/product-range.png", alt: "Product range" },
+    { src: "/images/artisan-pkg-01-die-cut-character.png", alt: "Artisan packaging" },
+    { src: "/images/packaging-base-bw.png", alt: "Packaging" },
+  ];
+
+  const next = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % pastaImages.length);
+  }, [pastaImages.length]);
+
+  const prevSlide = useCallback(() => {
+    setCurrent((prev) => (prev - 1 + pastaImages.length) % pastaImages.length);
+  }, [pastaImages.length]);
+
+  /* auto-advance every 4s */
+  useEffect(() => {
+    const id = setInterval(next, 4000);
+    return () => clearInterval(id);
+  }, [next]);
+
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black hero-grid-bg"
+      className="relative min-h-screen flex items-end justify-center overflow-hidden bg-black"
       aria-label="Hero"
     >
-      {/* Radial glow */}
-      <div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,255,255,0.06)_0%,transparent_70%)]"
-        aria-hidden="true"
-      />
+      {/* ── Full-bleed image carousel ── */}
+      <div className="absolute inset-0 z-0">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={current}
+            src={pastaImages[current].src}
+            alt={pastaImages[current].alt}
+            className="absolute inset-0 w-full h-full object-cover grayscale"
+            initial={{ opacity: 0, scale: 1.06 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.9, ease: "easeInOut" }}
+          />
+        </AnimatePresence>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
+        {/* Dark overlays for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/30 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.6)_100%)] pointer-events-none" />
+      </div>
+
+      {/* ── Floating navigation arrows ── */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-white/20 bg-black/50 text-white flex items-center justify-center transition-all duration-300 hover:border-white hover:bg-white hover:text-black hover:scale-110 active:scale-95 backdrop-blur-sm"
+        aria-label="Previous image"
+      >
+        ←
+      </button>
+      <button
+        onClick={next}
+        className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-white/20 bg-black/50 text-white flex items-center justify-center transition-all duration-300 hover:border-white hover:bg-white hover:text-black hover:scale-110 active:scale-95 backdrop-blur-sm"
+        aria-label="Next image"
+      >
+        →
+      </button>
+
+      {/* ── Thumbnail strip ── */}
+      <div className="absolute bottom-28 sm:bottom-32 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 sm:gap-3">
+        {pastaImages.map((img, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            className={`relative w-14 h-9 sm:w-20 sm:h-12 rounded overflow-hidden border-2 transition-all duration-300 ${
+              i === current
+                ? "border-white scale-110 opacity-100"
+                : "border-white/20 opacity-40 hover:opacity-80 hover:border-white/50"
+            }`}
+            aria-label={`View ${img.alt}`}
+          >
+            <img src={img.src} alt="" className="w-full h-full object-cover grayscale" />
+          </button>
+        ))}
+      </div>
+
+      {/* ── Slide counter ── */}
+      <div className="absolute top-6 right-6 sm:top-8 sm:right-8 text-white/40 text-[11px] uppercase tracking-[0.2em] font-semibold z-20">
+        {String(current + 1).padStart(2, "0")} / {String(pastaImages.length).padStart(2, "0")}
+      </div>
+
+      {/* ── Hero text overlay (bottom) ── */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 pb-10 sm:pb-14 text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="mb-6"
+          className="mb-4"
         >
           <span className="inline-block px-4 py-1.5 border border-white/20 text-white/50 text-[11px] uppercase tracking-[0.2em] font-semibold rounded-sm">
-            Crafted Daily -- South Africa
+            Crafted Daily — South Africa
           </span>
         </motion.div>
 
@@ -51,7 +130,7 @@ function Hero() {
             delay: 0.2,
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
-          className="font-serif font-bold mb-6 text-6xl sm:text-8xl lg:text-[160px] tracking-[-0.04em] leading-[0.85] uppercase"
+          className="font-serif font-bold mb-4 sm:mb-6 text-6xl sm:text-8xl lg:text-[160px] tracking-[-0.04em] leading-[0.85] uppercase text-white"
         >
           <span className="neon-text-gradient block">Pasta</span>
         </motion.h1>
@@ -64,7 +143,7 @@ function Hero() {
             delay: 0.5,
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
-          className="text-white/50 text-lg sm:text-2xl mb-10 max-w-3xl mx-auto leading-[1.7]"
+          className="text-white/50 text-lg sm:text-2xl mb-8 sm:mb-10 max-w-3xl mx-auto leading-[1.7]"
         >
           Fresh handmade pasta. No compromises. No shortcuts. Just obsession,
           built from scratch in our central kitchen.
@@ -93,13 +172,13 @@ function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+      {/* ── Scroll indicator ── */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
-          className="w-[2px] h-12 bg-gradient-to-b from-cyan-400/60 to-transparent"
+          className="w-[2px] h-10 bg-gradient-to-b from-white/60 to-transparent"
           aria-hidden="true"
         />
       </div>
@@ -284,7 +363,7 @@ function ArtisanalSection() {
               <img
                 src="/images/artisan-pkg-05-retail-shelf-display.png"
                 alt="Artisanal pasta packaging on retail shelf"
-                className="rounded-2xl shadow-2xl shadow-cyan-500/10 w-full"
+                className="rounded-2xl shadow-2xl shadow-white/10 w-full"
               
               />
             </ClipReveal>
@@ -404,7 +483,7 @@ function CollectableBowls() {
                       Claimed: {currentSeasonBowl.claimed} /
                       {currentSeasonBowl.total}
                     </span>
-                    <span className="text-cyan-400 font-bold">
+                    <span className="text-white font-bold">
                       {Math.round(
                         (currentSeasonBowl.claimed / currentSeasonBowl.total) *
                           100
@@ -569,7 +648,7 @@ function MerchSection() {
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="text-lg font-bold">R{item.price}</span>
-                    <button className="text-xs uppercase tracking-[0.15em] font-semibold text-cyan-400 hover:text-white transition-colors">
+                    <button className="text-xs uppercase tracking-[0.15em] font-semibold text-white hover:text-white transition-colors">
                       Shop
                     </button>
                   </div>
@@ -612,7 +691,7 @@ function BlogPreview() {
           <MotionSection>
             <Link
               href="/blog/"
-              className="text-sm font-medium text-black underline underline-offset-4 hover:text-cyan-500 transition-colors duration-300 mt-4 md:mt-0"
+              className="text-sm font-medium text-black underline underline-offset-4 hover:text-white transition-colors duration-300 mt-4 md:mt-0"
             >
               Read all posts &rarr;
             </Link>
@@ -638,7 +717,7 @@ function BlogPreview() {
                 <p className="text-xs text-black/40 mb-2 font-semibold tracking-wider">
                   {post.date}
                 </p>
-                <h3 className="font-serif text-lg font-semibold mb-2 group-hover:text-cyan-500 transition-colors duration-300">
+                <h3 className="font-serif text-lg font-semibold mb-2 group-hover:text-white transition-colors duration-300">
                   {post.title}
                 </h3>
                 <p className="text-black/40 text-sm leading-[1.6]">
@@ -663,7 +742,7 @@ function FranchiseTeaser() {
       aria-labelledby="franchise-heading"
     >
       <div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,0,255,0.06)_0%,transparent_70%)]"
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.06)_0%,transparent_70%)]"
         aria-hidden="true"
       />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

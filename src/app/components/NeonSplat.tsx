@@ -3,11 +3,11 @@
 import { useRef, useEffect, useCallback } from "react";
 
 const NEON_COLORS = [
-  "#ff00ff", // pink
-  "#00ffff", // cyan
-  "#39ff14", // lime
-  "#ff4500", // orange
-  "#bf00ff", // violet
+  "#ffffff", // pink
+  "#ffffff", // cyan
+  "#ffffff", // lime
+  "#ffffff", // orange
+  "#ffffff", // violet
 ];
 
 function randomColor() {
@@ -107,7 +107,7 @@ export function spawnNeonSplat(
       ctx.filter = `blur(${2 * progress}px) hue-rotate(${Math.random() * 60}deg)`;
       ctx.beginPath();
       ctx.arc(s.x + 3, s.y, s.r * 0.7 * progress, 0, Math.PI * 2);
-      ctx.fillStyle = "#00ffff";
+      ctx.fillStyle = "#ffffff";
       ctx.globalAlpha = progress * 0.15;
       ctx.fill();
       ctx.restore();
@@ -117,7 +117,7 @@ export function spawnNeonSplat(
       ctx.filter = `blur(${2 * progress}px) hue-rotate(${Math.random() * 60}deg)`;
       ctx.beginPath();
       ctx.arc(s.x - 3, s.y, s.r * 0.7 * progress, 0, Math.PI * 2);
-      ctx.fillStyle = "#ff00ff";
+      ctx.fillStyle = "#ffffff";
       ctx.globalAlpha = progress * 0.15;
       ctx.fill();
       ctx.restore();
