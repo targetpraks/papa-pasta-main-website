@@ -10,6 +10,7 @@ import {
   staggerChildScale,
   ClipReveal,
 } from "./components/Motion";
+import ColorReveal from "./components/ColorReveal";
 import { menuItems, menuFilters } from "../lib/menu";
 import { merchItems, merchCategories } from "../lib/merch";
 import { bowls, currentSeasonBowl } from "../lib/bowls";
@@ -109,7 +110,8 @@ function Hero() {
         {String(current + 1).padStart(2, "0")} / {String(pastaImages.length).padStart(2, "0")}
       </div>
 
-      {/* ── Hero text overlay (bottom) ── */}
+      {/* ── Hero text overlay (bottom) — with color-reveal on hover ── */}
+      <ColorReveal className="w-full" revealSize={250}>
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 pb-10 sm:pb-14 text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -171,6 +173,7 @@ function Hero() {
           </a>
         </motion.div>
       </div>
+      </ColorReveal>
 
       {/* ── Scroll indicator ── */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10">
