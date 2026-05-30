@@ -119,11 +119,11 @@ export default function Footer() {
                 type="email"
                 placeholder="your@email.com"
                 required
-                className="flex-1 bg-white/5 border border-white/10 rounded px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-pp-gold"
+                className="flex-1 bg-white/5 border border-white/10 rounded px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white"
               />
               <button
                 type="submit"
-                className="bg-pp-gold text-black px-4 py-2 rounded text-xs font-semibold uppercase tracking-wider hover:bg-pp-gold/90 transition"
+                className="bg-white text-black px-4 py-2 rounded text-xs font-semibold uppercase tracking-wider hover:bg-white/90 transition"
               >
                 Join
               </button>

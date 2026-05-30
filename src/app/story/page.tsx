@@ -10,7 +10,7 @@ export default function StoryPage() {
       <header className="bg-pp-primary text-pp-on-primary py-20 sm:py-24 text-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-            className="text-pp-gold uppercase tracking-[0.2em] text-xs font-semibold mb-4">
+            className="text-white uppercase tracking-[0.2em] text-xs font-semibold mb-4">
             Our Story
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}
@@ -29,7 +29,7 @@ export default function StoryPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <MotionSection>
             <div className="prose prose-lg max-w-none text-pp-primary-60">
-              <blockquote className="border-l-4 border-pp-gold pl-6 italic text-xl leading-relaxed mb-8 text-pp-primary-60/80">
+              <blockquote className="border-l-4 border-white pl-6 italic text-xl leading-relaxed mb-8 text-pp-primary-60/80">
                 &ldquo;South Africa serves chicken, burgers and bunny chow at every corner.
                 But nobody has built a fast, affordable, consistent pasta brand for the masses.
                 We decided to fill that gap — and build a system that scales without losing soul.&rdquo;
@@ -39,14 +39,14 @@ export default function StoryPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-8">
             <MotionSection>
-              <div className="bg-pp-primary rounded-2xl p-6 border border-pp-gold/20 text-center">
+              <div className="bg-pp-primary rounded-2xl p-6 border border-white/20 text-center">
                 <div className="gold-text-gradient text-3xl font-bold mb-2 font-serif">2,500+</div>
                 <p className="text-sm font-semibold text-pp-on-primary mb-1">Chicken outlets in SA</p>
                 <p className="text-xs text-pp-on-primary/40">Source: industry estimates, 2024</p>
               </div>
             </MotionSection>
             <MotionSection delay={0.1}>
-              <div className="bg-pp-primary rounded-2xl p-6 border border-pp-gold/20 text-center">
+              <div className="bg-pp-primary rounded-2xl p-6 border border-white/20 text-center">
                 <div className="gold-text-gradient text-3xl font-bold mb-2 font-serif">0</div>
                 <p className="text-sm font-semibold text-pp-on-primary mb-1">Dedicated pasta QSR franchises</p>
                 <p className="text-xs text-pp-on-primary/40">Until Papa Pasta</p>
@@ -60,7 +60,7 @@ export default function StoryPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <MotionSection className="text-center mb-16">
             <div className="line-accent mx-auto mb-4" />
-            <p className="text-pp-gold uppercase tracking-[0.2em] text-xs font-semibold mb-2">The Engine</p>
+            <p className="text-white uppercase tracking-[0.2em] text-xs font-semibold mb-2">The Engine</p>
             <h2 className="text-pp-on-primary font-serif text-3xl sm:text-5xl font-bold">A Central Kitchen That Powers It All</h2>
             <p className="text-pp-on-primary/50 max-w-2xl mx-auto mt-4">
               Every store is fed by one commissary. Every batch of pasta is extruded fresh.
@@ -76,7 +76,7 @@ export default function StoryPage() {
               { step: "04", title: "The Store", desc: "40 m\u00B2 footprint. No kitchen needed — just heat, toss and serve. 4-minute ticket time. 90% of Cape Town's rental costs." },
             ].map((item) => (
               <MotionSection key={item.step}>
-                <div className="bg-pp-primary-80 rounded-2xl p-6 border border-pp-gold/10 text-center hover:border-pp-gold/30 transition-colors duration-300">
+                <div className="bg-pp-primary-80 rounded-2xl p-6 border border-white/10 text-center hover:border-white/30 transition-colors duration-300">
                   <div className="gold-text-gradient font-bold text-sm mb-3 font-mono">Step {item.step}</div>
                   <h3 className="font-serif text-xl font-semibold mb-2">{item.title}</h3>
                   <p className="text-sm text-pp-on-primary/50 leading-relaxed">{item.desc}</p>
@@ -95,14 +95,14 @@ export default function StoryPage() {
 
           <MotionSection delay={0.2}>
             <div className="line-accent mb-4" />
-            <p className="text-pp-gold uppercase tracking-[0.2em] text-xs font-semibold mb-2">The Menu Philosophy</p>
+            <p className="text-white uppercase tracking-[0.2em] text-xs font-semibold mb-2">The Menu Philosophy</p>
             <h2 className="text-pp-on-surface font-serif text-3xl sm:text-4xl font-bold mb-6">The Golden Balance</h2>
             <p className="text-pp-primary-60/60 mb-4 leading-relaxed">
               Our menu is built on a simple but radical idea: every shape should carry its ideal sauce.
               Flat noodles hold cream. Tubes trap chunky meat. Spirals carry light oils. This is not opinion — it is physics.
             </p>
             <p className="text-pp-primary-60/60 mb-4 leading-relaxed">
-              We call it the <strong className="text-pp-gold">Golden Balance</strong>: the precise ratio of carbohydrate
+              We call it the <strong className="text-white">Golden Balance</strong>: the precise ratio of carbohydrate
               to sauce to topping that makes a pasta dish satisfying, not heavy.
               Too much sauce = wet. Too little = dry. We hit it every time.
             </p>
@@ -110,7 +110,7 @@ export default function StoryPage() {
               The core menu stays at 32 dishes — enough variety for daily visits, disciplined enough
               to maintain insane quality. Seasonal specials rotate quarterly so there is always something new.
             </p>
-            <Link href="/menu/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-6 py-2.5 text-sm font-semibold text-pp-on-surface hover:bg-pp-gold-light transition-colors duration-300">
+            <Link href="/menu/" className="btn-gold-glow inline-flex items-center rounded-md bg-white px-6 py-2.5 text-sm font-semibold text-pp-on-surface hover:bg-white-light transition-colors duration-300">
               Explore the Full Menu
             </Link>
           </MotionSection>
@@ -121,7 +121,7 @@ export default function StoryPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <MotionSection className="text-center mb-12">
             <div className="line-accent mx-auto mb-4" />
-            <p className="text-pp-gold uppercase tracking-[0.2em] text-xs font-semibold mb-2">Brand Identity</p>
+            <p className="text-white uppercase tracking-[0.2em] text-xs font-semibold mb-2">Brand Identity</p>
             <h2 className="text-pp-on-surface font-serif text-3xl sm:text-4xl font-bold">Black &amp; Gold. And Every Colour in Between.</h2>
             <p className="text-pp-primary-60/60 max-w-2xl mx-auto mt-4">
               Every store is unique. The Living Crest system gives each franchise a colour identity
@@ -164,10 +164,10 @@ export default function StoryPage() {
               crest design, territory exclusivity and real-time access to our commissary system.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/franchise/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-8 py-3 text-sm font-semibold text-pp-on-surface hover:bg-pp-gold-light transition-colors duration-300">
+              <Link href="/franchise/" className="btn-gold-glow inline-flex items-center rounded-md bg-white px-8 py-3 text-sm font-semibold text-pp-on-surface hover:bg-white-light transition-colors duration-300">
                 Explore Franchise Opportunities
               </Link>
-              <Link href="/gallery/" className="btn-outline-gold inline-flex items-center rounded-md border border-pp-gold/50 text-pp-gold px-8 py-3 text-sm font-semibold hover:bg-pp-gold hover:text-pp-on-surface transition-colors duration-300">
+              <Link href="/gallery/" className="btn-outline-gold inline-flex items-center rounded-md border border-white/50 text-white px-8 py-3 text-sm font-semibold hover:bg-white hover:text-pp-on-surface transition-colors duration-300">
                 <span>See the Gallery</span>
               </Link>
             </div>

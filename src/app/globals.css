@@ -19,11 +19,11 @@
   --color-pp-grey-05:       #f2f2f2;
 
   /* Neon color spectrum */
-  --color-pp-neon-pink:     #ff00ff;
-  --color-pp-neon-cyan:     #00ffff;
-  --color-pp-neon-lime:     #39ff14;
-  --color-pp-neon-orange:   #ff4500;
-  --color-pp-neon-violet:   #bf00ff;
+  --color-pp-neon-pink:     #ffffff;
+  --color-pp-neon-cyan:     #ffffff;
+  --color-pp-neon-lime:     #ffffff;
+  --color-pp-neon-orange:   #ffffff;
+  --color-pp-neon-violet:   #ffffff;
 
   /* Legacy aliases for migration — now map to neon white/black */
   --color-pp-primary:       var(--color-pp-black);
@@ -66,9 +66,9 @@
   --color-pp-on-surface-dark:  var(--color-pp-white);
 
   /* Gold preserved as a secondary accent for legacy, but neon is primary */
-  --color-pp-gold:        #d4af37;
-  --color-pp-gold-light:  #f0d878;
-  --color-pp-gold-dark:   #b8982e;
+  --color-pp-gold:        #ffffff;
+  --color-pp-gold-light:  #ffffff;
+  --color-pp-gold-dark:   #ffffff;
 
   --color-pp-error:       #b8422e;
   --color-pp-error-light: #e07a5f;
@@ -262,7 +262,7 @@ h1, h2, h3, h4, h5, h6 {
    BUTTON: PRIMARY (Neon Chaos Burst)
    Every button hover triggers a random neon color explosion
    ═══════════════════════════════════════════════ */
-.btn-neon {
+.btn-neon { transition: all 0.3s ease; transform-origin: center;
   position: relative;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -288,7 +288,7 @@ h1, h2, h3, h4, h5, h6 {
   );
   filter: blur(20px);
 }
-.btn-neon:hover {
+.btn-neon:hover { transform: scale(1.03); box-shadow: 0 0 14px rgba(255,255,255,0.15);
   color: var(--color-pp-white);
   transform: translateY(-2px);
   border-color: transparent;
@@ -297,7 +297,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-neon:hover::before {
   opacity: 0.6;
 }
-.btn-neon:active {
+.btn-neon:active { transform: scale(0.97);
   transform: scale(0.98);
 }
 .btn-neon:focus-visible {
@@ -524,7 +524,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .badge-dietary-kosher {
   background-color: rgba(212,175,55,0.10);
-  color: #d4af37;
+  color: #ffffff;
   border-color: rgba(212,175,55,0.25);
 }
 
@@ -804,4 +804,32 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
   background: linear-gradient(90deg, var(--color-pp-neon-cyan), var(--color-pp-neon-pink));
   transition: width 0.8s ease;
+}
+
+
+/* ═══════════════════════════════════════════════
+   GLOBAL MICRO-INTERACTIONS — Black & White Pivot
+   ═══════════════════════════════════════════════ */
+a[href]:not(.no-interaction), button:not(.no-interaction) {
+  transition: all 0.3s ease;
+}
+
+a[href]:hover:not(.no-interaction) {
+  color: #ffffff;
+}
+
+a[href]:active:not(.no-interaction) {
+  transform: scale(0.98);
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #ffffff !important;
+  box-shadow: 0 0 8px rgba(255,255,255,0.2) !important;
+  outline: none !important;
+  transition: all 0.2s ease;
+}
+
+/* Card hover lift */
+[class*="rounded-lg"]:is(div):hover {
+  transform: translateY(-1px);
 }

@@ -7,7 +7,7 @@ export default function Page() {
     <>
       <header className="bg-pp-primary text-pp-on-primary py-20 sm:py-24 text-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-pp-gold uppercase tracking-[0.2em] text-xs font-semibold mb-4">
+          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-white uppercase tracking-[0.2em] text-xs font-semibold mb-4">
             Legal
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
@@ -43,7 +43,7 @@ export default function Page() {
           <h3 className="text-pp-on-surface font-serif font-semibold mt-6 mb-2">4. Your Rights</h3>
           <p className="mb-4">
             Under POPIA you have the right to access, correct and delete your personal data. Contact
-            <a href="mailto:privacy@papapasta.co.za" className="text-pp-gold underline hover:text-pp-gold-light transition-colors"> privacy@papapasta.co.za</a> to exercise these rights.
+            <a href="mailto:privacy@papapasta.co.za" className="text-white underline hover:text-white-light transition-colors"> privacy@papapasta.co.za</a> to exercise these rights.
           </p>
           <h2 className="text-pp-on-surface font-serif text-2xl font-bold mt-10 mb-4">Terms of Service</h2>
           <p className="mb-4">

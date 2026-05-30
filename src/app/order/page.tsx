@@ -91,7 +91,7 @@ export default function OrderPage() {
                     <button
                       key={loc.id}
                       onClick={() => setLocation(loc.id)}
-                      className="w-full text-left p-5 rounded-lg border border-white/10 hover:border-[#39FF14]/50 hover:bg-white/5 transition-all"
+                      className="w-full text-left p-5 rounded-lg border border-white/10 hover:border-white/50 hover:bg-white/5 transition-all"
                     >
                       <p className="font-semibold">{loc.name}</p>
                       <p className="text-sm text-white/40">{loc.address}</p>
@@ -109,9 +109,9 @@ export default function OrderPage() {
                   </div>
 
                   <div className="flex flex-wrap gap-2">
-                    <button onClick={() => setFilter(null)} className={`px-3 py-1.5 rounded-full text-xs border ${!filter ? "border-[#39FF14] text-[#39FF14]" : "border-white/10 text-white/40"}`}>All</button>
+                    <button onClick={() => setFilter(null)} className={`px-3 py-1.5 rounded-full text-xs border ${!filter ? "border-white text-white" : "border-white/10 text-white/40"}`}>All</button>
                     {["veg", "vegan", "GF"].map((tag) => (
-                      <button key={tag} onClick={() => setFilter(filter === tag ? null : tag)} className={`px-3 py-1.5 rounded-full text-xs border ${filter === tag ? "border-[#39FF14] text-[#39FF14]" : "border-white/10 text-white/40"}`}>{tag}</button>
+                      <button key={tag} onClick={() => setFilter(filter === tag ? null : tag)} className={`px-3 py-1.5 rounded-full text-xs border ${filter === tag ? "border-white text-white" : "border-white/10 text-white/40"}`}>{tag}</button>
                     ))}
                   </div>
 
@@ -132,12 +132,12 @@ export default function OrderPage() {
                               <p className="text-sm font-semibold w-16 text-right">R{item.price}</p>
                               {cart[item.id] ? (
                                 <div className="flex items-center gap-2">
-                                  <button onClick={() => removeFromCart(item.id)} className="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center hover:border-[#39FF14]"><Minus className="w-3 h-3" /></button>
+                                  <button onClick={() => removeFromCart(item.id)} className="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center hover:border-white"><Minus className="w-3 h-3" /></button>
                                   <span className="w-4 text-center text-sm">{cart[item.id]}</span>
-                                  <button onClick={() => addToCart(item.id)} className="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center hover:border-[#39FF14]"><Plus className="w-3 h-3" /></button>
+                                  <button onClick={() => addToCart(item.id)} className="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center hover:border-white"><Plus className="w-3 h-3" /></button>
                                 </div>
                               ) : (
-                                <button onClick={() => addToCart(item.id)} className="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center hover:border-[#39FF14] hover:bg-[#39FF14]/10"><Plus className="w-3 h-3" /></button>
+                                <button onClick={() => addToCart(item.id)} className="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center hover:border-white hover:bg-white/10"><Plus className="w-3 h-3" /></button>
                               )}
                             </div>
                           </div>
@@ -154,7 +154,7 @@ export default function OrderPage() {
                     >
                       <button
                         onClick={() => setStep("checkout")}
-                        className="w-full bg-[#39FF14] text-black font-semibold py-4 rounded-lg flex items-center justify-center gap-2 shadow-lg"
+                        className="w-full bg-white text-black font-semibold py-4 rounded-lg flex items-center justify-center gap-2 shadow-lg"
                       >
                         <ShoppingBag className="w-4 h-4" />
                         Checkout · {cartCount} items · R{cartTotal}
@@ -176,9 +176,9 @@ export default function OrderPage() {
             >
               <h1 className="font-serif text-3xl font-bold">Checkout</h1>
               <div className="space-y-3">
-                <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:border-[#39FF14] outline-none" />
-                <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone number" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:border-[#39FF14] outline-none" />
-                <input value={time} onChange={(e) => setTime(e.target.value)} placeholder="Pickup time (e.g. 18:30)" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:border-[#39FF14] outline-none" />
+                <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:border-white outline-none" />
+                <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone number" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:border-white outline-none" />
+                <input value={time} onChange={(e) => setTime(e.target.value)} placeholder="Pickup time (e.g. 18:30)" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:border-white outline-none" />
               </div>
               <div className="border-t border-white/10 pt-4">
                 <p className="text-sm text-white/40 mb-2">Order Summary</p>
@@ -202,7 +202,7 @@ export default function OrderPage() {
                 <button
                   onClick={submitOrder}
                   disabled={!name || !phone || !time}
-                  className="flex-1 py-3 rounded-lg bg-[#39FF14] text-black font-semibold text-sm disabled:opacity-40"
+                  className="flex-1 py-3 rounded-lg bg-white text-black font-semibold text-sm disabled:opacity-40"
                 >
                   Place Order
                 </button>
@@ -217,11 +217,11 @@ export default function OrderPage() {
               animate={{ opacity: 1, scale: 1 }}
               className="text-center py-20"
             >
-              <div className="w-16 h-16 rounded-full bg-[#39FF14]/20 flex items-center justify-center mx-auto mb-6">
-                <Check className="w-8 h-8 text-[#39FF14]" />
+              <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-6">
+                <Check className="w-8 h-8 text-white" />
               </div>
               <h1 className="font-serif text-3xl font-bold mb-2">Order Confirmed</h1>
-              <p className="text-white/40 mb-6">Your order number is <span className="text-[#39FF14] font-mono">{orderNumber}</span></p>
+              <p className="text-white/40 mb-6">Your order number is <span className="text-white font-mono">{orderNumber}</span></p>
               <p className="text-sm text-white/40 max-w-md mx-auto mb-8">Pay at pickup. Show this number. Arrive within 10 min of your pickup time.</p>
               <Link href="/" className="btn-neon inline-flex items-center rounded-md px-8 py-3.5 text-[12px] uppercase tracking-[0.2em] font-semibold">Back Home</Link>
             </motion.div>

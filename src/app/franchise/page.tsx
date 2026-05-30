@@ -24,7 +24,7 @@ function CrestCreator() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <MotionSection className="text-center mb-12">
           <div className="line-accent mx-auto mb-4" />
-          <p className="text-pp-gold uppercase tracking-[0.2em] text-xs font-semibold mb-2">Step 1</p>
+          <p className="text-white uppercase tracking-[0.2em] text-xs font-semibold mb-2">Step 1</p>
           <h2 className="text-pp-on-primary font-serif text-3xl sm:text-5xl font-bold mb-4">Create Your <span className="gold-text-gradient">Crest</span></h2>
           <p className="text-pp-on-primary/50 max-w-2xl mx-auto">
             Every Papa Pasta franchise gets a unique Living Crest colour identity.
@@ -40,10 +40,10 @@ function CrestCreator() {
                 { label: "Secondary", value: c2, setter: setC2 },
                 { label: "Accent", value: c3, setter: setC3 },
               ].map((c) => (
-                <div key={c.label} className="bg-pp-primary-80 rounded-xl p-4 border border-pp-gold/10 hover:border-pp-gold/30 transition-colors duration-300">
+                <div key={c.label} className="bg-pp-primary-80 rounded-xl p-4 border border-white/10 hover:border-white/30 transition-colors duration-300">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-medium text-pp-on-primary/80">{c.label} Colour</span>
-                    <span className="text-xs font-mono text-pp-gold">{c.value}</span>
+                    <span className="text-xs font-mono text-white">{c.value}</span>
                   </div>
                   <input
                     type="color"
@@ -54,7 +54,7 @@ function CrestCreator() {
                   />
                 </div>
               ))}
-              <div className="text-xs text-pp-on-primary/40 mt-2">Named: <strong className="text-pp-gold">{crestName}</strong></div>
+              <div className="text-xs text-pp-on-primary/40 mt-2">Named: <strong className="text-white">{crestName}</strong></div>
             </div>
           </MotionSection>
 
@@ -75,15 +75,15 @@ function CrestCreator() {
 
 function TerritoryMap() {
   const provinces = [
-    { name: "Western Cape", status: "Available", col: "bg-pp-gold" },
+    { name: "Western Cape", status: "Available", col: "bg-white" },
     { name: "Eastern Cape", status: "Under Discussion", col: "bg-pp-primary-30" },
-    { name: "Northern Cape", status: "Available", col: "bg-pp-gold" },
-    { name: "Free State", status: "Available", col: "bg-pp-gold" },
+    { name: "Northern Cape", status: "Available", col: "bg-white" },
+    { name: "Free State", status: "Available", col: "bg-white" },
     { name: "KwaZulu-Natal", status: "Committed", col: "bg-pp-primary-60" },
-    { name: "North West", status: "Available", col: "bg-pp-gold" },
+    { name: "North West", status: "Available", col: "bg-white" },
     { name: "Gauteng", status: "Under Discussion", col: "bg-pp-primary-30" },
-    { name: "Mpumalanga", status: "Available", col: "bg-pp-gold" },
-    { name: "Limpopo", status: "Available", col: "bg-pp-gold" },
+    { name: "Mpumalanga", status: "Available", col: "bg-white" },
+    { name: "Limpopo", status: "Available", col: "bg-white" },
   ];
 
   return (
@@ -91,7 +91,7 @@ function TerritoryMap() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <MotionSection className="text-center mb-12">
           <div className="line-accent mx-auto mb-4" />
-          <p className="text-pp-gold uppercase tracking-[0.2em] text-xs font-semibold mb-2">Step 2</p>
+          <p className="text-white uppercase tracking-[0.2em] text-xs font-semibold mb-2">Step 2</p>
           <h2 className="text-pp-on-surface font-serif text-3xl sm:text-5xl font-bold mb-4">Express Interest in a Territory</h2>
           <p className="text-pp-primary-60/60 max-w-2xl mx-auto">
             Pick your province. Gold means available. Grey signals active conversations. Dark means committed.
@@ -101,11 +101,11 @@ function TerritoryMap() {
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {provinces.map((p) => (
             <motion.div key={p.name} variants={staggerChildScale}
-              className={`rounded-xl p-5 border bg-white hover:border-pp-gold/50 transition-all duration-300 cursor-pointer group ${p.status === "Committed" ? "opacity-60" : "hover:shadow-lg"}`}
+              className={`rounded-xl p-5 border bg-white hover:border-white/50 transition-all duration-300 cursor-pointer group ${p.status === "Committed" ? "opacity-60" : "hover:shadow-lg"}`}
             >
               <div className="flex items-center gap-3 mb-2">
                 <div className={`w-3 h-3 rounded-full ${p.col}`}></div>
-                <h3 className="font-serif text-lg font-semibold text-pp-on-surface group-hover:text-pp-gold transition-colors duration-300">{p.name}</h3>
+                <h3 className="font-serif text-lg font-semibold text-pp-on-surface group-hover:text-white transition-colors duration-300">{p.name}</h3>
               </div>
               <span className="inline-block text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-0.5 rounded bg-pp-neutral-90 text-pp-primary-60/60">{p.status}</span>
             </motion.div>
@@ -135,7 +135,7 @@ function Financials() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <MotionSection className="text-center mb-12">
           <div className="line-accent mx-auto mb-4" />
-          <p className="text-pp-gold uppercase tracking-[0.2em] text-xs font-semibold mb-2">The Numbers</p>
+          <p className="text-white uppercase tracking-[0.2em] text-xs font-semibold mb-2">The Numbers</p>
           <h2 className="text-pp-on-primary font-serif text-3xl sm:text-5xl font-bold mb-4">Unit <span className="gold-text-gradient">Economics</span></h2>
           <p className="text-pp-on-primary/50 max-w-2xl mx-auto">
             Franchise sales is not about dreams — it is about maths. Here is the model that justifies the risk.
@@ -144,7 +144,7 @@ function Financials() {
 
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {stats.map((s) => (
-            <motion.div key={s.label} variants={staggerChildScale} className="bg-pp-primary-80 rounded-2xl p-6 border border-pp-gold/10 text-center hover:border-pp-gold/30 transition-colors duration-300">
+            <motion.div key={s.label} variants={staggerChildScale} className="bg-pp-primary-80 rounded-2xl p-6 border border-white/10 text-center hover:border-white/30 transition-colors duration-300">
               <div className="gold-text-gradient font-serif text-3xl sm:text-4xl font-bold mb-1">{s.value}</div>
               <div className="font-semibold text-pp-on-primary/80 mb-2">{s.label}</div>
               <div className="text-xs text-pp-on-primary/40">{s.sub}</div>
@@ -174,15 +174,15 @@ function ApplicationForm() {
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <MotionSection className="text-center mb-10">
           <div className="line-accent mx-auto mb-4" />
-          <p className="text-pp-gold uppercase tracking-[0.2em] text-xs font-semibold mb-2">Step 4</p>
+          <p className="text-white uppercase tracking-[0.2em] text-xs font-semibold mb-2">Step 4</p>
           <h2 className="text-pp-on-surface font-serif text-3xl sm:text-4xl font-bold mb-4">Submit Your Application</h2>
           <p className="text-pp-primary-60/60">Attach your custom crest, select your province, and tell us about your business experience.</p>
         </MotionSection>
 
         {submitted ? (
           <MotionSection>
-            <div aria-live="polite" className="bg-pp-gold/10 border border-pp-gold/30 rounded-2xl p-8 text-center">
-              <p className="text-pp-gold font-semibold text-lg font-serif">Application Received</p>
+            <div aria-live="polite" className="bg-white/10 border border-white/30 rounded-2xl p-8 text-center">
+              <p className="text-white font-semibold text-lg font-serif">Application Received</p>
               <p className="text-pp-primary-60/60 text-sm mt-2">Our franchise team will review your submission and be in touch within 48 hours.</p>
             </div>
           </MotionSection>
@@ -247,7 +247,7 @@ function ApplicationForm() {
                 <textarea id="franchise-message" name="message" rows={4} placeholder="Tell us why you want to own a Papa Pasta franchise..." className="input-field" />
               </div>
 
-              <div className="bg-pp-tertiary rounded-xl p-4 border border-pp-gold/20">
+              <div className="bg-pp-tertiary rounded-xl p-4 border border-white/20">
                 <label htmlFor="franchise-crest" className="block text-xs text-pp-primary-60/60 mb-2">Attach your custom crest (optional — create one above first):</label>
                 <input id="franchise-crest" name="crest" type="file" accept="image/*" className="input-field" />
               </div>
@@ -274,7 +274,7 @@ function SocialProofGallery() {
   ];
 
   return (
-    <section className="bg-pp-surface-dark text-pp-on-primary py-12 border-t border-pp-gold/10">
+    <section className="bg-pp-surface-dark text-pp-on-primary py-12 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <MotionSection className="text-center mb-8">
           <h3 className="gold-text-gradient font-serif text-2xl font-bold mb-2">Community Gallery</h3>
@@ -283,14 +283,14 @@ function SocialProofGallery() {
 
         <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {crests.map((src, i) => (
-            <motion.div key={i} variants={staggerChildScale} className="bg-pp-primary-80 rounded-xl p-2 border border-pp-gold/10 img-hover-lift">
+            <motion.div key={i} variants={staggerChildScale} className="bg-pp-primary-80 rounded-xl p-2 border border-white/10 img-hover-lift">
               <img src={src} alt={`Crest ${i + 1}`} width={300} height={300} className="w-full h-auto rounded-lg" />
             </motion.div>
           ))}
         </StaggerContainer>
 
         <div className="text-center mt-8">
-          <Link href="/gallery/" className="text-sm font-medium text-pp-gold underline underline-offset-4 hover:text-pp-gold-light transition-colors duration-300">
+          <Link href="/gallery/" className="text-sm font-medium text-white underline underline-offset-4 hover:text-white-light transition-colors duration-300">
             View Full Gallery &rarr;
           </Link>
         </div>
@@ -309,7 +309,7 @@ export default function FranchisePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-pp-gold uppercase tracking-[0.2em] text-xs font-semibold mb-4">Franchise Sales</p>
+            <p className="text-white uppercase tracking-[0.2em] text-xs font-semibold mb-4">Franchise Sales</p>
             <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-6">
               Own a <span className="gold-text-gradient">Papa Pasta</span>
             </h1>
@@ -318,7 +318,7 @@ export default function FranchisePage() {
               Build your brand — and your city — with South Africa&apos;s only dedicated pasta QSR franchise.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="https://franchise.papapasta.co.za/" className="btn-gold-glow inline-flex items-center rounded-md bg-pp-gold px-8 py-3 text-sm font-semibold text-pp-on-primary shadow-lg shadow-pp-gold/20 hover:bg-pp-gold-light transition-colors duration-300">
+              <a href="https://franchise.papapasta.co.za/" className="btn-gold-glow inline-flex items-center rounded-md bg-white px-8 py-3 text-sm font-semibold text-pp-on-primary shadow-lg shadow-pp-gold/20 hover:bg-white-light transition-colors duration-300">
                 Go to Franchise Portal &rarr;
               </a>
             </div>

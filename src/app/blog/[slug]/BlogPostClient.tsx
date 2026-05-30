@@ -13,7 +13,7 @@ export default function BlogPostClient({ slug }: { slug: string }) {
       <div className="min-h-[60vh] flex items-center justify-center bg-pp-tertiary">
         <div className="text-center">
           <h1 className="font-serif text-4xl font-bold text-pp-on-surface mb-4">Post Not Found</h1>
-          <Link href="/blog/" className="text-pp-gold hover:underline">← Back to Journal</Link>
+          <Link href="/blog/" className="text-white hover:underline">← Back to Journal</Link>
         </div>
       </div>
     );
@@ -26,7 +26,7 @@ export default function BlogPostClient({ slug }: { slug: string }) {
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-pp-gold uppercase tracking-[0.2em] text-xs font-semibold mb-4"
+            className="text-white uppercase tracking-[0.2em] text-xs font-semibold mb-4"
           >
             {post.date}
           </motion.p>
@@ -73,7 +73,7 @@ export default function BlogPostClient({ slug }: { slug: string }) {
             <div className="mt-12 pt-8 border-t border-pp-primary-10">
               <Link
                 href="/blog/"
-                className="text-pp-gold hover:text-pp-gold-light transition-colors font-medium"
+                className="text-white hover:text-white-light transition-colors font-medium"
               >
                 ← Back to The Journal
               </Link>
@@ -104,10 +104,10 @@ export default function BlogPostClient({ slug }: { slug: string }) {
                         height={250}
                       />
                     </div>
-                    <p className="text-xs text-pp-gold font-semibold tracking-wider mb-1">
+                    <p className="text-xs text-white font-semibold tracking-wider mb-1">
                       {related.date}
                     </p>
-                    <h4 className="font-serif text-base font-semibold text-pp-on-surface group-hover:text-pp-gold transition-colors duration-300">
+                    <h4 className="font-serif text-base font-semibold text-pp-on-surface group-hover:text-white transition-colors duration-300">
                       {related.title}
                     </h4>
                   </Link>

@@ -29,7 +29,7 @@ export default function MenuPage() {
     <>
       <header className="bg-pp-primary text-pp-on-primary py-20 sm:py-24 text-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-pp-gold uppercase tracking-[0.2em] text-xs font-semibold mb-4">
+          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-white uppercase tracking-[0.2em] text-xs font-semibold mb-4">
             The Menu
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
@@ -52,7 +52,7 @@ export default function MenuPage() {
                 key={cat}
                 onClick={() => setActive(cat)}
                 className={`text-xs font-bold uppercase tracking-[0.15em] px-5 py-2.5 rounded-full transition-all duration-300 ${
-                  active === cat ? "bg-pp-primary text-pp-gold shadow-lg shadow-pp-primary/20" : "bg-pp-tertiary text-pp-primary-60/50 border border-pp-primary/5 hover:border-pp-gold hover:text-pp-gold"
+                  active === cat ? "bg-pp-primary text-white shadow-lg shadow-pp-primary/20" : "bg-pp-tertiary text-pp-primary-60/50 border border-pp-primary/5 hover:border-white hover:text-white"
                 }`}
               >
                 {cat}
@@ -65,7 +65,7 @@ export default function MenuPage() {
               <motion.div
                 key={d.name + d.category}
                 variants={staggerChildScale}
-                className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-pp-primary/5 hover:shadow-xl hover:border-pp-gold/30 transition-all duration-500"
+                className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-pp-primary/5 hover:shadow-xl hover:border-white/30 transition-all duration-500"
               >
                 <div className="aspect-[16/10] overflow-hidden">
                   <img src={d.img} alt={d.name} width={800} height={600} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
@@ -74,7 +74,7 @@ export default function MenuPage() {
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-0.5 rounded bg-pp-tertiary text-pp-primary-60/50 border border-pp-primary/5">{d.category}</span>
                     {d.tag && (
-                      <span className="text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-0.5 rounded bg-pp-gold/10 text-pp-gold-dark border border-pp-gold/20">{d.tag}</span>
+                      <span className="text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-0.5 rounded bg-white/10 text-white-dark border border-white/20">{d.tag}</span>
                     )}
                   </div>
                   <div className="flex items-baseline justify-between mb-2">

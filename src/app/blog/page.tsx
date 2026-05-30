@@ -10,7 +10,7 @@ export default function Page() {
     <>
       <header className="bg-pp-primary text-pp-on-primary py-20 sm:py-24 text-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-pp-gold uppercase tracking-[0.2em] text-xs font-semibold mb-4">
+          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-white uppercase tracking-[0.2em] text-xs font-semibold mb-4">
             The Journal
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
@@ -34,8 +34,8 @@ export default function Page() {
                     <img src={post.img} alt={`Cover image for ${post.title}`} width={800} height={500} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   </div>
                   <div className="p-6">
-                    <p className="text-xs text-pp-gold font-semibold tracking-wider mb-2">{post.date}</p>
-                    <h3 className="font-serif text-lg font-semibold text-pp-on-surface mb-2 group-hover:text-pp-gold transition-colors duration-300">{post.title}</h3>
+                    <p className="text-xs text-white font-semibold tracking-wider mb-2">{post.date}</p>
+                    <h3 className="font-serif text-lg font-semibold text-pp-on-surface mb-2 group-hover:text-white transition-colors duration-300">{post.title}</h3>
                     <p className="text-sm text-pp-primary-60/50 leading-relaxed">{post.excerpt}</p>
                   </div>
                 </Link>

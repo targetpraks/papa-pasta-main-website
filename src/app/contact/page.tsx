@@ -32,7 +32,7 @@ export default function Page() {
     <>
       <header className="bg-pp-primary text-pp-on-primary py-20 sm:py-24 text-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-pp-gold uppercase tracking-[0.2em] text-xs font-semibold mb-4">
+          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-white uppercase tracking-[0.2em] text-xs font-semibold mb-4">
             Get in Touch
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
@@ -59,7 +59,7 @@ export default function Page() {
                   { label: "Careers", email: "careers@papapasta.co.za" },
                 ].map((item) => (
                   <div key={item.label} className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-pp-gold mt-1.5 flex-shrink-0" />
+                    <div className="w-2 h-2 rounded-full bg-white mt-1.5 flex-shrink-0" />
                     <div>
                       <p className="font-semibold text-pp-on-surface">{item.label}</p>
                       <p className="text-pp-primary-60">{item.email}</p>
@@ -67,7 +67,7 @@ export default function Page() {
                   </div>
                 ))}
                 <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-pp-gold mt-1.5 flex-shrink-0" />
+                  <div className="w-2 h-2 rounded-full bg-white mt-1.5 flex-shrink-0" />
                   <div>
                     <p className="font-semibold text-pp-on-surface">Head Office</p>
                     <p className="text-pp-primary-60">Cape Town, South Africa</p>
@@ -79,8 +79,8 @@ export default function Page() {
 
           <MotionSection delay={0.2}>
             {submitted ? (
-              <div aria-live="polite" className="bg-pp-gold/10 border border-pp-gold/30 rounded-2xl p-8 text-center">
-                <p className="text-pp-gold font-semibold text-lg font-serif">Message Sent</p>
+              <div aria-live="polite" className="bg-white/10 border border-white/30 rounded-2xl p-8 text-center">
+                <p className="text-white font-semibold text-lg font-serif">Message Sent</p>
                 <p className="text-pp-primary-60 text-sm mt-2">We&apos;ll get back to you within 24 hours.</p>
               </div>
             ) : (

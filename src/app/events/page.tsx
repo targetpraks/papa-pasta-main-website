@@ -9,7 +9,7 @@ export default function Page() {
     <>
       <header className="bg-pp-primary text-pp-on-primary py-20 sm:py-24 text-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-pp-gold uppercase tracking-[0.2em] text-xs font-semibold mb-4">
+          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-white uppercase tracking-[0.2em] text-xs font-semibold mb-4">
             Community
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
@@ -38,7 +38,7 @@ export default function Page() {
               const rest = parts.slice(1).join(" ");
               return (
                 <motion.div key={ev.name} variants={staggerChild}
-                  className="flex flex-col sm:flex-row items-start sm:items-center gap-6 bg-white rounded-2xl p-6 shadow-sm border-l-4 border-pp-gold hover:shadow-lg transition-shadow duration-300"
+                  className="flex flex-col sm:flex-row items-start sm:items-center gap-6 bg-white rounded-2xl p-6 shadow-sm border-l-4 border-white hover:shadow-lg transition-shadow duration-300"
                 >
                   <div className="sm:w-40 flex-shrink-0">
                     <div className="gold-text-gradient font-bold text-xl font-serif">{day}</div>
@@ -50,7 +50,7 @@ export default function Page() {
                     <p className="text-sm text-pp-primary-60/50 mt-1">{ev.loc}</p>
                   </div>
                   <span className={`text-[10px] font-bold uppercase tracking-[0.15em] px-3 py-1 rounded-full ${
-                    ev.open ? "bg-pp-gold/15 text-pp-gold-dark" : "bg-pp-primary-60/10 text-pp-primary-60/50"
+                    ev.open ? "bg-white/15 text-white-dark" : "bg-pp-primary-60/10 text-pp-primary-60/50"
                   }`}>
                     {ev.open ? "RSVP Open" : "Soon"}
                   </span>

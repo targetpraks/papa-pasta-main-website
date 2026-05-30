@@ -9,7 +9,7 @@ export default function Page() {
     <>
       <header className="bg-pp-primary text-pp-on-primary py-20 sm:py-24 text-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-pp-gold uppercase tracking-[0.2em] text-xs font-semibold mb-4">
+          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-white uppercase tracking-[0.2em] text-xs font-semibold mb-4">
             Join the Team
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
@@ -36,14 +36,14 @@ export default function Page() {
               { title: "Regional Franchise Coach", type: "Full-time", desc: "Travel between stores to train, audit and elevate brand standards across provinces." },
             ].map((job) => (
               <motion.div key={job.title} variants={staggerChild}
-                className="bg-white rounded-2xl p-6 shadow-sm border-l-4 border-pp-gold hover:shadow-lg transition-shadow duration-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                className="bg-white rounded-2xl p-6 shadow-sm border-l-4 border-white hover:shadow-lg transition-shadow duration-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
               >
                 <div>
                   <h3 className="font-serif text-lg font-semibold text-pp-on-surface">{job.title}</h3>
-                  <p className="text-xs text-pp-gold font-bold uppercase tracking-[0.15em] mt-1">{job.type}</p>
+                  <p className="text-xs text-white font-bold uppercase tracking-[0.15em] mt-1">{job.type}</p>
                   <p className="text-sm text-pp-primary-60/60 mt-2">{job.desc}</p>
                 </div>
-                <a href="mailto:careers@papapasta.co.za" className="btn-outline-gold inline-flex items-center rounded-md border-2 border-pp-gold/50 text-pp-gold px-5 py-2 text-sm font-semibold hover:bg-pp-gold hover:text-pp-on-surface whitespace-nowrap transition-colors duration-300">
+                <a href="mailto:careers@papapasta.co.za" className="btn-outline-gold inline-flex items-center rounded-md border-2 border-white/50 text-white px-5 py-2 text-sm font-semibold hover:bg-white hover:text-pp-on-surface whitespace-nowrap transition-colors duration-300">
                   <span>Apply</span>
                 </a>
               </motion.div>

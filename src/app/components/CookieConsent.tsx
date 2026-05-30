@@ -29,7 +29,7 @@ export default function CookieConsent() {
         <p className="text-sm text-white/70 text-center sm:text-left">
           We use cookies to improve your experience and measure site performance. 
           By continuing, you agree to our{" "}
-          <a href="/legal/" className="underline text-pp-gold hover:text-white">Privacy Policy</a>.
+          <a href="/legal/" className="underline text-white hover:text-white">Privacy Policy</a>.
         </p>
         <div className="flex gap-3">
           <button
@@ -40,7 +40,7 @@ export default function CookieConsent() {
           </button>
           <button
             onClick={handleAccept}
-            className="px-4 py-2 text-xs uppercase tracking-wider bg-pp-gold text-black rounded font-semibold hover:bg-pp-gold/90 transition"
+            className="px-4 py-2 text-xs uppercase tracking-wider bg-white text-black rounded font-semibold hover:bg-white/90 transition"
           >
             Accept
           </button>
