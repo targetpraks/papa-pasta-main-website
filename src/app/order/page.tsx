@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft, Plus, Minus, ShoppingBag, Check } from "lucide-react";
@@ -13,6 +13,10 @@ interface MenuItem {
   dietary: string[];
   category: string;
 }
+
+type WindowWithGtag = Window & {
+  gtag?: (command: "event", eventName: string, params?: Record<string, unknown>) => void;
+};
 
 const LOCATIONS = [
   { id: "sandton", name: "Sandton City", address: "Shop 42, Sandton City Mall" },
@@ -54,8 +58,9 @@ export default function OrderPage() {
   const submitOrder = () => {
     const num = "PP-" + Math.random().toString(36).slice(2, 8).toUpperCase();
     setOrderNumber(num);
-    if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag("event", "order_placed", { value: cartTotal, currency: "ZAR" });
+    const analytics = typeof window !== "undefined" ? (window as WindowWithGtag).gtag : undefined;
+    if (analytics) {
+      analytics("event", "order_placed", { value: cartTotal, currency: "ZAR" });
     }
     setStep("confirmed");
   };

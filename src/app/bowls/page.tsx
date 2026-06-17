@@ -3,12 +3,18 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowLeft, Clock, Bell, Check } from "lucide-react";
+import { ArrowLeft, Bell, Check } from "lucide-react";
 
 const LAUNCH_DATE = new Date("2026-06-21T10:00:00+02:00"); // Winter solstice launch
+const INITIAL_COUNTDOWN_NOW = new Date("2026-06-17T00:00:00+02:00").getTime();
+
+type WindowWithGtag = Window & {
+  gtag?: (command: "event", eventName: string, params?: Record<string, unknown>) => void;
+};
 
 function useCountdown(target: Date) {
-  const [diff, setDiff] = useState(target.getTime() - Date.now());
+  const [diff, setDiff] = useState(target.getTime() - INITIAL_COUNTDOWN_NOW);
+
   useEffect(() => {
     const id = setInterval(() => setDiff(target.getTime() - Date.now()), 1000);
     return () => clearInterval(id);
@@ -31,8 +37,9 @@ export default function BowlDropPage() {
   const joinWaitlist = () => {
     if (!email.includes("@")) return;
     setJoined(true);
-    if (typeof window !== "undefined" && (window as any).gtag) {
-      (window as any).gtag("event", "bowl_drop_waitlist", { email });
+    const analytics = typeof window !== "undefined" ? (window as WindowWithGtag).gtag : undefined;
+    if (analytics) {
+      analytics("event", "bowl_drop_waitlist", { email });
     }
   };
 

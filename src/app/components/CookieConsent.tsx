@@ -6,8 +6,12 @@ export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem("pp-cookie-consent");
-    if (!consent) setVisible(true);
+    const id = window.setTimeout(() => {
+      const consent = localStorage.getItem("pp-cookie-consent");
+      setVisible(!consent);
+    }, 0);
+
+    return () => window.clearTimeout(id);
   }, []);
 
   const handleAccept = () => {

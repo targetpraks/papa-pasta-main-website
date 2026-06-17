@@ -90,12 +90,13 @@ export default function DigitalPop({
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+    const timeouts = timeoutsRef.current;
 
     container.addEventListener("mousemove", onMouseMove);
     return () => {
       container.removeEventListener("mousemove", onMouseMove);
-      timeoutsRef.current.forEach((id) => clearTimeout(id));
-      timeoutsRef.current.clear();
+      timeouts.forEach((id) => clearTimeout(id));
+      timeouts.clear();
     };
   }, [onMouseMove]);
 
