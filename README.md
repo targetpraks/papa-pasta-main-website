@@ -6,7 +6,7 @@
 https://papapasta.co.za
 
 ## Stack
-- Next.js 15 (App Router)
+- Next.js 16.2.4 (App Router)
 - Tailwind CSS v4
 - Static Export (`output: export`)
 - Google Fonts: Inter + Playfair Display
@@ -14,23 +14,25 @@ https://papapasta.co.za
 ## Pages
 | Path | Purpose |
 |------|---------|
-| `/` | Homepage (Hero, Dishes, Story, Locations, Blog, Events, Newsletter, Franchise) |
+| `/` | Homepage (consumer journey switchboard, menu preview, merch, loyalty, drops, franchise redirect) |
 | `/story/` | Our Story — Commissary, craft, Golden Blend philosophy |
 | `/menu/` | Hero dishes + pricing teasers |
 | `/locations/` | Cape Town open + expansion map |
-| `/blog/` | The Journal — pasta science, brand stories |
-| `/events/` | Tastings, festivals, franchise discovery days |
+| `/merch/` | Merch drops with Live, Coming Soon, Sold Out, and Archive states |
+| `/level-up/` | Loyalty journey, tiers, perks, and waitlist CTA |
+| `/blog/` | Drops & Journal — store launches, merch drops, collection drops, loyalty updates, menu drops, brand stories |
+| `/events/` | Store launches, collection events, pop-ups, and event archive |
 | `/careers/` | Open roles |
-| `/franchise/` | Franchise bridge — financials → portal CTA |
-| `/contact/` | Contact form + office details |
+| `/franchise/` | Franchise bridge → external franchise portal |
+| `/contact/` | Direct email routes by enquiry type |
 | `/legal/` | POPIA Privacy Policy & Terms of Service |
 
 ## Design Tokens
 | Token | Value |
 |-------|-------|
-| Navy | `#1a2b4a` |
-| Gold | `#d4af37` |
-| Cream | `#faf7f0` |
+| Base | Black + white |
+| Neon accents | Cyan, magenta, lime, violet, orange |
+| Interaction style | Cyberpunk hover glows, glitch bursts, scanline/digital overlays |
 | Serif | Playfair Display |
 | Sans | Inter |
 

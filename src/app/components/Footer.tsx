@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { MotionSection } from "./Motion";
+import OptimizedImage from "./OptimizedImage";
 
 const socialLinks = [
   {
@@ -34,21 +35,18 @@ const socialLinks = [
 ];
 
 const exploreLinks = [
-  { href: "/", label: "Home" },
-  { href: "/story/", label: "Our Story" },
-  { href: "/menu/", label: "Menu" },
-  { href: "/locations/", label: "Locations" },
-  { href: "/bowls/", label: "Bowls" },
-  { href: "/merch/", label: "Merch" },
-  { href: "/blog/", label: "Blog" },
-  { href: "/events/", label: "Events" },
+  { href: "/menu/", label: "Menu", neon: "#ff5f1f" },
+  { href: "/locations/", label: "Locations", neon: "#0080ff" },
+  { href: "/merch/", label: "Merch", neon: "#bf00ff" },
+  { href: "/loyalty/", label: "Loyalty", neon: "#ffd700" },
+  { href: "/drops/", label: "Drops & Journal", neon: "#39ff14" },
+  { href: "/story/", label: "Story", neon: "#f8fafc" },
 ];
 
 const infoLinks = [
-  { href: "/contact/", label: "Contact" },
-  { href: "/careers/", label: "Careers" },
-  { href: "/legal/", label: "Legal" },
-  { href: "/franchise/", label: "Franchise Info" },
+  { href: "/contact/", label: "Contact", neon: "#39ff14" },
+  { href: "/careers/", label: "Careers", neon: "#ffff00" },
+  { href: "/legal/", label: "Legal", neon: "#00ffff" },
 ];
 
 export default function Footer() {
@@ -60,7 +58,7 @@ export default function Footer() {
           <MotionSection>
             <div className="flex flex-col">
               <Link href="/" className="flex items-center gap-3 mb-5 group">
-                <img
+                <OptimizedImage
                   src="/images/logo-crest-white.png"
                   alt="Papa Pasta"
                   className="h-16 w-auto opacity-80 group-hover:opacity-100 transition-opacity duration-300"
@@ -72,7 +70,7 @@ export default function Footer() {
                 </span>
               </Link>
               <p className="text-sm leading-relaxed text-white/40 max-w-xs">
-                Fresh handmade pasta, crafted daily. South Africa&apos;s home for authentic flavour and honest ingredients.
+                Fresh handmade pasta, cyber-bright drops, merch, loyalty rewards, and store launches across South Africa.
               </p>
               <div className="flex items-center gap-3 mt-6">
                 {socialLinks.map((social) => (
@@ -82,7 +80,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Papa Pasta on ${social.name}`}
-                    className="w-11 h-11 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/50 hover:text-white transition-all duration-300"
+                    className="w-11 h-11 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/50 hover:text-cyan-400 transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,255,255,0.4)] hover:[filter:drop-shadow(0_0_8px_rgba(0,255,255,0.6))]"
                   >
                     {social.icon}
                   </a>
@@ -91,45 +89,7 @@ export default function Footer() {
             </div>
           </MotionSection>
 
-                    {/* Newsletter */}
-          <div>
-            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Stay Updated</h3>
-            <p className="text-white/40 text-sm mb-4">Bowl drops, new locations, and exclusive drops.</p>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                const email = (e.target as HTMLFormElement).email.value;
-                if (email) {
-                  fetch("https://api.web3forms.com/submit", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                      access_key: "YOUR_ACCESS_KEY",
-                      email,
-                      subject: "Papa Pasta Newsletter Signup",
-                      from_name: "Papa Pasta Website",
-                    }),
-                  }).then(() => alert("Thanks for subscribing!"));
-                }
-              }}
-              className="flex gap-2"
-            >
-              <input
-                name="email"
-                type="email"
-                placeholder="your@email.com"
-                required
-                className="flex-1 bg-white/5 border border-white/10 rounded px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white"
-              />
-              <button
-                type="submit"
-                className="bg-white text-black px-4 py-2 rounded text-xs font-semibold uppercase tracking-wider hover:bg-white/90 transition"
-              >
-                Join
-              </button>
-            </form>
-          </div>
-{/* Explore Column */}
+          {/* Explore Column */}
           <MotionSection delay={0.1}>
             <div>
               <h4 className="text-white font-serif font-semibold mb-5 text-label-md uppercase tracking-label-md">
@@ -140,7 +100,15 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-white/50 hover:text-white transition-colors duration-300 hover:pl-1 inline-block"
+                      className="text-white/50 transition-all duration-300 hover:pl-1 inline-block"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = link.neon || '#00ffff';
+                        e.currentTarget.style.textShadow = `0 0 8px ${link.neon || '#00ffff'}80`;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = '';
+                        e.currentTarget.style.textShadow = '';
+                      }}
                     >
                       {link.label}
                     </Link>
@@ -161,7 +129,15 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-white/50 hover:text-white transition-colors duration-300 hover:pl-1 inline-block"
+                      className="text-white/50 transition-all duration-300 hover:pl-1 inline-block"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = link.neon || '#39ff14';
+                        e.currentTarget.style.textShadow = `0 0 8px ${link.neon || '#39ff14'}80`;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = '';
+                        e.currentTarget.style.textShadow = '';
+                      }}
                     >
                       {link.label}
                     </Link>
@@ -178,22 +154,15 @@ export default function Footer() {
                 Order Now
               </h4>
               <div className="flex flex-col gap-2">
-                <a
-                  href="https://www.ubereats.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-md border border-white/20 text-white text-sm font-medium px-4 py-2.5 hover:bg-white hover:text-black transition-colors duration-300"
-                >
-                  UberEats
-                </a>
-                <a
-                  href="https://www.mrdfood.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-md border border-white/20 text-white text-sm font-medium px-4 py-2.5 hover:bg-white hover:text-black transition-colors duration-300"
-                >
-                  Mr D
-                </a>
+                <Link href="/menu/" className="inline-flex items-center justify-center rounded-md border border-white/20 text-white text-sm font-medium px-4 py-2.5 hover:bg-white hover:text-black transition-colors duration-300">
+                  View Menu
+                </Link>
+                <Link href="/locations/" className="inline-flex items-center justify-center rounded-md border border-white/20 text-white text-sm font-medium px-4 py-2.5 hover:bg-white hover:text-black transition-colors duration-300">
+                  Find Stores
+                </Link>
+                <Link href="/merch/" className="inline-flex items-center justify-center rounded-md border border-white/20 text-white text-sm font-medium px-4 py-2.5 hover:bg-white hover:text-black transition-colors duration-300">
+                  Shop Merch
+                </Link>
               </div>
             </div>
           </MotionSection>
@@ -203,9 +172,9 @@ export default function Footer() {
         <div className="border-t border-white/10 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/30">
           <p>&copy; {new Date().getFullYear()} Papa Pasta. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link href="/legal/" className="hover:text-white transition-colors duration-300">Privacy &amp; Legal</Link>
-            <Link href="/franchise/" className="hover:text-white transition-colors duration-300">Franchise</Link>
-            <Link href="/contact/" className="hover:text-white transition-colors duration-300">Contact</Link>
+            <Link href="/legal/" className="transition-all duration-300" onMouseEnter={(e)=>{e.currentTarget.style.color='#00ffff'; e.currentTarget.style.textShadow='0 0 8px rgba(0,255,255,0.5)';}} onMouseLeave={(e)=>{e.currentTarget.style.color=''; e.currentTarget.style.textShadow='';}}>Privacy &amp; Legal</Link>
+            <a href="https://franchise.papapasta.co.za/" target="_blank" rel="noopener noreferrer" className="transition-all duration-300" onMouseEnter={(e)=>{e.currentTarget.style.color='#ff0080'; e.currentTarget.style.textShadow='0 0 8px rgba(255,0,128,0.5)';}} onMouseLeave={(e)=>{e.currentTarget.style.color=''; e.currentTarget.style.textShadow='';}}>Franchise</a>
+            <Link href="/contact/" className="transition-all duration-300" onMouseEnter={(e)=>{e.currentTarget.style.color='#39ff14'; e.currentTarget.style.textShadow='0 0 8px rgba(57,255,20,0.5)';}} onMouseLeave={(e)=>{e.currentTarget.style.color=''; e.currentTarget.style.textShadow='';}}>Contact</Link>
           </div>
         </div>
       </div>

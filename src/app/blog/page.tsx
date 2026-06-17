@@ -1,47 +1,80 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { blogPosts } from "../../lib/blog";
-import { MotionSection, StaggerContainer, staggerChildScale } from "../components/Motion";
+import { blogCategories, blogPosts } from "../../lib/blog";
+import { StaggerContainer, staggerChildScale } from "../components/Motion";
+import OptimizedImage from "../components/OptimizedImage";
 
 export default function Page() {
+  const [category, setCategory] = useState<(typeof blogCategories)[number]>("All");
+  const filtered = category === "All" ? blogPosts : blogPosts.filter((post) => post.category === category);
+  const lead = filtered[0];
+  const rest = filtered.slice(1);
+
   return (
     <>
-      <header className="bg-pp-primary text-pp-on-primary py-20 sm:py-24 text-center px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-white uppercase tracking-[0.2em] text-xs font-semibold mb-4">
-            The Journal
-          </motion.p>
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-            className="font-serif text-4xl sm:text-6xl font-bold mb-4">
-            The <span className="gold-text-gradient">Journal</span>
+      <header className="cyber-page-hero relative overflow-hidden bg-black text-white min-h-[20vh] flex items-center py-8 sm:py-10 px-4 sm:px-6 lg:px-8 hero-grid-bg">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_25%,rgba(57,255,20,0.12),transparent_40%),radial-gradient(ellipse_at_25%_70%,rgba(255,0,255,0.12),transparent_42%)]" aria-hidden="true" />
+        <div className="relative max-w-7xl mx-auto w-full">
+          <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} className="glitch-text font-serif text-3xl sm:text-4xl font-bold mb-3 leading-none" data-text="Drops & Journal">
+            <span className="neon-text-gradient">Drops & Journal</span>
           </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-            className="text-pp-on-primary/60 max-w-2xl mx-auto text-lg">
-            Seasonal drops, sauce science, and the stories behind the brand. The Papa Pasta journal.
+          <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="text-white/55 max-w-xl text-sm sm:text-base leading-relaxed">
+            New store launches, merch drops, collection releases, loyalty updates, menu signals, and the brand stories behind the system.
           </motion.p>
         </div>
       </header>
 
-      <section className="section-padding bg-pp-tertiary">
+      <section className="drops-green-filter-bar bg-black text-white py-8 border-b border-white/10 hero-grid-bg">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-3 overflow-x-auto scrollbar-hide">
+          {blogCategories.map((cat) => (
+            <button key={cat} onClick={() => setCategory(cat)} className={`drops-filter-chip shrink-0 ${category === cat ? "active" : ""}`}>
+              {cat}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-padding cyber-page-section drops-green-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post) => (
-              <motion.div variants={staggerChildScale} key={post.slug}>
-                <Link href={`/blog/${post.slug}/`} className="group block bg-pp-surface-elevated rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-500 border border-pp-primary/5">
-                  <div className="aspect-[16/10] overflow-hidden">
-                    <img src={post.img} alt={`Cover image for ${post.title}`} width={800} height={500} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  </div>
-                  <div className="p-6">
-                    <p className="text-xs text-white font-semibold tracking-wider mb-2">{post.date}</p>
-                    <h3 className="font-serif text-lg font-semibold text-pp-on-surface mb-2 group-hover:text-white transition-colors duration-300">{post.title}</h3>
-                    <p className="text-sm text-pp-primary-60/50 leading-relaxed">{post.excerpt}</p>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </StaggerContainer>
+          {lead && (
+            <AnimatePresence mode="wait">
+              <motion.article key={lead.slug} initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -18 }} className="cyber-card drops-card grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 overflow-hidden text-white">
+                <div className="aspect-[16/10] lg:aspect-auto img-cyber-hover">
+                  <OptimizedImage src={lead.img} alt={lead.alt} width={1000} height={625} className="w-full h-full object-cover opacity-90" priority />
+                </div>
+                <div className="p-8 lg:p-12 flex flex-col justify-center">
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-lime-300 mb-4">{lead.category} / {lead.date}</p>
+                  <h2 className="font-serif text-3xl sm:text-5xl font-bold mb-4">{lead.title}</h2>
+                  <p className="text-white/55 leading-relaxed mb-5">{lead.excerpt}</p>
+                  {lead.dropMeta && <p className="text-[11px] uppercase tracking-[0.16em] text-white/35 mb-8">{lead.dropMeta}</p>}
+                  <Link href={`/drops/${lead.slug}/`} className="drops-signal-link inline-flex w-fit items-center rounded-md border px-7 py-3 text-[12px] uppercase tracking-[0.2em] font-semibold">
+                    Open Signal
+                  </Link>
+                </div>
+              </motion.article>
+            </AnimatePresence>
+          )}
+
+          <AnimatePresence mode="wait">
+            <StaggerContainer key={category} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {rest.map((post) => (
+                <motion.div variants={staggerChildScale} key={post.slug}>
+                  <Link href={`/drops/${post.slug}/`} className="group block cyber-card drops-card overflow-hidden img-cyber-hover">
+                    <div className="aspect-[16/10] overflow-hidden rounded-xl -mx-6 -mt-6 mb-6 bg-black">
+                      <OptimizedImage src={post.img} alt={post.alt} width={800} height={500} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    </div>
+                    <p className="text-[10px] uppercase tracking-[0.15em] text-white/35 mb-2">{post.category} / {post.date}</p>
+                    <h3 className="font-serif text-xl font-semibold text-white mb-2 group-hover:text-lime-300 transition-colors duration-300">{post.title}</h3>
+                    <p className="text-sm text-white/52 leading-relaxed">{post.excerpt}</p>
+                    {post.dropMeta && <p className="mt-4 text-[10px] uppercase tracking-[0.15em] text-lime-400">{post.dropMeta}</p>}
+                  </Link>
+                </motion.div>
+              ))}
+            </StaggerContainer>
+          </AnimatePresence>
         </div>
       </section>
     </>

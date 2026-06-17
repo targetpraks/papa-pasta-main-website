@@ -1,9 +1,6 @@
 1:"$Sreact.fragment"
-2:I[47257,["/_next/static/chunks/0emmxcjtsu43g.js","/_next/static/chunks/02wilnj5lz5x3.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"ClientPageRoot"]
-3:I[29306,["/_next/static/chunks/0emmxcjtsu43g.js","/_next/static/chunks/02wilnj5lz5x3.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0q.3vmokzcd6y.js"],"default"]
-6:I[97367,["/_next/static/chunks/0emmxcjtsu43g.js","/_next/static/chunks/02wilnj5lz5x3.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
-7:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],[["$","script","script-0",{"src":"/_next/static/chunks/0q.3vmokzcd6y.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"9VoNPWa96eiNzCgNzQw3t"}
-4:{}
-5:"$0:rsc:props:children:0:props:serverProvidedParams:params"
-8:null
+2:I[22016,["/_next/static/chunks/0841kelptdm_w.js","/_next/static/chunks/0kmnq9jz4l~ru.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0pbdi0rzyep7x.js"],""]
+3:I[97367,["/_next/static/chunks/0841kelptdm_w.js","/_next/static/chunks/0kmnq9jz4l~ru.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0pbdi0rzyep7x.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen bg-black text-white flex flex-col items-center justify-center px-4","children":["$","div",null,{"className":"text-center max-w-2xl","children":[["$","div",null,{"className":"line-accent-neon mx-auto mb-6"}],["$","h1",null,{"className":"glitch-text font-serif text-8xl sm:text-[160px] font-bold mb-2 tracking-tighter leading-none","data-text":"404","style":{"background":"linear-gradient(135deg, #00ffff 0%, #ff00ff 25%, #39ff14 50%, #bf00ff 75%, #00ffff 100%)","WebkitBackgroundClip":"text","WebkitTextFillColor":"transparent","backgroundClip":"text","backgroundSize":"200% 200%","animation":"neon-shimmer 3s ease infinite"},"children":"404"}],["$","p",null,{"className":"text-white/40 text-lg mb-10 leading-relaxed","children":"This zone does not exist. The bowl you are looking for has been retired or never existed."}],["$","$L2",null,{"href":"/","className":"btn-neon inline-flex items-center rounded-md px-8 py-3.5 text-[12px] uppercase tracking-[0.2em] font-semibold transition-all duration-300","children":"Back to Home"}]]}]}],null,["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"rZP-t15RVFmI9-dgtBvdP"}
+5:null

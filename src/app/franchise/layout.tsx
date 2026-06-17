@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Franchise",
-  description: "Own a Papa Pasta franchise. All-in investment from R1.14M, 21.6% EBITDA, 8-month payback. South Africa's only dedicated pasta QSR franchise opportunity.",
+  title: "Franchise Portal",
+  description: "Papa Pasta franchise enquiries are handled by the dedicated franchise portal.",
   alternates: { canonical: "/franchise/" },
 };
 

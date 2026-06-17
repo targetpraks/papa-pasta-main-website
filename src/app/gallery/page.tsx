@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { StaggerContainer, staggerChildScale } from "../components/Motion";
+import OptimizedImage from "../components/OptimizedImage";
 
 const bowlGallery = [
   { title: "Founding Crest", img: "/images/bowl-01-founding-crest.png", tag: "Foundational" },
@@ -34,7 +34,7 @@ export default function GalleryPage() {
     <>
       <header className="bg-pp-primary text-pp-on-primary py-20 sm:py-24 text-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-white uppercase tracking-[0.2em] text-xs font-semibold mb-3">Visual Library</motion.p>
+          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-pp-gold uppercase tracking-[0.2em] text-xs font-semibold mb-3">Visual Library</motion.p>
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
             className="font-serif text-4xl sm:text-6xl font-bold mb-4">
             The <span className="gold-text-gradient">Gallery</span>
@@ -46,14 +46,14 @@ export default function GalleryPage() {
         </div>
       </header>
 
-      <div className="bg-pp-surface-dark border-b border-white/10">
+      <div className="bg-pp-surface-dark border-b border-pp-gold/10">
         <div className="max-w-7xl mx-auto px-4 flex gap-0">
           {["bowls", "stores", "packaging", "takeovers"].map((sec) => (
             <button
               key={sec}
               onClick={() => setActiveSection(sec)}
               className={`flex-1 py-4 text-sm font-semibold uppercase tracking-[0.15em] transition-colors duration-300 ${
-                activeSection === sec ? "text-white border-b-2 border-white" : "text-pp-on-primary/40 hover:text-pp-on-primary/70"
+                activeSection === sec ? "text-pp-gold border-b-2 border-pp-gold" : "text-pp-on-primary/40 hover:text-pp-on-primary/70"
               }`}
             >
               {sec}
@@ -71,7 +71,7 @@ export default function GalleryPage() {
                   key={tag}
                   onClick={() => setFilter(tag)}
                   className={`text-xs font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-full transition-all duration-300 ${
-                    filter === tag ? "bg-pp-primary text-white shadow-lg" : "bg-white text-pp-primary-60/50 border border-pp-primary/5 hover:border-white hover:text-white"
+                    filter === tag ? "bg-pp-primary text-pp-gold shadow-lg" : "bg-white text-pp-primary-60/50 border border-pp-primary/5 hover:border-pp-gold hover:text-pp-gold"
                   }`}
                 >
                   {tag}
@@ -82,11 +82,11 @@ export default function GalleryPage() {
               {bowlGallery.filter((b) => filter === "All" || b.tag === filter).map((b) => (
                 <motion.div key={b.title} variants={staggerChildScale} className="bg-white rounded-xl overflow-hidden border border-pp-primary/5 img-hover-lift">
                   <div className="aspect-square overflow-hidden">
-                    <img src={b.img} alt={b.title} width={400} height={300} className="w-full h-full object-cover" />
+                    <OptimizedImage src={b.img} alt={b.title} width={400} height={400} className="w-full h-full object-cover" />
                   </div>
                   <div className="p-3 text-center">
                     <p className="text-xs font-semibold text-pp-on-surface truncate">{b.title}</p>
-                    <p className="text-[10px] text-white uppercase tracking-wider">{b.tag}</p>
+                    <p className="text-[10px] text-pp-gold uppercase tracking-wider">{b.tag}</p>
                   </div>
                 </motion.div>
               ))}
@@ -102,11 +102,11 @@ export default function GalleryPage() {
               {storeGallery.map((s) => (
                 <motion.div key={s.title} variants={staggerChildScale} className="bg-white rounded-2xl overflow-hidden border border-pp-primary/5 img-hover-lift">
                   <div className="aspect-[4/3] overflow-hidden">
-                    <img src={s.img} alt={s.title} width={800} height={600} className="w-full h-full object-cover" />
+                    <OptimizedImage src={s.img} alt={s.title} width={800} height={600} className="w-full h-full object-cover" />
                   </div>
                   <div className="p-5">
                     <h3 className="font-serif text-lg font-semibold text-pp-on-surface">{s.title}</h3>
-                    <p className="text-xs text-white mt-1 uppercase tracking-wider">Store Concept</p>
+                    <p className="text-xs text-pp-gold mt-1 uppercase tracking-wider">Store Concept</p>
                   </div>
                 </motion.div>
               ))}
@@ -129,7 +129,7 @@ export default function GalleryPage() {
               ].map((p) => (
                 <motion.div key={p.title} variants={staggerChildScale} className="bg-white rounded-2xl overflow-hidden border border-pp-primary/5 img-hover-lift">
                   <div className="aspect-[4/3] overflow-hidden">
-                    <img src={p.img} alt={p.title} width={800} height={600} className="w-full h-full object-cover" />
+                    <OptimizedImage src={p.img} alt={p.title} width={800} height={600} className="w-full h-full object-cover" />
                   </div>
                   <div className="p-5">
                     <h3 className="font-serif text-lg font-semibold text-pp-on-surface">{p.title}</h3>
@@ -155,8 +155,8 @@ export default function GalleryPage() {
               ].map((t) => (
                 <motion.div key={t.title} variants={staggerChildScale} className="bg-white rounded-2xl overflow-hidden border border-pp-primary/5 img-hover-lift">
                   <div className="aspect-[4/3] overflow-hidden relative">
-                    <img src={t.img} alt={t.title} width={800} height={600} className="w-full h-full object-cover" />
-                    <div className="absolute top-3 right-3 bg-white text-pp-on-surface text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-1 rounded">{t.partner}</div>
+                    <OptimizedImage src={t.img} alt={t.title} width={800} height={600} className="w-full h-full object-cover" />
+                    <div className="absolute top-3 right-3 bg-pp-gold text-pp-on-surface text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-1 rounded">{t.partner}</div>
                   </div>
                   <div className="p-5">
                     <h3 className="font-serif text-lg font-semibold text-pp-on-surface">{t.title}</h3>

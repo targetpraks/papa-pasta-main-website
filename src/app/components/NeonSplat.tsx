@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useCallback } from "react";
 
 const NEON_COLORS = [
   "#ffffff", // pink
@@ -148,7 +148,7 @@ export function NeonSplatCanvas({
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMouseEnter = useCallback(
-    (e: React.MouseEvent) => {
+    () => {
       const canvas = canvasRef.current;
       const container = containerRef.current;
       if (!canvas || !container) return;

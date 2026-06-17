@@ -1,82 +1,95 @@
 export interface MerchItem {
   id: string;
   name: string;
-  category: "Apparel" | "Accessories" | "Collectibles";
+  category: "Apparel" | "Accessories" | "Collectibles" | "Drops";
+  status: "Live" | "Coming Soon" | "Sold Out" | "Archive";
   price: number;
   image: string;
   description: string;
+  variants: string;
+  dropDate: string;
+  ctaLabel: string;
   limited?: boolean;
 }
 
 export const merchItems: MerchItem[] = [
   {
-    id: "chef-cap",
-    name: "The OG Chef Cap",
-    category: "Accessories",
-    price: 299,
-    image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80",
-    description: "Structured cotton twill cap with 3D embroidered crest. Black. Adjustable. No cap.",
-  },
-  {
-    id: "streetwear-hoodie",
-    name: "Streetwear Pullover Hoodie",
+    id: "blackout-bomber",
+    name: "Blackout Bomber Jacket",
     category: "Apparel",
-    price: 899,
-    image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80",
-    description: "Heavyweight 400gsm fleece. Oversized fit. Puff-print PASTA across the chest. Drops mic.",
+    status: "Live",
+    price: 1599,
+    image: "/images/digital-stories-reels.png",
+    description: "Satin shell, reflective crest print, black-on-black lining, and neon flash details under light.",
+    variants: "XS-XXL",
+    dropDate: "Live now",
+    ctaLabel: "Shop Drop",
     limited: true,
   },
   {
     id: "graphic-tee",
     name: "Neon Crest Graphic Tee",
     category: "Apparel",
+    status: "Live",
     price: 399,
-    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80",
-    description: "100% organic cotton. Front chest crest with glow-in-dark ink. Back hit reads PASTA.",
+    image: "/images/print-main-brand-collateral.png",
+    description: "Organic cotton tee with a glitch crest hit, back print, and glow-in-dark ink details.",
+    variants: "Black / White, S-XXL",
+    dropDate: "Live now",
+    ctaLabel: "Shop Tee",
   },
   {
-    id: "tote-bag",
-    name: "Reusable Pasta Tote",
+    id: "chef-cap",
+    name: "The OG Chef Cap",
     category: "Accessories",
-    price: 149,
-    image: "https://images.unsplash.com/photo-1597484662317-9bd7bdda2907?auto=format&fit=crop&w=600&q=80",
-    description: "Heavy canvas. Handles reinforced. Embroidered tagline. Built for groceries and flexing.",
+    status: "Coming Soon",
+    price: 299,
+    image: "/images/uniforms-instore.png",
+    description: "Structured black cap with raised crest embroidery and a hidden cyan stitch line.",
+    variants: "Adjustable",
+    dropDate: "July 2026",
+    ctaLabel: "Notify Me",
   },
   {
     id: "enamel-pin",
     name: "Crest Enamel Pin Set",
     category: "Collectibles",
+    status: "Sold Out",
     price: 89,
-    image: "https://images.unsplash.com/photo-1517331156700-0c056d6fd7dd?auto=format&fit=crop&w=600&q=80",
-    description: "Set of 3: Shield crest, crossed fork/spoon, tagline badge. Soft enamel. Butterfly clutch.",
+    image: "/images/collectible-cups-canisters.png",
+    description: "Three-piece soft enamel set: shield crest, crossed fork/spoon, and Fresh Seasonal Quality badge.",
+    variants: "Set of 3",
+    dropDate: "May 2026",
+    ctaLabel: "View Archive",
     limited: true,
   },
   {
-    id: "takeover-hoodie-mtn",
-    name: "MTN Takeover Collab Hoodie",
-    category: "Apparel",
+    id: "heritage-bowl-drop",
+    name: "Heritage Bowl Drop",
+    category: "Drops",
+    status: "Coming Soon",
+    price: 349,
+    image: "/images/bowl-03-sa-heritage-series.png",
+    description: "Numbered ceramic bowl tied to the Youth Day collection drop. Loyalty members get early access.",
+    variants: "500 numbered units",
+    dropDate: "16 June 2026",
+    ctaLabel: "Join Early Access",
+    limited: true,
+  },
+  {
+    id: "mtn-takeover-hoodie",
+    name: "MTN TakeOver Hoodie",
+    category: "Drops",
+    status: "Archive",
     price: 1099,
-    image: "https://images.unsplash.com/photo-1578768079052-aa76e52ff62e?auto=format&fit=crop&w=600&q=80",
-    description: "Limited MTN x Papa Pasta collab. Signal bars meet crest shield. 200 pieces made.",
-    limited: true,
-  },
-  {
-    id: "sports-scarf",
-    name: "Derby Day Supporter Scarf",
-    category: "Accessories",
-    price: 249,
-    image: "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=600&q=80",
-    description: "Jacquard knit. Papa Pasta crest on one side, local zone color on the reverse. Game day essential.",
-  },
-  {
-    id: "limited-bomber",
-    name: "Blackout Bomber Jacket",
-    category: "Apparel",
-    price: 1599,
-    image: "https://images.unsplash.com/photo-1551488852-0801751ac1f4?auto=format&fit=crop&w=600&q=80",
-    description: "Satin shell. Quilted lining. Reflective crest print. 50 pieces only. Drops sell out in minutes.",
+    image: "/images/takeover-mtn.png",
+    description: "Signal bars meet the Papa Pasta crest. A one-time TakeOver capsule, archived for collectors.",
+    variants: "200 units made",
+    dropDate: "Feb 2026",
+    ctaLabel: "View Story",
     limited: true,
   },
 ];
 
-export const merchCategories = ["All", "Apparel", "Accessories", "Collectibles"];
+export const merchCategories = ["All", "Apparel", "Accessories", "Collectibles", "Drops"];
+export const merchStatuses = ["All", "Live", "Coming Soon", "Sold Out", "Archive"];

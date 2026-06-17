@@ -2,40 +2,40 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollProgressBar } from "./Motion";
+import OptimizedImage from "./OptimizedImage";
 
+/* Per-link neon accent — each nav item gets its own cyber colour */
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/story/", label: "Our Story" },
-  { href: "/menu/", label: "Menu" },
-  { href: "/locations/", label: "Locations" },
-  { href: "/artisanal/", label: "Artisanal" },
-  // TODO: Uncomment /bowls/ and /merch/ when pages are ready
-  // { href: "/bowls/", label: "Bowls" },
-  // { href: "/merch/", label: "Merch" },
-  { href: "/level-up/", label: "Level Up" },
-  { href: "/blog/", label: "Blog" },
-  { href: "/events/", label: "Events" },
+  { href: "/", label: "Home", accent: "#00ffff" },              // cyan
+  { href: "/menu/", label: "Menu", accent: "#ff5f1f" },         // appetite orange
+  { href: "/locations/", label: "Locations", accent: "#0080ff" }, // electric blue
+  { href: "/merch/", label: "Merch", accent: "#bf00ff" },        // violet
+  { href: "/loyalty/", label: "Loyalty", accent: "#ffd700", aliases: ["/level-up/"] }, // gold
+  { href: "/drops/", label: "Drops", accent: "#39ff14", aliases: ["/blog/"] },         // acid green
+  { href: "/story/", label: "Story", accent: "#f8fafc" },  // silver-white
 ];
 
-const FRANCHISE_HREF = "https://franchise.papapasta.co.za";
+const navAccentMap: Record<string, string> = {};
+navLinks.forEach((l) => {
+  navAccentMap[l.href] = l.accent;
+  l.aliases?.forEach((alias) => {
+    navAccentMap[alias] = l.accent;
+  });
+});
 
-function useActiveRoute() {
-  const [active, setActive] = useState("/");
-  useEffect(() => {
-    setActive(window.location.pathname);
-    const onPop = () => setActive(window.location.pathname);
-    window.addEventListener("popstate", onPop);
-    return () => window.removeEventListener("popstate", onPop);
-  }, []);
-  return active;
-}
+const normalizePath = (path: string) => (path.endsWith("/") ? path : `${path}/`);
+
+const FRANCHISE_NEON = "#ff0080"; // hot pink
+const FRANCHISE_HREF = "https://franchise.papapasta.co.za";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const active = useActiveRoute();
+  const pathname = usePathname();
+  const active = pathname || "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -64,13 +64,13 @@ export default function Nav() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-18 sm:h-22">
-            {/* Logo — massive */}
+            {/* Logo */}
             <Link
               href="/"
               className="flex items-center gap-3 group"
               aria-label="Papa Pasta — Home"
             >
-              <img
+              <OptimizedImage
                 src="/images/logo-crest-white.png"
                 alt=""
                 className="h-14 sm:h-18 w-auto opacity-90 group-hover:opacity-100 transition-opacity duration-300"
@@ -84,33 +84,50 @@ export default function Nav() {
               </span>
             </Link>
 
-            {/* Desktop Nav */}
+            {/* Desktop Nav — each link has its own neon color */}
             <nav
               className="hidden xl:flex items-center gap-1"
               aria-label="Main navigation"
             >
               {navLinks.map((l) => {
-                const isActive =
-                  active === l.href || active === l.href.replace(/\/$/, "");
+                const activePath = normalizePath(active);
+                const activeTargets = [l.href, ...(l.aliases ?? [])].map(normalizePath);
+                const isActive = activeTargets.includes(activePath);
                 return (
                   <Link
                     key={l.href}
                     href={l.href}
                     className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 group ${
                       isActive
-                        ? "text-white"
-                        : "text-white/60 hover:text-white"
+                        ? ""
+                        : "text-white/60"
                     }`}
+                    style={{
+                      color: isActive ? navAccentMap[l.href] : undefined,
+                    }}
                     aria-current={isActive ? "page" : undefined}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = l.accent;
+                      e.currentTarget.style.textShadow = `0 0 8px ${l.accent}80, 0 0 20px ${l.accent}40`;
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.color = "";
+                        e.currentTarget.style.textShadow = "";
+                      }
+                    }}
                   >
                     <span className="font-sans text-label-md uppercase tracking-label-md"
                     >
                       {l.label}
                     </span>
                     <span
-                      className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] bg-white transition-all duration-300 rounded-full ${
-                        isActive ? "w-3/4" : "w-0 group-hover:w-3/4"
-                      }`}
+                      className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] transition-all duration-300 rounded-full"
+                      style={{
+                        backgroundColor: navAccentMap[l.href],
+                        boxShadow: isActive ? `0 0 6px ${navAccentMap[l.href]}80` : undefined,
+                        width: isActive ? "75%" : "0%",
+                      }}
                     />
                   </Link>
                 );
@@ -119,7 +136,18 @@ export default function Nav() {
                 href={FRANCHISE_HREF}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-3 inline-flex items-center rounded-md bg-white text-black px-5 py-2.5 text-label-md uppercase tracking-label-md font-semibold hover:bg-white hover:text-black transition-all duration-300"
+                className="ml-3 inline-flex items-center rounded-md px-5 py-2.5 text-label-md uppercase tracking-label-md font-semibold transition-all duration-300"
+                style={{
+                  backgroundColor: FRANCHISE_NEON,
+                  color: "#000",
+                  boxShadow: `0 0 12px ${FRANCHISE_NEON}60`,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = `0 0 20px ${FRANCHISE_NEON}80, 0 0 40px ${FRANCHISE_NEON}40`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = `0 0 12px ${FRANCHISE_NEON}60`;
+                }}
               >
                 Franchise
               </a>
@@ -158,7 +186,7 @@ export default function Nav() {
           </div>
         </div>
 
-        {/* Mobile Menu Overlay */}
+        {/* Mobile Menu Overlay — each link styled with its own neon color */}
         <AnimatePresence>
           {open && (
             <>
@@ -181,8 +209,9 @@ export default function Nav() {
               >
                 <div className="px-4 py-6 space-y-1">
                   {navLinks.map((l, i) => {
-                    const isActive =
-                      active === l.href || active === l.href.replace(/\/$/, "");
+                const activePath = normalizePath(active);
+                const activeTargets = [l.href, ...(l.aliases ?? [])].map(normalizePath);
+                const isActive = activeTargets.includes(activePath);
                     return (
                       <motion.div
                         key={l.href}
@@ -194,10 +223,21 @@ export default function Nav() {
                           href={l.href}
                           onClick={() => setOpen(false)}
                           className={`block text-lg font-medium py-3 border-b border-white/5 transition-colors ${
-                            isActive
-                              ? "text-white"
-                              : "text-white/90 hover:text-white"
+                            isActive ? "font-bold" : ""
                           }`}
+                          style={{
+                            color: isActive ? l.accent : "rgba(255,255,255,0.9)",
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.color = l.accent;
+                            e.currentTarget.style.textShadow = `0 0 8px ${l.accent}80`;
+                          }}
+                          onMouseLeave={(e) => {
+                            if (!isActive) {
+                              e.currentTarget.style.color = "rgba(255,255,255,0.9)";
+                              e.currentTarget.style.textShadow = "";
+                            }
+                          }}
                           aria-current={isActive ? "page" : undefined}
                         >
                           {l.label}
@@ -218,7 +258,12 @@ export default function Nav() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => setOpen(false)}
-                      className="block mt-4 text-center rounded-md bg-white text-black px-6 py-3 text-label-md uppercase tracking-label-md font-semibold hover:bg-white transition-colors"
+                      className="block mt-4 text-center rounded-md px-6 py-3 text-label-md uppercase tracking-label-md font-semibold transition-all duration-300"
+                      style={{
+                        backgroundColor: FRANCHISE_NEON,
+                        color: "#000",
+                        boxShadow: `0 0 16px ${FRANCHISE_NEON}60`,
+                      }}
                     >
                       Franchise
                     </a>

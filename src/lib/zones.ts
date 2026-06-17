@@ -83,6 +83,7 @@ export const zones: Zone[] = [
   { id: 69, province: "Western Cape", name: "CT — West Coast/Blouberg/Century City", primaryColor: "Sky Blue", secondaryColor: "White", school: "Table View High / Blouberg schools", schoolColours: "Blue/White", status: "coming_soon" },
   { id: 70, province: "Western Cape", name: "WC — Garden Route", primaryColor: "Forest Green", secondaryColor: "Gold", school: "Outeniqua High / Knysna High", schoolColours: "Green/Gold; Blue/White", status: "coming_soon" },
   { id: 71, province: "Western Cape", name: "WC — Paarl/Wellington", primaryColor: "Silver", secondaryColor: "Navy", school: "Paarl Boys' High / Paarl Gimnasium", schoolColours: "Navy/Silver; Green/Maroon", status: "coming_soon" },
+  { id: 72, province: "Western Cape", name: "WC — Stellenbosch/Franschhoek", primaryColor: "Burgundy", secondaryColor: "White", school: "Paul Roos / Rhenish", schoolColours: "Maroon/White; Navy/White", status: "coming_soon" },
 ];
 
 export const provinces = Array.from(new Set(zones.map(z => z.province)));

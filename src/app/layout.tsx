@@ -21,11 +21,11 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL("https://papapasta.co.za"),
   title: {
-    default: "Papa Pasta — Fresh Handmade Pasta, Cape Town",
+    default: "Papa Pasta — Fresh Pasta, Merch Drops & Loyalty",
     template: "%s | Papa Pasta",
   },
   description:
-    "Papa Pasta serves fresh, handmade pasta crafted daily in our central kitchen. Find your nearest Cape Town store or order via UberEats & Mr D.",
+    "Papa Pasta serves fresh handmade pasta and runs cyber-bright merch drops, collectable launches, loyalty rewards, and store launch news across South Africa.",
   keywords: [
     "fresh pasta",
     "Cape Town pasta",
@@ -90,7 +90,7 @@ export default function RootLayout({
               telephone: "+27-21-456-7890",
               email: "hello@papapasta.co.za",
               servesCuisine: "Italian",
-              priceRange: "R79–R98",
+              priceRange: "R79-R159",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Cape Town",
@@ -120,7 +120,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen flex flex-col font-sans bg-pp-cream text-pp-black antialiased">
+      <body className="min-h-screen flex flex-col font-sans bg-pp-white text-pp-black antialiased">
         <a href="#main-content" className="skip-to-content">
           Skip to main content
         </a>

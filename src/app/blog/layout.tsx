@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Journal",
-  description: "Seasonal menu drops, sauce science, and the stories behind the Papa Pasta brand. Fresh perspectives on pasta culture.",
-  alternates: { canonical: "/blog/" },
+  title: "Drops & Journal",
+  description: "New Papa Pasta store launches, merch drops, collection releases, loyalty updates, seasonal menu signals, and brand stories.",
+  alternates: { canonical: "/drops/" },
 };
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {

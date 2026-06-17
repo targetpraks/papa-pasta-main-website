@@ -1,109 +1,146 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { MotionSection, StaggerContainer, staggerChildScale } from "../components/Motion";
-
-const dishes = [
-  { category: "Classic Sauces", name: "Alfredo Classico", price: "R89", desc: "Silky Parmesan cream sauce over fresh fettuccine. The comfort benchmark.", img: "/images/menu-core-8-dishes.png", tag: "Best Seller", dietary: ["Veg"] },
-  { category: "Classic Sauces", name: "Napolitana Fresca", price: "R79", desc: "San Marzano tomato base, fresh basil, extra virgin olive oil. Simple, perfect.", img: "/images/menu-sauce-production.png", tag: "Classic", dietary: ["Vegan","GF"] },
-  { category: "Classic Sauces", name: "Arrabbiata Piccante", price: "R82", desc: "Chilli-infused tomato sauce with garlic and parsley. For the brave.", img: "/images/papa-pops-peri-peri.png", tag: "Spicy", dietary: ["Vegan","GF"] },
-  { category: "Classic Sauces", name: "Cacio e Pepe", price: "R85", desc: "Pecorino Romano and cracked Tellicherry pepper. Roman perfection.", img: "/images/papa-pops-cheesy-braai.png", tag: "Signature", dietary: ["Veg"] },
-  { category: "Meat Sauces", name: "Bolognese della Casa", price: "R95", desc: "Slow-braised beef and pork ragu over wide tagliatelle. Simmered for 6 hours.", img: "/images/menu-core-8-dishes.png", tag: "House Favourite", dietary: ["Halal"] },
-  { category: "Meat Sauces", name: "Carbonara Proper", price: "R92", desc: "Guanciale, egg yolk and Pecorino. No cream. Ever.", img: "/images/menu-sauce-production.png", tag: "Authentic" },
-  { category: "Seasonal", name: "Summer Harvest Primavera", price: "R88", desc: "Zucchini, cherry tomatoes, lemon zest and basil on penne. Lighter than air.", img: "/images/bowl-07-seasonal-harvest.png", tag: "Limited", dietary: ["Vegan","GF"] },
-  { category: "Seasonal", name: "Braai-Spiced Meatball", price: "R98", desc: "Char-grilled meatballs in smoky tomato sauce. A South African twist on an Italian classic.", img: "/images/bowl-03-sa-heritage-series.png", tag: "Heritage", dietary: ["Halal"] },
-  { category: "Papa Pops", name: "Cheesy Braai Bites", price: "R45", desc: "Crunchy fried pasta bites stuffed with three cheeses and smoky braai spice. Addictive.", img: "/images/papa-pops-cheesy-braai.png", tag: "Snack", dietary: ["Veg"] },
-  { category: "Papa Pops", name: "Peri-Peri Crunch", price: "R42", desc: "Zesty peri-peri coating on golden pasta shells. Cape Town in a bite.", img: "/images/papa-pops-peri-peri.png", tag: "Snack", dietary: ["Vegan"] },
-  { category: "Papa Pops", name: "Sweet Chutney Twist", price: "R40", desc: "Mild curry-spiced chutney glaze on crispy pasta twists. Sweet, savoury, crunchy.", img: "/images/papa-pops-sweet-chutney.png", tag: "Snack", dietary: ["Vegan"] },
-];
-
-const categories = ["All", "Classic Sauces", "Meat Sauces", "Seasonal", "Papa Pops"];
+import OptimizedImage from "../components/OptimizedImage";
+import {
+  defaultMenuFacets,
+  dishMatchesFacets,
+  menuDishes,
+  menuDishFacets,
+  menuFacetGroups,
+  type FacetKey,
+} from "../../lib/menu";
 
 export default function MenuPage() {
-  const [active, setActive] = useState("All");
-  const filtered = active === "All" ? dishes : dishes.filter((d) => d.category === active);
+  const [facets, setFacets] = useState(defaultMenuFacets);
+  const hasActiveFacets = Object.values(facets).some((value) => value !== "All");
+  const filtered = menuDishes.filter((dish) => dishMatchesFacets(dish, facets));
+
+  const setFacet = (key: FacetKey, value: string) => {
+    setFacets((current) => ({ ...current, [key]: value }));
+  };
 
   return (
     <>
-      <header className="bg-pp-primary text-pp-on-primary py-20 sm:py-24 text-center px-4 sm:px-6 lg:px-8">
+      <header className="cyber-page-hero bg-black text-white min-h-[20vh] flex items-center py-8 sm:py-10 text-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-white uppercase tracking-[0.2em] text-xs font-semibold mb-4">
+          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-cyan-300 uppercase tracking-[0.2em] text-[11px] font-semibold mb-3">
             The Menu
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-            className="font-serif text-4xl sm:text-6xl font-bold mb-4">
-            32 Core Dishes. <span className="gold-text-gradient">One Obsession.</span>
+            className="font-serif text-3xl sm:text-4xl font-bold mb-3">
+            32 Core Dishes. <span className="neon-text-gradient">Carb Hard</span>
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-            className="text-pp-on-primary/60 max-w-2xl mx-auto text-lg leading-relaxed"
+            className="text-white/58 max-w-xl mx-auto text-sm sm:text-base leading-relaxed"
           >
-            We show you our heroes. The full 32-item menu is our IP — come in and discover the rest.
+            Max Out your Taste Buds! Choose your Style!
           </motion.p>
         </div>
       </header>
 
-      <section className="section-padding bg-white">
+      <section className="section-padding cyber-page-section menu-appetite-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <MotionSection className="flex flex-wrap justify-center gap-2 mb-10">
-            {categories.map((cat) => (
+          <MotionSection className="cyber-panel menu-filter-panel mx-auto mb-10 max-w-6xl p-4 sm:p-5">
+            <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-orange-300">Food Filters</p>
+                <p className="mt-1 text-sm text-white/45">
+                  Filter by sauce family, protein, cheese, heat level, and dietary style.
+                </p>
+              </div>
               <button
-                key={cat}
-                onClick={() => setActive(cat)}
-                className={`text-xs font-bold uppercase tracking-[0.15em] px-5 py-2.5 rounded-full transition-all duration-300 ${
-                  active === cat ? "bg-pp-primary text-white shadow-lg shadow-pp-primary/20" : "bg-pp-tertiary text-pp-primary-60/50 border border-pp-primary/5 hover:border-white hover:text-white"
+                onClick={() => setFacets(defaultMenuFacets)}
+                className={`w-fit rounded-sm border px-4 py-2 text-[10px] font-bold uppercase tracking-[0.16em] transition-all ${
+                  hasActiveFacets
+                    ? "border-orange-300 text-orange-300 hover:bg-orange-300 hover:text-black hover:shadow-[0_0_28px_rgba(255,95,31,0.42)]"
+                    : "border-white/10 text-white/25"
                 }`}
+                disabled={!hasActiveFacets}
               >
-                {cat}
+                Clear Food Filters
               </button>
-            ))}
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+              {menuFacetGroups.map((group) => (
+                <div key={group.key}>
+                  <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white/35">{group.label}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {group.options.map((option) => {
+                      const isSelected = facets[group.key] === option;
+
+                      return (
+                        <button
+                          key={option}
+                          onClick={() => setFacet(group.key, option)}
+                          className={`menu-filter-chip ${isSelected ? "active" : ""}`}
+                        >
+                          {option}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.14em] text-white/35">
+              Showing <span className="text-orange-300">{filtered.length}</span> of {menuDishes.length} dishes
+            </p>
           </MotionSection>
 
-          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filtered.map((d) => (
-              <motion.div
-                key={d.name + d.category}
-                variants={staggerChildScale}
-                className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-pp-primary/5 hover:shadow-xl hover:border-white/30 transition-all duration-500"
-              >
-                <div className="aspect-[16/10] overflow-hidden">
-                  <img src={d.img} alt={d.name} width={800} height={600} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-0.5 rounded bg-pp-tertiary text-pp-primary-60/50 border border-pp-primary/5">{d.category}</span>
-                    {d.tag && (
-                      <span className="text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-0.5 rounded bg-white/10 text-white-dark border border-white/20">{d.tag}</span>
-                    )}
+          {filtered.length > 0 ? (
+            <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filtered.map((d) => (
+                <motion.div
+                  key={d.name + d.category}
+                  variants={staggerChildScale}
+                  className="group cyber-card menu-card overflow-hidden"
+                >
+                  <div className="aspect-[16/10] overflow-hidden">
+                    <OptimizedImage src={d.img} alt={d.name} width={800} height={600} className="w-full h-full object-cover img-cyber-hover" />
                   </div>
-                  <div className="flex items-baseline justify-between mb-2">
-                    <h3 className="font-serif text-lg font-semibold text-pp-on-surface">{d.name}</h3>
-                    <span className="gold-text-gradient font-bold">{d.price}</span>
-                  </div>
-                  <p className="text-sm text-pp-primary-60/50 leading-relaxed">{d.desc}</p>
-                  {d.dietary && d.dietary.length > 0 && (
-                    <div className="flex items-center gap-1 mt-2 flex-wrap">
-                      {d.dietary.map((badge) => (
-                        <span
-                          key={badge}
-                          className={`badge-dietary badge-dietary-${badge.toLowerCase()}`}
-                        >
-                          {badge}
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-0.5 rounded bg-white/5 text-white/45 border border-white/15">{d.category}</span>
+                      {d.tag && (
+                        <span className="text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-0.5 rounded bg-orange-400/10 text-orange-300 border border-orange-300/35">{d.tag}</span>
+                      )}
+                    </div>
+                    <div className="flex items-baseline justify-between mb-2">
+                      <h3 className="font-serif text-lg font-semibold text-white">{d.name}</h3>
+                      <span className="font-bold text-orange-300 drop-shadow-[0_0_12px_rgba(255,95,31,0.55)]">{d.price}</span>
+                    </div>
+                    <p className="text-sm text-white/52 leading-relaxed">{d.desc}</p>
+                    <div className="mt-5 flex flex-wrap gap-2 border-t border-white/10 pt-4">
+                      {Object.entries(menuDishFacets[d.name]).filter(([key]) => key !== "sauce").map(([key, value]) => (
+                        <span key={key} className="rounded border border-white/12 bg-white/5 px-2 py-1 text-[9px] font-bold uppercase tracking-[0.13em] text-white/40">
+                          {value}
                         </span>
                       ))}
                     </div>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </StaggerContainer>
+                  </div>
+                </motion.div>
+              ))}
+            </StaggerContainer>
+          ) : (
+            <MotionSection className="cyber-panel mx-auto max-w-xl p-8 text-center">
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-cyan-300">No Match</p>
+              <h2 className="mt-3 font-serif text-2xl font-bold text-white">No pasta fits that signal yet.</h2>
+              <p className="mt-3 text-sm leading-relaxed text-white/50">
+                Try clearing one food filter or switching sauce families.
+              </p>
+            </MotionSection>
+          )}
 
           <MotionSection className="mt-12 text-center">
-            <div className="bg-pp-tertiary rounded-2xl p-8 inline-block border border-pp-primary/5">
-              <p className="text-pp-primary-60/50 text-sm mb-3">Prices are estimated. Final menu and pricing set at launch.</p>
-              <p className="text-pp-primary-60/60 text-sm">
-                <span className="font-semibold text-pp-on-surface">Dietary info:</span> Vegan, Veg, GF, halal and kosher options available.
+            <div className="cyber-panel p-8 inline-block">
+              <p className="text-white/52 text-sm mb-3">Prices are estimated. Final menu and pricing set at launch.</p>
+              <p className="text-white/62 text-sm">
+                <span className="font-semibold text-white">Dietary info:</span> Vegetarian, halal and gluten-free options available.
               </p>
             </div>
           </MotionSection>
