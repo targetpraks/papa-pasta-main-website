@@ -28,6 +28,8 @@ Full design system in `DESIGN.md`. Product context in `PRD.md`.
 
 ## Gotchas
 - **`output: 'export'`** in `next.config.ts` — no server actions, no ISR, no default `next/image` loader (use `unoptimized` or self-host). `next-pwa`-style runtime workers won't work.
+- **No `src/middleware.ts`** — middleware is incompatible with `output: 'export'` (Next.js 16 errors on startup: "Middleware cannot be used with 'output: export'"). Do not add middleware. Security headers (CSP, HSTS, X-Frame-Options, etc.) are handled by `nginx.conf`, which is copied into the Docker image at build time.
+- **`dist/` is not tracked by git** — it was previously committed by mistake; fixed with `git rm -r --cached dist/`. Never commit the build output.
 - **Assets** live in `github.com/targetpraks/papa-pasta-assets` — do not commit binary images.
 - Next.js 16 has breaking changes from training data — read `node_modules/next/dist/docs/` before writing framework code (see `AGENTS.md`).
 
