@@ -57,7 +57,7 @@ export default function BowlDropPage() {
         >
           <span className="text-white text-xs font-semibold uppercase tracking-[0.2em]">Limited Drop</span>
           <h1 className="font-serif text-5xl sm:text-7xl font-bold mt-4 mb-4 tracking-tight">Bowl Drop</h1>
-          <p className="text-white/40 text-lg max-w-lg mx-auto">
+          <p className="text-white/65 text-lg max-w-lg mx-auto">
             Numbered collectibles. Once they are gone, they are gone forever. Only 100 bowls per location.
           </p>
         </motion.div>
@@ -72,7 +72,7 @@ export default function BowlDropPage() {
             ].map((unit) => (
               <div key={unit.label} className="bg-white/5 border border-white/10 rounded-lg p-6 text-center">
                 <p className="font-mono text-3xl sm:text-4xl font-bold">{String(unit.value).padStart(2, "0")}</p>
-                <p className="text-xs text-white/40 uppercase tracking-wider mt-1">{unit.label}</p>
+                <p className="text-xs text-white/65 uppercase tracking-wider mt-1">{unit.label}</p>
               </div>
             ))}
           </div>
@@ -92,7 +92,7 @@ export default function BowlDropPage() {
                 <Bell className="w-5 h-5 text-white" />
                 <h2 className="text-lg font-semibold">Join the Waitlist</h2>
               </div>
-              <p className="text-sm text-white/40">
+              <p className="text-sm text-white/65">
                 Get notified the moment bowls go live. Waitlist members get priority access for the first 24 hours.
               </p>
               <div className="flex gap-3">
@@ -100,12 +100,14 @@ export default function BowlDropPage() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  aria-label="Email address"
+                  autoComplete="email"
                   placeholder="your@email.com"
-                  className="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:border-white outline-none"
+                  className="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:border-white outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00ffff]"
                 />
                 <button
                   onClick={joinWaitlist}
-                  className="px-6 py-3 rounded-lg bg-white text-black font-semibold text-sm"
+                  className="px-6 py-3 rounded-lg bg-white text-black font-semibold text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00ffff]"
                 >
                   Notify Me
                 </button>
@@ -117,7 +119,7 @@ export default function BowlDropPage() {
                 <Check className="w-6 h-6 text-white" />
               </div>
               <p className="font-semibold">You are on the list.</p>
-              <p className="text-sm text-white/40 mt-1">We will email you when Bowl Drop goes live.</p>
+              <p className="text-sm text-white/65 mt-1">We will email you when Bowl Drop goes live.</p>
             </div>
           )}
         </div>
@@ -131,7 +133,7 @@ export default function BowlDropPage() {
             <div key={bowl.title} className="bg-white/5 border border-white/10 rounded-lg p-5">
               <p className="font-semibold">{bowl.title}</p>
               <p className="text-xs text-white mt-1">{bowl.subtitle}</p>
-              <p className="text-sm text-white/40 mt-2">{bowl.desc}</p>
+              <p className="text-sm text-white/65 mt-2">{bowl.desc}</p>
             </div>
           ))}
         </div>

@@ -20,7 +20,7 @@ export default function NotFound() {
         >
           404
         </h1>
-        <p className="text-white/40 text-lg mb-10 leading-relaxed">
+        <p className="text-white/65 text-lg mb-10 leading-relaxed">
           This zone does not exist. The bowl you are looking for has been
           retired or never existed.
         </p>

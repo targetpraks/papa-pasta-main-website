@@ -30,7 +30,7 @@ export default function ErrorBoundary({
         >
           System Failure
         </h1>
-        <p className="text-white/40 text-lg mb-8 leading-relaxed font-mono">
+        <p className="text-white/65 text-lg mb-8 leading-relaxed font-mono">
           Something went wrong in the kitchen. Our commissary engineers have been
           notified.
         </p>

@@ -65,13 +65,13 @@ export default function MerchPage() {
                       {item.status}
                     </span>
                   </div>
-                  <p className="text-[10px] uppercase tracking-[0.15em] text-white/35 mb-2">{item.category} / {item.dropDate}</p>
+                  <p className="text-[10px] uppercase tracking-[0.15em] text-white/60 mb-2">{item.category} / {item.dropDate}</p>
                   <h2 className="font-serif text-2xl font-bold mb-3 text-white">{item.name}</h2>
                   <p className="text-white/52 text-sm leading-relaxed mb-5">{item.description}</p>
                   <div className="flex items-center justify-between gap-4 border-t border-white/10 pt-4">
                     <div>
                       <p className="text-lg font-bold text-white">R{item.price}</p>
-                      <p className="text-[10px] uppercase tracking-[0.12em] text-white/35">{item.variants}</p>
+                      <p className="text-[10px] uppercase tracking-[0.12em] text-white/60">{item.variants}</p>
                     </div>
                     <Link href={item.status === "Coming Soon" ? "/loyalty/" : "/drops/"} className="text-xs uppercase tracking-[0.15em] font-semibold text-fuchsia-300 hover:text-white">
                       {item.ctaLabel}

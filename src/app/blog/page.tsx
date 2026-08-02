@@ -49,7 +49,7 @@ export default function Page() {
                   <p className="text-[11px] uppercase tracking-[0.18em] text-lime-300 mb-4">{lead.category} / {lead.date}</p>
                   <h2 className="font-serif text-3xl sm:text-5xl font-bold mb-4">{lead.title}</h2>
                   <p className="text-white/55 leading-relaxed mb-5">{lead.excerpt}</p>
-                  {lead.dropMeta && <p className="text-[11px] uppercase tracking-[0.16em] text-white/35 mb-8">{lead.dropMeta}</p>}
+                  {lead.dropMeta && <p className="text-[11px] uppercase tracking-[0.16em] text-white/60 mb-8">{lead.dropMeta}</p>}
                   <Link href={`/drops/${lead.slug}/`} className="drops-signal-link inline-flex w-fit items-center rounded-md border px-7 py-3 text-[12px] uppercase tracking-[0.2em] font-semibold">
                     Open Signal
                   </Link>
@@ -66,7 +66,7 @@ export default function Page() {
                     <div className="aspect-[16/10] overflow-hidden rounded-xl -mx-6 -mt-6 mb-6 bg-black">
                       <OptimizedImage src={post.img} alt={post.alt} width={800} height={500} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                     </div>
-                    <p className="text-[10px] uppercase tracking-[0.15em] text-white/35 mb-2">{post.category} / {post.date}</p>
+                    <p className="text-[10px] uppercase tracking-[0.15em] text-white/60 mb-2">{post.category} / {post.date}</p>
                     <h3 className="font-serif text-xl font-semibold text-white mb-2 group-hover:text-lime-300 transition-colors duration-300">{post.title}</h3>
                     <p className="text-sm text-white/52 leading-relaxed">{post.excerpt}</p>
                     {post.dropMeta && <p className="mt-4 text-[10px] uppercase tracking-[0.15em] text-lime-400">{post.dropMeta}</p>}

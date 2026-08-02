@@ -43,14 +43,14 @@ export default function StoryPage() {
                 <div className="cyber-card story-card p-6 text-center">
                 <div className="story-silver-text text-3xl font-bold mb-2 font-serif">2,500+</div>
                 <p className="text-sm font-semibold text-white mb-1">Chicken outlets in SA</p>
-                <p className="text-xs text-white/40">Source: industry estimates, 2024</p>
+                <p className="text-xs text-white/65">Source: industry estimates, 2024</p>
               </div>
             </MotionSection>
             <MotionSection delay={0.1}>
                 <div className="cyber-card story-card p-6 text-center">
                 <div className="story-silver-text text-3xl font-bold mb-2 font-serif">0</div>
                 <p className="text-sm font-semibold text-white mb-1">Dedicated pasta QSR franchises</p>
-                <p className="text-xs text-white/40">Until Papa Pasta</p>
+                <p className="text-xs text-white/65">Until Papa Pasta</p>
               </div>
             </MotionSection>
           </div>

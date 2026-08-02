@@ -16,7 +16,7 @@ export default function ArtisanalPage() {
         <h1 className="font-serif text-5xl sm:text-7xl font-bold mb-4 tracking-tight">
           <span className="neon-text-gradient">Artisanal</span>
         </h1>
-        <p className="text-white/40 text-lg mb-8 leading-relaxed">
+        <p className="text-white/65 text-lg mb-8 leading-relaxed">
           The retail line is being hand-rolled. Premium pasta, kraft packaging, and shelf-ready products for your kitchen.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

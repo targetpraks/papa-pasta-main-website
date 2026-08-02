@@ -47,7 +47,7 @@ export default function LevelUpPage() {
               <motion.article key={tier.name} variants={staggerChildScale} className="cyber-card loyalty-card p-6 min-h-[300px]" style={{ "--tier-glow": tier.glow } as CSSProperties}>
                 <span className="loyalty-tier-signal block h-1.5 w-14 mb-6" />
                 <h3 className="font-serif text-3xl font-bold mb-2 text-white">{tier.name}</h3>
-                <p className="text-[10px] uppercase tracking-[0.15em] text-white/35 mb-5">{tier.threshold}</p>
+                <p className="text-[10px] uppercase tracking-[0.15em] text-white/60 mb-5">{tier.threshold}</p>
                 <ul className="space-y-3 text-sm text-white/58">
                   {tier.perks.map((perk) => (
                     <li key={perk}>{perk}</li>

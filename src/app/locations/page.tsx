@@ -146,7 +146,7 @@ function ZoneCard({
         aria-pressed={selected}
       >
         <div className="flex items-center justify-between mb-3">
-          <span className="text-[10px] uppercase tracking-[0.15em] text-white/35 font-semibold">
+          <span className="text-[10px] uppercase tracking-[0.15em] text-white/60 font-semibold">
             Zone {zone.id}
           </span>
           <span
@@ -173,7 +173,7 @@ function ZoneCard({
           </div>
           <div className="min-w-0">
             <h3 className="font-serif text-sm font-bold truncate text-white">{zone.name}</h3>
-            <p className="text-[10px] uppercase tracking-[0.1em] text-white/35 truncate">
+            <p className="text-[10px] uppercase tracking-[0.1em] text-white/60 truncate">
               {zone.province}
             </p>
           </div>
@@ -181,7 +181,7 @@ function ZoneCard({
 
         <div className="flex items-center justify-between">
           <div>
-            <span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-white/35">Aura</span>
+            <span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-white/60">Aura</span>
             <span className="text-sm font-bold text-white">{auraScore}</span>
           </div>
           <FlameScore score={auraScore} active={auraActive} />
@@ -299,30 +299,30 @@ function ZoneDetails({
 
         <div className="grid gap-3 sm:grid-cols-2">
           <p className="text-sm text-white/55">
-            <span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-white/35">Province</span>
+            <span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-white/60">Province</span>
             {zone.province}
           </p>
           <p className="text-sm text-white/55">
-            <span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-white/35">Status</span>
+            <span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-white/60">Status</span>
             {zone.status === "open" ? "Open now" : zone.status === "available" ? "Franchise zone available" : "Launch queue loading"}
           </p>
           <p className="text-sm text-white/55">
-            <span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-white/35">Crest Palette</span>
+            <span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-white/60">Crest Palette</span>
             {zone.primaryColor} / {zone.secondaryColor}
           </p>
           <p className="text-sm text-white/55">
-            <span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-white/35">Aura</span>
+            <span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-white/60">Aura</span>
             {auraScore} flame score {auraActive ? "with your flame active" : ""}
           </p>
           {zone.school && (
             <p className="text-sm text-white/55">
-              <span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-white/35">Local Signal</span>
+              <span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-white/60">Local Signal</span>
               {zone.school}
             </p>
           )}
           {zone.footballClub && (
             <p className="text-sm text-white/55">
-              <span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-white/35">Club Signal</span>
+              <span className="block text-[10px] font-bold uppercase tracking-[0.16em] text-white/60">Club Signal</span>
               {zone.footballClub}
             </p>
           )}
@@ -458,7 +458,7 @@ export default function Page() {
               ))}
             </div>
 
-            <p className="text-sm text-white/35 mt-2">
+            <p className="text-sm text-white/60 mt-2">
               Showing {filtered.length} zone{filtered.length !== 1 ? "s" : ""}
             </p>
           </MotionSection>
