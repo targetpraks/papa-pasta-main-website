@@ -1,557 +1,214 @@
 ---
-version: alpha
+version: v2
 name: Papa Pasta
 description: |
-  The design system for Papa Pasta — a South African fresh-pasta QSR brand.
-  Rooted in a premium black-and-gold heritage aesthetic with a modern,
-  playful Living Crest identity system. Every store gets its own colour
-  crest, but the brand foundation is always black, gold, and cream.
+  The design system for Papa Pasta — South Africa's first nationwide fresh-pasta
+  QSR brand. A black-and-white base that pops and shifts with colour: five-plus
+  neon accents rotate across the interface as a deliberate brand signature. This
+  is the "Living Crest" energy expressed digitally — high-craft food, cyber-bright
+  presentation. This document is canonical; it supersedes the earlier
+  heritage gold/cream system.
 
 colors:
-  primary: "#0a0a0a"
-  primary-90: "#141414"
-  primary-80: "#1a1a1a"
-  primary-70: "#262626"
-  primary-60: "#333333"
-  primary-50: "#444444"
-  primary-40: "#666666"
-  primary-30: "#888888"
-  primary-20: "#b3b3b3"
-  primary-10: "#e6e6e6"
-  primary-05: "#f2f2f2"
+  # ── Base: warm black + white + grey scale ───────────────────────────
+  black:           "#0a0a0a"   # brand black (never pure #000)
+  black-deep:      "#050505"   # deepest hero base
+  black-elevated:  "#141414"
+  black-light:     "#1a1a1a"   # cards / elevated dark surfaces
+  grey-60:         "#333333"
+  grey-40:         "#666666"
+  grey-30:         "#888888"
+  grey-20:         "#b3b3b3"
+  grey-10:         "#e6e6e6"
+  grey-05:         "#f2f2f2"
+  white:           "#ffffff"
 
-  secondary: "#d4af37"
-  secondary-light: "#f0d878"
-  secondary-dark: "#b8982e"
-  secondary-50: "#e8d491"
-  secondary-20: "#f7efcf"
+  # ── Neon accent spectrum (rotating, per-surface) ────────────────────
+  neon-cyan:       "#00ffff"
+  neon-pink:       "#ff00ff"
+  neon-hot-pink:   "#ff0080"
+  neon-lime:       "#39ff14"
+  neon-orange:     "#ff4500"
+  neon-orange-2:   "#ff5f1f"   # "appetite orange" (menu)
+  neon-violet:     "#bf00ff"
+  neon-blue:       "#0080ff"   # electric blue (locations)
+  neon-gold:       "#ffd700"   # loyalty
+  neon-yellow:     "#ffff00"
+  neon-silver:     "#f8fafc"
 
-  tertiary: "#faf7f0"
-  tertiary-dark: "#f0ebe0"
-  tertiary-90: "#f5f0e6"
-  tertiary-80: "#ede7db"
+  # ── Semantic ────────────────────────────────────────────────────────
+  error:           "#b8422e"
+  success:         "#2d6a4f"
+  warning:         "#d4a017"
+  info:            "#3a6ea5"
 
-  neutral: "#ffffff"
-  neutral-90: "#f7f7f7"
-  neutral-80: "#f0f0f0"
-  neutral-70: "#e6e6e6"
-
-  surface: "#faf7f0"
-  surface-dark: "#050505"
-  surface-elevated: "#ffffff"
+  # ── Surfaces / on-colour ────────────────────────────────────────────
+  surface-dark:        "#050505"
   surface-elevated-dark: "#1a1a1a"
-
-  on-primary: "#ffffff"
-  on-secondary: "#0a0a0a"
-  on-tertiary: "#0a0a0a"
-  on-surface: "#0a0a0a"
-  on-surface-dark: "#faf7f0"
-
-  error: "#b8422e"
-  error-light: "#e07a5f"
-  error-dark: "#8a3122"
-
-  success: "#2d6a4f"
-  success-light: "#52b788"
-  success-dark: "#1b4332"
-
-  warning: "#d4a017"
-  warning-light: "#e6c35c"
-
-  info: "#3a6ea5"
-  info-light: "#6b9bd2"
+  on-dark:             "#ffffff"
 
 typography:
-  headline-display:
-    fontFamily: "Playfair Display"
-    fontSize: 72px
-    fontWeight: 700
-    lineHeight: 1.05
-    letterSpacing: -0.02em
-  headline-lg:
-    fontFamily: "Playfair Display"
-    fontSize: 48px
-    fontWeight: 700
-    lineHeight: 1.1
-    letterSpacing: -0.02em
-  headline-md:
-    fontFamily: "Playfair Display"
-    fontSize: 36px
-    fontWeight: 600
-    lineHeight: 1.2
-    letterSpacing: -0.01em
-  headline-sm:
-    fontFamily: "Playfair Display"
-    fontSize: 28px
-    fontWeight: 600
-    lineHeight: 1.3
-    letterSpacing: -0.01em
-  headline-xs:
-    fontFamily: "Playfair Display"
-    fontSize: 22px
-    fontWeight: 600
-    lineHeight: 1.4
-  body-lg:
-    fontFamily: "Inter"
-    fontSize: 20px
-    fontWeight: 400
-    lineHeight: 1.7
-    letterSpacing: 0em
-  body-md:
-    fontFamily: "Inter"
-    fontSize: 16px
-    fontWeight: 400
-    lineHeight: 1.65
-    letterSpacing: 0em
-  body-sm:
-    fontFamily: "Inter"
-    fontSize: 14px
-    fontWeight: 400
-    lineHeight: 1.6
-    letterSpacing: 0em
-  body-xs:
-    fontFamily: "Inter"
-    fontSize: 12px
-    fontWeight: 400
-    lineHeight: 1.5
-  label-lg:
-    fontFamily: "Inter"
-    fontSize: 12px
-    fontWeight: 600
-    lineHeight: 1
-    letterSpacing: 0.2em
-    fontFeature: "'smcp', 'c2sc'"
-  label-md:
-    fontFamily: "Inter"
-    fontSize: 11px
-    fontWeight: 500
-    lineHeight: 1
-    letterSpacing: 0.15em
-  label-sm:
-    fontFamily: "Inter"
-    fontSize: 10px
-    fontWeight: 500
-    lineHeight: 1
-    letterSpacing: 0.12em
-  label-xs:
-    fontFamily: "Inter"
-    fontSize: 9px
-    fontWeight: 500
-    lineHeight: 1
-    letterSpacing: 0.1em
+  display:  { fontFamily: "Playfair Display", weight: 700, tracking: "-0.02em" }
+  heading:  { fontFamily: "Playfair Display", weight: "600–700" }
+  body:     { fontFamily: "Inter", weight: "400–600", lineHeight: 1.6 }
+  label-lg: { fontFamily: "Inter", fontSize: 12px, weight: 600, tracking: "0.2em",  transform: uppercase }
+  label-md: { fontFamily: "Inter", fontSize: 11px, weight: 500, tracking: "0.15em", transform: uppercase }
+  label-sm: { fontFamily: "Inter", fontSize: 10px, weight: 500, tracking: "0.12em", transform: uppercase }
+  label-xs: { fontFamily: "Inter", fontSize: 9px,  weight: 500, tracking: "0.1em",  transform: uppercase }
 
-rounded:
-  none: 0px
-  sm: 4px
-  md: 8px
-  lg: 12px
-  xl: 16px
-  2xl: 24px
-  full: 9999px
+rounded: { sm: 4px, md: 8px, lg: 12px, xl: 16px, 2xl: 24px, full: 9999px }
 
-spacing:
-  base: 16px
-  xs: 4px
-  sm: 8px
-  md: 16px
-  lg: 24px
-  xl: 32px
-  2xl: 48px
-  3xl: 64px
-  4xl: 96px
-  section-sm: 80px
-  section-md: 120px
-  section-lg: 160px
-  gutter: 24px
-  container-max: 1280px
-  container-narrow: 768px
-  container-wide: 1440px
-
-components:
-  button-primary:
-    backgroundColor: "{colors.secondary}"
-    textColor: "{colors.on-secondary}"
-    typography: "{typography.label-lg}"
-    rounded: "{rounded.md}"
-    padding: 14px
-  button-primary-hover:
-    backgroundColor: "{colors.secondary-light}"
-    textColor: "{colors.on-secondary}"
-  button-primary-active:
-    backgroundColor: "{colors.secondary-dark}"
-    textColor: "{colors.on-secondary}"
-    transform: "scale(0.98)"
-  button-secondary:
-    backgroundColor: "transparent"
-    textColor: "{colors.secondary}"
-    rounded: "{rounded.md}"
-    padding: 14px
-    border: "1px solid rgba(212,175,55,0.5)"
-  button-secondary-hover:
-    backgroundColor: "{colors.secondary}"
-    textColor: "{colors.on-secondary}"
-    border: "1px solid transparent"
-  button-ghost:
-    backgroundColor: "transparent"
-    textColor: "{colors.primary-60}"
-    rounded: "{rounded.md}"
-    padding: 14px
-  button-ghost-hover:
-    backgroundColor: "{colors.primary-05}"
-    textColor: "{colors.primary}"
-  card:
-    backgroundColor: "{colors.surface-elevated}"
-    rounded: "{rounded.2xl}"
-    padding: 24px
-    shadow: "0 1px 3px rgba(0,0,0,0.05)"
-  card-hover:
-    shadow: "0 20px 40px rgba(0,0,0,0.12)"
-    border: "1px solid rgba(212,175,55,0.15)"
-  card-dark:
-    backgroundColor: "{colors.surface-elevated-dark}"
-    border: "1px solid rgba(212,175,55,0.10)"
-  badge:
-    backgroundColor: "{colors.secondary-20}"
-    textColor: "{colors.secondary-dark}"
-    typography: "{typography.label-md}"
-    rounded: "{rounded.sm}"
-    padding: "6px 12px"
-  badge-success:
-    backgroundColor: "rgba(45,106,79,0.12)"
-    textColor: "{colors.success}"
-  badge-warning:
-    backgroundColor: "rgba(212,160,23,0.12)"
-    textColor: "{colors.warning}"
-  input:
-    backgroundColor: "{colors.neutral}"
-    textColor: "{colors.on-surface}"
-    rounded: "{rounded.md}"
-    padding: 16px
-    border: "1px solid {colors.primary-10}"
-  input-focus:
-    border: "1px solid {colors.secondary}"
-    shadow: "0 0 0 3px rgba(212,175,55,0.20)"
-  input-error:
-    border: "1px solid {colors.error}"
-    shadow: "0 0 0 3px rgba(184,66,46,0.15)"
-  nav-link:
-    typography: "{typography.label-md}"
-    textColor: "{colors.on-surface-dark}"
-  nav-link-hover:
-    textColor: "{colors.secondary}"
-    underline: "2px solid {colors.secondary}"
-  nav-link-active:
-    textColor: "{colors.secondary}"
-    underline: "2px solid {colors.secondary}"
-
+zIndex:
+  content: 10
+  elevated: 20
+  nav: 50
+  progress: 60
+  toast-cookie: 80
 ---
 
-# Papa Pasta Design System
+# Papa Pasta Design System (Neon / V2)
 
-## Overview
+## Core Principle
 
-Papa Pasta is a fresh, handmade pasta QSR (Quick Service Restaurant) brand born in Cape Town, South Africa, with ambitions to scale across all nine provinces. The design system must balance two seemingly contradictory ideas: **heritage gravitas** and **playful modernism**.
+**A black-and-white base that pops and shifts with colour.** Papa Pasta's digital
+identity is built on warm black (`#0a0a0a`) and white, over which a spectrum of
+neon accents rotates — per section, per navigation item, and over *time* (the
+homepage CTAs cycle their colour continuously). Colour-play is a deliberate brand
+signature, not decoration. The earlier heritage system (single gold accent, cream
+daylight sections, "one accent per screen") is retired; **multiple, shifting
+accents are the point.**
 
-The brand's visual identity is anchored by the Papa Pasta Crest — a shield-style badge featuring crossed fork and spoon, the tagline "Fresh · Seasonal · Quality", and an ornate classical frame. This crest signals tradition, craftsmanship, and premium quality. But the brand also operates the "Living Crest" system, where each franchisee gets a custom colour identity. This duality — classic structure with vibrant personal expression — is the core of the design philosophy.
+Think: a high-craft pasta kitchen shot under neon — the food is real and premium,
+the presentation is cyber-bright and alive.
 
-**Brand Personality:**
-- Warm, approachable, but never cheap
-- Proudly South African, with global-quality ambition
-- Craft-driven: "Fresh · Seasonal · Quality" is not a tagline, it's a promise
-- Youthful energy tempered by the weight of a real kitchen
+## Colour
 
-**Target Audience:**
-- Primary: Young professionals and families in urban South Africa seeking affordable, high-quality food
-- Secondary: Prospective franchisees evaluating a business opportunity
-- Tertiary: Food media, influencers, and event attendees
+### Base
+- **Black `#0a0a0a`** — the dominant surface. Warm, never pure `#000000`; photographs
+  better and is kinder on OLED.
+- **Deep `#050505`** — hero and deepest sections.
+- **Elevated `#141414` / Card `#1a1a1a`** — raised dark surfaces, cards, nav on scroll.
+- **White `#ffffff`** — primary text and light-section surfaces.
+- **Grey scale `#333`→`#f2f2f2`** — borders, dividers, muted UI. Note the contrast
+  floor below before using grey (or white-at-opacity) for text.
 
-**Emotional Response:**
-The UI should feel like walking into a well-designed, modern pasta bar: clean, confident, appetising. Dark sections evoke the intimacy of evening dining. Gold accents trigger premium associations without pretension. Cream sections feel like daylight, fresh ingredients, and open kitchens.
+### Neon accent spectrum (rotating)
+Cyan `#00ffff` · Pink `#ff00ff` · Hot-pink `#ff0080` · Lime `#39ff14` ·
+Orange `#ff4500` / `#ff5f1f` · Violet `#bf00ff` · Electric-blue `#0080ff` ·
+Gold `#ffd700` · Yellow `#ffff00` · Silver `#f8fafc`.
 
-## Colors
+Accents are applied as **glow** (text-shadow / box-shadow), **borders**, and **fills**,
+never as flat washes. Multiple accents may appear on one screen — that is the
+signature, not a violation.
 
-The palette is built on three foundational colours — ink, gold, and cream — with an extended scale for nuanced UI expression.
+### Per-surface accent conventions
+Navigation and key journeys carry a stable per-item accent so the palette reads as
+a system rather than noise:
 
-### Primary: Ink
-The primary palette is a deep, warm black that avoids the coldness of pure `#000000`. It carries just enough warmth to feel organic rather than mechanical.
+| Surface | Accent |
+|---|---|
+| Home | cyan `#00ffff` |
+| Menu | orange `#ff5f1f` |
+| Locations | electric-blue `#0080ff` |
+| Merch | violet `#bf00ff` |
+| Loyalty | gold `#ffd700` |
+| Drops | lime `#39ff14` |
+| Story | silver `#f8fafc` |
+| Franchise | hot-pink `#ff0080` |
 
-- **Primary (#0a0a0a):** The brand black. Used for hero backgrounds, deep sections, primary text on light surfaces, and the dominant visual weight of the crest logo. This is not pure black — it has a subtle warmth that photographs better and feels less harsh on OLED screens.
-- **Primary-80 (#1a1a1a):** Elevated dark surface. Cards, nav backgrounds, footer base.
-- **Primary-60 (#333333):** Charcoal. Body text on light surfaces.
-- **Primary-30 (#888888):** Muted text, disabled states, captions, metadata.
-- **Primary-10 (#e6e6e6):** Borders, dividers, very subtle backgrounds.
-
-### Secondary: Crest Gold
-Gold is the sole accent colour and the only colour used for interaction. This restraint ensures maximum impact when gold appears — the eye is trained to follow it.
-
-- **Secondary (#d4af37):** The brand gold. All primary CTAs, active states, key headings emphasis, the scroll progress bar, and the gradient text effect. Named "Crest Gold" to tie it to the shield logo.
-- **Secondary-Light (#f0d878):** Hover states, lighter gold accents, shimmer animation end-stops. Provides a palpable glow.
-- **Secondary-Dark (#b8982e):** Badges, tags, and secondary gold contexts where the main gold would be too bright against dark backgrounds.
-
-### Tertiary: Kitchen Cream
-The tertiary palette is a warm off-white with a subtle yellow undertone, evoking fresh dough, aged parmesan, and flour.
-
-- **Tertiary (#faf7f0):** The primary page background. Softer and more appetising than pure white.
-- **Tertiary-Dark (#f0ebe0):** Alternate section background, slightly deeper for section separation.
-- **Tertiary-80 (#ede7db):** Card backgrounds on cream sections when white would be too stark.
-
-### Semantic Colours
-Functional colours for feedback and status.
-
-- **Error (#b8422e):** A rich terracotta red for form errors, validation messages, and "coming soon" / unavailable indicators. Chosen for warmth over the typical cold red.
-- **Success (#2d6a4f):** A deep sage green for "open now" badges, form success states, and positive confirmation.
-- **Warning (#d4a017):** A warm amber for alerts, notices, and medium-priority status.
-- **Info (#3a6ea5):** A muted steel blue for informational callouts and links in editorial contexts.
-
-### Surface Model
-The surface model defines how layers stack:
-
-- **Surface** (#faf7f0): Base layer for light sections.
-- **Surface Dark** (#050505): Deepest dark layer for hero sections.
-- **Surface Elevated** (#ffffff): Cards, modals, popovers on light sections.
-- **Surface Elevated Dark** (#1a1a1a): Cards, interactive panels on dark sections.
-
-### On-Colour Pairings
-Text and icon colours guaranteed to pass WCAG AA on their corresponding surfaces:
-
-- **On Primary** (#ffffff): White text on black backgrounds. Contrast ratio 19.5:1.
-- **On Secondary** (#0a0a0a): Black text on gold backgrounds. Contrast ratio 7.8:1.
-- **On Tertiary** (#0a0a0a): Black text on cream backgrounds. Contrast ratio 15.2:1.
-- **On Surface** (#0a0a0a): Black text on white surfaces. Contrast ratio 19.5:1.
-- **On Surface Dark** (#faf7f0): Cream text on dark surfaces. Contrast ratio 15.2:1.
+### Semantic
+Error `#b8422e` · Success `#2d6a4f` · Warning `#d4a017` · Info `#3a6ea5` — reserved
+for status/feedback, kept muted so they never compete with the neon accents.
 
 ## Typography
 
-The typography system pairs a **high-contrast serif/sans hierarchy**. This is a deliberate tension: the serif (Playfair Display) carries the heritage, authority, and emotional weight of the brand, while the sans-serif (Inter) handles all functional, informational, and UI text with quiet efficiency.
+Retained from the brand foundation — the serif/sans tension carries craft + clarity.
 
-### Headlines: Playfair Display
-Used for all headings, pull quotes, and any text that needs to feel "written" rather than "displayed". The high stroke contrast of Playfair echoes the fine lines of the crest logo.
+- **Playfair Display** — all display and headings. High stroke contrast echoes the
+  crest's fine lines. Never below 22px.
+- **Inter** — all body, UI, and labels. Never used for headlines above 28px.
+- **Labels** (`label-lg`→`label-xs`) — uppercase, tracked Inter. The "restaurant-menu"
+  rhythm: section identifiers, nav items, badges, CTAs. Use a label token rather than
+  manually uppercasing body text.
 
-- **Headline Display** (72px, 700, -0.02em): Hero headlines only. Maximum 2 lines.
-- **Headline LG** (48px, 700, -0.02em): Page titles, major section headings.
-- **Headline MD** (36px, 600, -0.01em): Sub-section headings, feature titles.
-- **Headline SM** (28px, 600): Card titles, tertiary headings.
-- **Headline XS** (22px, 600): Small headings, footer headings, narrow-column titles.
+## Glow & Elevation
 
-### Body: Inter
-Inter is used for every piece of running text, UI label, form element, and navigation item. Its neutrality ensures the serif headlines dominate without competition.
+Depth on the dark base comes from **neon glow and tonal layering**, not drop shadows.
 
-- **Body LG** (20px, 400): Hero descriptions, introductory paragraphs, pull quotes.
-- **Body MD** (16px, 400): Standard body text, form inputs, descriptions.
-- **Body SM** (14px, 400): Captions, metadata, card excerpts, secondary information.
-- **Body XS** (12px, 400): Legal text, timestamps, fine print.
+- **Text glow (hover / focus):**
+  `text-shadow: 0 0 8px {accent}80, 0 0 20px {accent}40`.
+- **Element glow:** stacked accent box-shadows, e.g.
+  `0 0 12px {accent}60` (rest) → `0 0 20px {accent}80, 0 0 40px {accent}40` (hover),
+  and inset variants `inset 0 0 34px {accent}18` for card interiors.
+- **Chromatic aberration** — the hero crest splits into cyan/pink via layered
+  `drop-shadow` filters on a single image (an LCP-friendly replacement for stacked
+  coloured copies).
 
-### Labels: Inter (Uppercase, Tracked)
-Labels are the most distinctive typographic element. All labels, badges, nav items, category filters, and metadata use uppercase Inter with generous letter-spacing. This creates a "restaurant menu" typographic rhythm.
+## Motion & the Reduced-Motion Contract
 
-- **Label LG** (12px, 600, 0.2em): Section labels ("THE MENU", "OUR STORY"), CTA buttons, major badges.
-- **Label MD** (11px, 500, 0.15em): Nav links, card tags, minor badges.
-- **Label SM** (10px, 500, 0.12em): Metadata, timestamps, fine badges.
-- **Label XS** (9px, 500, 0.1em): Tiny labels, table headers.
+Motion is lush by default: glitch logos, matrix "code rain," continuously rotating
+CTA colours, staggered reveals.
 
-### Type Pairing Rules
-- Never use Playfair Display below 22px — it becomes illegible at small sizes.
-- Never use Inter for headlines above 28px — it lacks the character weight.
-- All uppercase text must use a label token (never manually uppercase body text).
-- Line length for body text should not exceed 65 characters. Use `max-w-prose` (65ch) for long-form content.
+**Under `prefers-reduced-motion: reduce`, motion freezes but COLOUR IS RETAINED.**
+This is a hard rule, implemented two ways:
+1. **CSS** — a global block neutralises animations/transitions and hides the
+   decorative rain/tears (`globals.css`), leaving a static, still-colourful frame.
+2. **JS** — timers that drive colour (e.g. the hero CTA rotation `setInterval`) check
+   `matchMedia('(prefers-reduced-motion: reduce)')` and, when set, **freeze on a
+   pre-picked vivid colour set** instead of cycling. Never remove the colour to
+   satisfy reduced-motion.
 
-## Layout
+## Accessibility
 
-### Grid & Container
-The layout follows a **Fluid-Max Grid**: fluid on mobile, capped at defined max-widths on larger screens.
+- **Contrast floor:** informational text must reach **≥ 4.5:1** on the black base.
+  Never use text below **`white/55`** (≈`#8c8c8c`, ~5:1) for anything that conveys
+  meaning. `white/40` and `white/30` are contrast failures — decorative only, if at all.
+- **Keyboard & touch parity:** interactive colour/glow states are driven by CSS
+  (`:hover` **and** `:focus-visible`) via the `.pp-neon-link` utility, which takes its
+  colour from an inline `--accent` custom property. Never drive interaction state from
+  `onMouseEnter`/`onMouseLeave` JS — that strands keyboard and touch users.
+- **Focus visibility:** every interactive element shows a visible `:focus-visible`
+  outline in its accent (2px, 2–3px offset).
+- **Semantics:** the cookie banner is a `role="dialog"`; icon-only controls carry
+  `aria-label`; the crest logo is decorative (`aria-hidden`) with an `sr-only` brand name.
 
-- **Container Max** (1280px): Default max-width for all page content. Centers with auto margins.
-- **Container Narrow** (768px): Blog posts, legal text, forms, and any long-form reading.
-- **Container Wide** (1440px): Hero sections, full-bleed imagery, gallery grids.
+## The `.pp-neon-link` Utility
 
-All containers use **24px horizontal gutters** on desktop, 16px on tablet, and 16px on mobile.
+The single source of truth for neon link/interaction states:
 
-### Spacing Scale
-A strict 8px-based spacing scale with a 4px sub-step for micro-adjustments.
+```css
+.pp-neon-link { --accent: #00ffff; color: rgb(255 255 255 / 0.65); }
+.pp-neon-link:hover,
+.pp-neon-link:focus-visible {
+  color: var(--accent);
+  text-shadow: 0 0 8px color-mix(in srgb, var(--accent) 50%, transparent),
+               0 0 20px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+.pp-neon-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+```
 
-| Token | Value | Common Usage |
-|-------|-------|------------|
-| xs | 4px | Icon gaps, micro-padding, 1px borders |
-| sm | 8px | Tight component internals, small gaps |
-| md | 16px | Card padding, form field gaps, standard gutters |
-| lg | 24px | Section internal padding, card margins |
-| xl | 32px | Component separation within sections |
-| 2xl | 48px | Between major blocks |
-| 3xl | 64px | Between unrelated sections |
-| 4xl | 96px | Major page breaks |
-| section-sm | 80px | Standard section vertical padding (mobile) |
-| section-md | 120px | Standard section vertical padding (desktop) |
-| section-lg | 160px | Hero sections, premium spacing moments |
+Consumers set the colour per instance: `style={{ "--accent": "#39ff14" }}`.
 
-### Responsive Breakpoints
-- **Mobile First**: Base styles for < 640px.
-- **sm** (640px): Minor layout shifts.
-- **md** (768px): 2-column grids appear, nav switches to desktop.
-- **lg** (1024px): 3-column grids, major layout changes.
-- **xl** (1280px): Full desktop expression, max-widths cap.
+## Z-Index Scale
 
-### Z-Index Scale
-| Layer | Z-Index | Usage |
-|-------|---------|-------|
-| Background | 0 | Base images, decorative elements |
-| Content | 10 | Standard page content |
-| Elevated | 20 | Cards, floating elements |
-| Navigation | 50 | Fixed header, nav overlay |
-| Progress Bar | 60 | Scroll progress indicator |
-| Modal/Overlay | 70 | Mobile menu, modals |
-| Toast/Notification | 80 | Alerts, notifications |
+Content `10` · Elevated `20` · Nav `50` · Scroll progress `60` · Toast/Cookie `80`.
+The cookie dialog sits on the toast tier so it clears the fixed nav.
 
-## Elevation & Depth
+## Shapes & Spacing
 
-Depth is achieved through **Tonal Contrast and Shadows**, never through heavy gradients or drop-shadows alone.
-
-### Shadow System
-The shadow system is deliberately restrained. Papa Pasta surfaces are flat and confident.
-
-- **Shadow SM** (cards at rest): `0 1px 3px rgba(0,0,0,0.05)` — barely perceptible, just enough to lift a card from its surface.
-- **Shadow MD** (hovered cards): `0 4px 12px rgba(0,0,0,0.08)` — clear lift on interaction.
-- **Shadow LG** (modals, overlays): `0 20px 40px rgba(0,0,0,0.12)` — dramatic separation for elevated panels.
-- **Shadow Gold** (CTA focus): `0 0 24px rgba(212,175,55,0.5), 0 0 48px rgba(212,175,55,0.15)` — warm glow for interactive focus states.
-
-### Dark Section Treatment
-Dark sections (hero, footer, brand story) do not use gradients as backgrounds. Instead, they use:
-1. A near-black base (`#0a0a0a` or `#050505`).
-2. A subtle radial gold glow at key focal points (`radial-gradient(ellipse_at_center, rgba(212,175,55,0.08)_0%, transparent_70%)`).
-3. Low-opacity image overlays (max 40% opacity) with a gradient scrim from bottom to ensure text legibility.
-
-### Light Section Treatment
-Light sections use tonal layering:
-1. Base: `#faf7f0` (cream).
-2. Elevated cards: `#ffffff` (pure white) for maximum contrast.
-3. Alternate sections: `#f0ebe0` (tertiary-dark) for subtle section separation without heavy borders.
-
-## Shapes
-
-### Corner Radius
-The shape language is **"Modern Heritage"** — rounded enough to feel contemporary, but restrained enough to respect the classical lines of the crest logo.
-
-| Token | Value | Usage |
-|-------|-------|-------|
-| sm | 4px | Buttons, badges, small inputs |
-| md | 8px | Standard cards, form fields, images |
-| lg | 12px | Feature cards, larger images |
-| xl | 16px | Modal panels, major cards |
-| 2xl | 24px | Hero images, section containers |
-| full | 9999px | Pills, avatars, circular elements |
-
-### Shape Rules
-- Never use `rounded-full` on rectangular elements (it looks like a pill, not a card).
-- Images should always have a consistent radius within a section. Do not mix `rounded-md` and `rounded-2xl` images in the same grid.
-- The crest logo is a complex shape. It should never be forced into a circular mask or rounded container. Display it at its natural aspect ratio with transparent background.
-
-## Components
-
-### Buttons
-Buttons are the most critical interactive element. All buttons use the label-lg typography token (uppercase, tracked) for a menu-like authority.
-
-**Primary Button:**
-- Background: Crest Gold (#d4af37).
-- Text: Ink black (#0a0a0a).
-- Padding: 14px horizontal, 14px vertical.
-- Radius: 8px (md).
-- Hover: Light Gold (#f0d878) with a warm glow shadow.
-- Active: Dark Gold (#b8982e) with a 98% scale transform.
-- Focus: 3px gold ring with 20% opacity.
-
-**Secondary Button:**
-- Background: Transparent.
-- Border: 1px solid rgba(212,175,55,0.5).
-- Text: Crest Gold (#d4af37).
-- Hover: Fills with Crest Gold, text turns black. The fill animates from left to right.
-
-**Ghost Button:**
-- Background: Transparent.
-- Text: Charcoal (#333333).
-- Hover: Very light grey background (#f2f2f2).
-- Used for tertiary actions and text links.
-
-### Cards
-Cards are the primary content container. They must feel solid and appetising.
-
-**Standard Card (Light):**
-- Background: White (#ffffff).
-- Radius: 24px (2xl).
-- Shadow: 0 1px 3px rgba(0,0,0,0.05).
-- Padding: 24px (lg).
-- Border: 1px solid rgba(0,0,0,0.05).
-- Hover: Shadow increases to LG, a subtle gold border appears (1px solid rgba(212,175,55,0.15)), image scales to 110%.
-
-**Dark Card:**
-- Background: #1a1a1a.
-- Border: 1px solid rgba(212,175,55,0.10).
-- Hover: Gold border intensifies to 25% opacity, shadow increases.
-
-**Image Card:**
-- Image aspect ratio must be consistent within a grid. Common ratios: 4/3 (dishes), 16/10 (blog/events), 1/1 (gallery).
-- Images must have `object-fit: cover` and overflow hidden to enable hover zoom.
-- No border radius on the image if it fills the entire card — the card's radius clips it.
-
-### Badges
-Badges are compact status indicators using the label-md token.
-
-**Default Badge:**
-- Background: Light gold (#f7efcf).
-- Text: Dark gold (#b8982e).
-- Radius: 4px (sm).
-- Padding: 6px 12px.
-
-**Success Badge (Open Now):**
-- Background: rgba(45,106,79,0.12).
-- Text: Sage green (#2d6a4f).
-
-**Warning Badge (Coming Soon):**
-- Background: rgba(212,160,23,0.12).
-- Text: Amber (#d4a017).
-
-**Error Badge (Unavailable):**
-- Background: rgba(184,66,46,0.12).
-- Text: Terracotta (#b8422e).
-
-### Input Fields
-Form inputs must feel precise and premium, like a reservation form at a quality restaurant.
-
-**Standard Input:**
-- Background: White (#ffffff).
-- Border: 1px solid #e6e6e6 (primary-10).
-- Radius: 8px (md).
-- Padding: 16px.
-- Text: 16px Inter.
-- Placeholder: #888888 (primary-30).
-- Focus: Border turns Crest Gold, 3px gold glow ring.
-
-**Error Input:**
-- Border: 1px solid #b8422e (error).
-- Focus ring: 3px rgba(184,66,46,0.15).
-
-**Textarea:**
-- Same as input but min-height: 120px.
-
-### Navigation Links
-Nav links use the label-md token for consistency with the menu aesthetic.
-
-- Default: Cream/70% opacity on dark backgrounds.
-- Hover: Crest Gold with a 2px gold underline that expands from center.
-- Active: Crest Gold with persistent 2px underline.
-- Mobile: Full-screen overlay with staggered link reveal animation.
+- **Radius:** sm `4px` (buttons/badges) · md `8px` (cards/inputs) · lg `12px` ·
+  xl `16px` · 2xl `24px` · full `9999px` (pills/avatars only — never on rectangles).
+- **Spacing:** 8px base scale (`4,8,12,16,24,32,48,64,96`), section padding
+  `80px` (mobile) → `120px` (desktop). Containers cap at `1280px` (standard) /
+  `1440px` (wide) / `768px` (long-form reading).
 
 ## Do's and Don'ts
 
-- **Do** use Crest Gold for exactly one primary action per screen. If there are multiple actions, only the most important gets gold.
-- **Do** maintain generous whitespace. The brand is confident, not cramped. Minimum 120px between major sections on desktop.
-- **Do** use the crest logo at its natural aspect ratio. Never crop it into a circle or square mask.
-- **Do** provide `prefers-reduced-motion` fallbacks for all Framer Motion animations. Respect the user's system preference.
-- **Do** ensure all text on dark backgrounds uses On-Surface-Dark (#faf7f0) or On-Primary (#ffffff). Never use primary-30 (#888888) as the main body text on dark — it fails contrast.
-- **Do** use uppercase labels for section identifiers ("THE MENU", "OUR STORY"). Never uppercase body text for readability.
-
-- **Don't** use pure black (#000000). The brand black is #0a0a0a.
-- **Don't** use more than one accent colour on a single screen. Gold is the only interaction colour.
-- **Don't** use Playfair Display for body text or UI labels below 22px. It becomes illegible.
-- **Don't** use `rounded-full` on cards or rectangular images. Pills are for buttons and badges only.
-- **Don't** place the black-line crest logo directly on dark backgrounds without a white/light version.
-- **Don't** animate scroll-jacking or parallax on mobile. It creates disorientation and performance issues.
-- **Don't** use gradients as the primary background of a section. Gradients are reserved for text effects (gold gradient) and subtle radial glows only.
+- **Do** let multiple neon accents share a screen — it is the signature.
+- **Do** express colour on a black/white base; reach for glow, not flat fills.
+- **Do** keep colour under reduced-motion; only motion is removed.
+- **Do** hold informational text at `white/55`+ and give every control a visible focus ring.
+- **Don't** use pure black `#000000` — the brand black is `#0a0a0a`.
+- **Don't** drive hover/interaction from JS mouse handlers — use `.pp-neon-link`.
+- **Don't** use Playfair below 22px, or Inter for headings above 28px.
+- **Don't** put neon accents on light sections as low-contrast text — verify the floor.
