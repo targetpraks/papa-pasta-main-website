@@ -568,31 +568,18 @@ img.img-cyber-hover:hover {
   position: relative;
   z-index: 3;
   opacity: 0.92;
+  /* Chromatic aberration — replaces the former per-colour <img> layers with
+     a single-image RGB split, cutting decode work on the LCP element. */
+  filter:
+    drop-shadow(-2px 0 0 color-mix(in srgb, var(--color-pp-neon-cyan) 85%, transparent))
+    drop-shadow(2px 0 0 color-mix(in srgb, var(--color-pp-neon-pink) 85%, transparent));
   animation: hero-logo-white-flicker 3.2s steps(2, end) infinite;
 }
 
-.hero-logo-img-cyan,
-.hero-logo-img-magenta,
-.hero-logo-img-lime {
-  z-index: 2;
-  mix-blend-mode: screen;
-  opacity: 0.72;
-}
-
-.hero-logo-img-cyan {
-  filter: brightness(0) saturate(100%) invert(100%) sepia(96%) saturate(3200%) hue-rotate(101deg) brightness(105%) contrast(115%);
-  animation: hero-logo-glitch-cyan 1.05s steps(2, end) infinite;
-}
-
-.hero-logo-img-magenta {
-  filter: brightness(0) saturate(100%) invert(30%) sepia(98%) saturate(4600%) hue-rotate(292deg) brightness(118%) contrast(120%);
-  animation: hero-logo-glitch-magenta 0.92s steps(2, end) infinite;
-}
-
-.hero-logo-img-lime {
-  filter: brightness(0) saturate(100%) invert(89%) sepia(84%) saturate(1263%) hue-rotate(53deg) brightness(105%) contrast(109%);
-  opacity: 0.36;
-  animation: hero-logo-glitch-lime 1.45s steps(3, end) infinite;
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo-img-main {
+    animation: none;
+  }
 }
 
 .hero-logo-glitch::before,

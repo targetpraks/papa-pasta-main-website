@@ -66,6 +66,13 @@ function Hero() {
   ];
 
   useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mq.matches) {
+      // Colour is the brand — keep a vivid pop, drop only the motion.
+      setHeroCtaColors([1, 3, 4]); // pink / violet / yellow
+      return;
+    }
+
     const interval = window.setInterval(() => {
       setHeroCtaColors((current) => pickHeroCtaColors(current));
     }, 1400);
@@ -136,30 +143,7 @@ function Hero() {
             className="hero-logo-img hero-logo-img-main"
             width={1080}
             height={1391}
-          />
-          <Image
-            src="/images/logo-crest-white.png"
-            alt=""
-            aria-hidden="true"
-            className="hero-logo-img hero-logo-img-cyan"
-            width={1080}
-            height={1391}
-          />
-          <Image
-            src="/images/logo-crest-white.png"
-            alt=""
-            aria-hidden="true"
-            className="hero-logo-img hero-logo-img-magenta"
-            width={1080}
-            height={1391}
-          />
-          <Image
-            src="/images/logo-crest-white.png"
-            alt=""
-            aria-hidden="true"
-            className="hero-logo-img hero-logo-img-lime"
-            width={1080}
-            height={1391}
+            priority
           />
           <span className="hero-logo-scanline" aria-hidden="true" />
         </motion.h1>
