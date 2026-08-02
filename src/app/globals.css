@@ -388,6 +388,26 @@ img.img-cyber-hover:hover {
   transform: scale(0.98);
 }
 
+/* Neon link — CSS-driven hover/focus, keyboard + touch parity.
+   Consumers set the accent via inline style: style={{ "--accent": "#00ffff" }} */
+.pp-neon-link {
+  --accent: #00ffff;
+  color: rgb(255 255 255 / 0.65);
+  transition: color 0.3s ease, text-shadow 0.3s ease, padding-left 0.3s ease;
+}
+.pp-neon-link:hover,
+.pp-neon-link:focus-visible {
+  color: var(--accent);
+  text-shadow:
+    0 0 8px color-mix(in srgb, var(--accent) 50%, transparent),
+    0 0 20px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+.pp-neon-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 .hero-cta-primary,
 .hero-cta-secondary {
   --hero-cta-accent: var(--color-pp-neon-cyan);
@@ -990,6 +1010,13 @@ img.img-cyber-hover:hover {
   .btn-neon::before,
   .btn-neon-outline::before {
     display: none;
+  }
+  .hero-decay-rain,
+  .hero-decay-tears {
+    display: none;
+  }
+  .hero-decay-static {
+    opacity: 0.5;
   }
 }
 
