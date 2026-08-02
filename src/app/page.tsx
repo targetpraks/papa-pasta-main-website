@@ -261,6 +261,51 @@ function JourneySwitchboard() {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
+   CONVERSION BAND — third act so the homepage resolves into an action
+   ───────────────────────────────────────────────────────────────────────────── */
+function ConversionBand() {
+  const cards = [
+    { href: "/drops/", label: "Latest Drops", desc: "New store launches, capsule collections, and collab merch — the moment they go live.", cta: "See the drops", accent: "#39ff14" },
+    { href: "/loyalty/", label: "Join Loyalty", desc: "Birthday pasta, early access to drops, and store-launch invites. Free to join.", cta: "Get rewards", accent: "#ffd700" },
+  ];
+
+  return (
+    <section className="bg-black text-white py-16 sm:py-20 border-b border-white/10 hero-grid-bg">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p className="text-label-md uppercase tracking-label-md text-white/55 mb-8 text-center">
+          Don&apos;t miss the next one
+        </p>
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-5" staggerDelay={0.08}>
+          {cards.map((c) => (
+            <motion.div key={c.href} variants={staggerChildScale}>
+              <Link
+                href={c.href}
+                className="group relative flex h-full flex-col justify-between overflow-hidden rounded-lg border-2 bg-black p-8 min-h-[200px] transition-transform duration-300 hover:-translate-y-1"
+                style={{
+                  borderColor: `${c.accent}70`,
+                  boxShadow: `inset 0 0 34px ${c.accent}18, 0 0 34px ${c.accent}30`,
+                }}
+              >
+                <div>
+                  <h2 className="font-serif text-2xl font-bold mb-3">{c.label}</h2>
+                  <p className="text-sm leading-relaxed text-white/70 max-w-sm">{c.desc}</p>
+                </div>
+                <span
+                  className="pp-neon-link mt-6 inline-flex items-center gap-2 text-label-md uppercase tracking-label-md"
+                  style={{ "--accent": c.accent } as CSSProperties}
+                >
+                  {c.cta} →
+                </span>
+              </Link>
+            </motion.div>
+          ))}
+        </StaggerContainer>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
    HOME PAGE
    ───────────────────────────────────────────────────────────────────────────── */
 export default function HomePage() {
@@ -268,6 +313,7 @@ export default function HomePage() {
     <>
       <Hero />
       <JourneySwitchboard />
+      <ConversionBand />
     </>
   );
 }
