@@ -1,12 +1,12 @@
 import { getAllSlugs } from "../../lib/blog";
-import BlogPostClient from "./BlogPostClient";
+import PostRedirect from "../../components/PostRedirect";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
 }
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function LegacyBlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
 
-  return <BlogPostClient slug={slug} />;
+  return <PostRedirect slug={slug} />;
 }

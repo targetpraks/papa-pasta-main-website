@@ -1,12 +1,12 @@
-import { getAllSlugs } from "../../lib/blog";
-import BlogPostClient from "../../blog/[slug]/BlogPostClient";
+import { getDropsSlugs } from "../../lib/blog";
+import PostArticle from "../../components/PostArticle";
 
 export function generateStaticParams() {
-  return getAllSlugs().map((slug) => ({ slug }));
+  return getDropsSlugs().map((slug) => ({ slug }));
 }
 
 export default async function DropPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
 
-  return <BlogPostClient slug={slug} />;
+  return <PostArticle slug={slug} />;
 }
