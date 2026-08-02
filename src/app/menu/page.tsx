@@ -47,7 +47,7 @@ export default function MenuPage() {
             <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-orange-300">Food Filters</p>
-                <p className="mt-1 text-sm text-white/45">
+                <p className="mt-1 text-sm text-white/65">
                   Filter by sauce family, protein, cheese, heat level, and dietary style.
                 </p>
               </div>
@@ -56,7 +56,7 @@ export default function MenuPage() {
                 className={`w-fit rounded-sm border px-4 py-2 text-[10px] font-bold uppercase tracking-[0.16em] transition-all ${
                   hasActiveFacets
                     ? "border-orange-300 text-orange-300 hover:bg-orange-300 hover:text-black hover:shadow-[0_0_28px_rgba(255,95,31,0.42)]"
-                    : "border-white/10 text-white/25"
+                    : "border-white/10 text-white/40"
                 }`}
                 disabled={!hasActiveFacets}
               >
@@ -67,7 +67,7 @@ export default function MenuPage() {
             <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
               {menuFacetGroups.map((group) => (
                 <div key={group.key}>
-                  <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white/35">{group.label}</p>
+                  <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white/65">{group.label}</p>
                   <div className="flex flex-wrap gap-2">
                     {group.options.map((option) => {
                       const isSelected = facets[group.key] === option;
@@ -87,7 +87,7 @@ export default function MenuPage() {
               ))}
             </div>
 
-            <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.14em] text-white/35">
+            <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.14em] text-white/65">
               Showing <span className="text-orange-300">{filtered.length}</span> of {menuDishes.length} dishes
             </p>
           </MotionSection>
@@ -105,7 +105,7 @@ export default function MenuPage() {
                   </div>
                   <div className="p-6">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-0.5 rounded bg-white/5 text-white/45 border border-white/15">{d.category}</span>
+                      <span className="text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-0.5 rounded bg-white/5 text-white/65 border border-white/15">{d.category}</span>
                       {d.tag && (
                         <span className="text-[10px] font-bold uppercase tracking-[0.15em] px-2 py-0.5 rounded bg-orange-400/10 text-orange-300 border border-orange-300/35">{d.tag}</span>
                       )}
@@ -114,10 +114,10 @@ export default function MenuPage() {
                       <h3 className="font-serif text-lg font-semibold text-white">{d.name}</h3>
                       <span className="font-bold text-orange-300 drop-shadow-[0_0_12px_rgba(255,95,31,0.55)]">{d.price}</span>
                     </div>
-                    <p className="text-sm text-white/52 leading-relaxed">{d.desc}</p>
+                    <p className="text-sm text-white/70 leading-relaxed">{d.desc}</p>
                     <div className="mt-5 flex flex-wrap gap-2 border-t border-white/10 pt-4">
                       {Object.entries(menuDishFacets[d.name]).filter(([key]) => key !== "sauce").map(([key, value]) => (
-                        <span key={key} className="rounded border border-white/12 bg-white/5 px-2 py-1 text-[9px] font-bold uppercase tracking-[0.13em] text-white/40">
+                        <span key={key} className="rounded border border-white/12 bg-white/5 px-2 py-1 text-[9px] font-bold uppercase tracking-[0.13em] text-white/60">
                           {value}
                         </span>
                       ))}
@@ -130,7 +130,7 @@ export default function MenuPage() {
             <MotionSection className="cyber-panel mx-auto max-w-xl p-8 text-center">
               <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-cyan-300">No Match</p>
               <h2 className="mt-3 font-serif text-2xl font-bold text-white">No pasta fits that signal yet.</h2>
-              <p className="mt-3 text-sm leading-relaxed text-white/50">
+              <p className="mt-3 text-sm leading-relaxed text-white/65">
                 Try clearing one food filter or switching sauce families.
               </p>
             </MotionSection>
@@ -138,8 +138,8 @@ export default function MenuPage() {
 
           <MotionSection className="mt-12 text-center">
             <div className="cyber-panel p-8 inline-block">
-              <p className="text-white/52 text-sm mb-3">Prices are estimated. Final menu and pricing set at launch.</p>
-              <p className="text-white/62 text-sm">
+              <p className="text-white/65 text-sm mb-3">Prices are estimated. Final menu and pricing set at launch.</p>
+              <p className="text-white/70 text-sm">
                 <span className="font-semibold text-white">Dietary info:</span> Vegetarian, halal and gluten-free options available.
               </p>
             </div>
