@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useState, useSyncExternalStore, type CSSProperties } from "react";
 import { StaggerContainer, staggerChildScale } from "./components/Motion";
 
 const heroCtaPalette = [
@@ -16,6 +16,18 @@ const heroCtaPalette = [
 ];
 
 const initialHeroCtaColors = [0, 1, 2];
+const reducedMotionHeroCtaColors = [1, 3, 4]; // pink / violet / yellow — frozen vivid pop
+
+/* prefers-reduced-motion as an external store — no setState-in-effect, SSR-safe. */
+function subscribeReducedMotion(callback: () => void) {
+  const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+  mq.addEventListener("change", callback);
+  return () => mq.removeEventListener("change", callback);
+}
+
+function getReducedMotionSnapshot() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
 
 function pickHeroCtaColors(previous: number[]) {
   const next: number[] = [];
@@ -46,6 +58,14 @@ function heroCtaStyle(colorIndex: number) {
    ───────────────────────────────────────────────────────────────────────────── */
 function Hero() {
   const [heroCtaColors, setHeroCtaColors] = useState(initialHeroCtaColors);
+  const prefersReducedMotion = useSyncExternalStore(
+    subscribeReducedMotion,
+    getReducedMotionSnapshot,
+    () => false, // server snapshot: assume motion allowed
+  );
+  const displayedCtaColors = prefersReducedMotion
+    ? reducedMotionHeroCtaColors
+    : heroCtaColors;
   const codeColumns = [
     "010011010101001101001011010010",
     "101100101001011001010010110101",
@@ -66,12 +86,9 @@ function Hero() {
   ];
 
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mq.matches) {
-      // Colour is the brand — keep a vivid pop, drop only the motion.
-      setHeroCtaColors([1, 3, 4]); // pink / violet / yellow
-      return;
-    }
+    // Colour is the brand — under reduced motion we freeze on a vivid set
+    // (see displayedCtaColors) and simply never start the rotation.
+    if (prefersReducedMotion) return;
 
     const interval = window.setInterval(() => {
       setHeroCtaColors((current) => pickHeroCtaColors(current));
@@ -80,7 +97,7 @@ function Hero() {
     return () => {
       window.clearInterval(interval);
     };
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
     <section
@@ -171,21 +188,21 @@ function Hero() {
           <Link
             href="/locations/"
             className="hero-cta-primary hero-cta-random inline-flex items-center rounded-md px-8 py-3.5 text-[12px] uppercase tracking-[0.2em] font-semibold transition-all duration-300"
-            style={heroCtaStyle(heroCtaColors[0])}
+            style={heroCtaStyle(displayedCtaColors[0])}
           >
             Order Pasta
           </Link>
           <Link
             href="/menu/"
             className="hero-cta-secondary hero-cta-random inline-flex items-center rounded-md px-8 py-3.5 text-[12px] uppercase tracking-[0.2em] font-semibold transition-all duration-300"
-            style={heroCtaStyle(heroCtaColors[1])}
+            style={heroCtaStyle(displayedCtaColors[1])}
           >
             View Menu
           </Link>
           <Link
             href="/merch/"
             className="hero-cta-secondary hero-cta-random inline-flex items-center rounded-md px-8 py-3.5 text-[12px] uppercase tracking-[0.2em] font-semibold transition-all duration-300"
-            style={heroCtaStyle(heroCtaColors[2])}
+            style={heroCtaStyle(displayedCtaColors[2])}
           >
             Shop Merch
           </Link>
