@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, type CSSProperties } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -97,25 +97,9 @@ export default function Nav() {
                   <Link
                     key={l.href}
                     href={l.href}
-                    className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 group ${
-                      isActive
-                        ? ""
-                        : "text-white/60"
-                    }`}
-                    style={{
-                      color: isActive ? navAccentMap[l.href] : undefined,
-                    }}
+                    className={`pp-neon-link relative px-3 py-2 text-sm font-medium group ${isActive ? "is-active" : ""}`}
+                    style={{ "--accent": l.accent, color: isActive ? l.accent : undefined } as CSSProperties}
                     aria-current={isActive ? "page" : undefined}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.color = l.accent;
-                      e.currentTarget.style.textShadow = `0 0 8px ${l.accent}80, 0 0 20px ${l.accent}40`;
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!isActive) {
-                        e.currentTarget.style.color = "";
-                        e.currentTarget.style.textShadow = "";
-                      }
-                    }}
                   >
                     <span className="font-sans text-label-md uppercase tracking-label-md"
                     >
@@ -136,18 +120,13 @@ export default function Nav() {
                 href={FRANCHISE_HREF}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-3 inline-flex items-center rounded-md px-5 py-2.5 text-label-md uppercase tracking-label-md font-semibold transition-all duration-300"
+                className="ml-3 inline-flex items-center rounded-md px-5 py-2.5 text-label-md uppercase tracking-label-md font-semibold transition-shadow duration-300 hover:shadow-[0_0_20px_#ff008080,0_0_40px_#ff008040] focus-visible:outline-2 focus-visible:outline-offset-2"
                 style={{
                   backgroundColor: FRANCHISE_NEON,
                   color: "#000",
                   boxShadow: `0 0 12px ${FRANCHISE_NEON}60`,
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = `0 0 20px ${FRANCHISE_NEON}80, 0 0 40px ${FRANCHISE_NEON}40`;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = `0 0 12px ${FRANCHISE_NEON}60`;
-                }}
+                  outlineColor: FRANCHISE_NEON,
+                } as CSSProperties}
               >
                 Franchise
               </a>
@@ -222,22 +201,8 @@ export default function Nav() {
                         <Link
                           href={l.href}
                           onClick={() => setOpen(false)}
-                          className={`block text-lg font-medium py-3 border-b border-white/5 transition-colors ${
-                            isActive ? "font-bold" : ""
-                          }`}
-                          style={{
-                            color: isActive ? l.accent : "rgba(255,255,255,0.9)",
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.color = l.accent;
-                            e.currentTarget.style.textShadow = `0 0 8px ${l.accent}80`;
-                          }}
-                          onMouseLeave={(e) => {
-                            if (!isActive) {
-                              e.currentTarget.style.color = "rgba(255,255,255,0.9)";
-                              e.currentTarget.style.textShadow = "";
-                            }
-                          }}
+                          className={`pp-neon-link block text-lg font-medium py-3 border-b border-white/5 ${isActive ? "font-bold" : ""}`}
+                          style={{ "--accent": l.accent, color: isActive ? l.accent : "rgba(255,255,255,0.9)" } as CSSProperties}
                           aria-current={isActive ? "page" : undefined}
                         >
                           {l.label}
@@ -258,12 +223,13 @@ export default function Nav() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => setOpen(false)}
-                      className="block mt-4 text-center rounded-md px-6 py-3 text-label-md uppercase tracking-label-md font-semibold transition-all duration-300"
+                      className="block mt-4 text-center rounded-md px-6 py-3 text-label-md uppercase tracking-label-md font-semibold transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2"
                       style={{
                         backgroundColor: FRANCHISE_NEON,
                         color: "#000",
                         boxShadow: `0 0 16px ${FRANCHISE_NEON}60`,
-                      }}
+                        outlineColor: FRANCHISE_NEON,
+                      } as CSSProperties}
                     >
                       Franchise
                     </a>
