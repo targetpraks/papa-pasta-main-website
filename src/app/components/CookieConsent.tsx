@@ -1,11 +1,17 @@
 "use client";
 
-import { useState, useLayoutEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
+
+// Guarded for SSR: useLayoutEffect warns during static prerender, so fall back
+// to useEffect on the server. `typeof window` is stable per environment, so the
+// hook identity never changes between renders (rules-of-hooks safe).
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     setVisible(!localStorage.getItem("pp-cookie-consent"));
   }, []);
 

@@ -280,11 +280,12 @@ function ConversionBand() {
             <motion.div key={c.href} variants={staggerChildScale}>
               <Link
                 href={c.href}
-                className="group relative flex h-full flex-col justify-between overflow-hidden rounded-lg border-2 bg-black p-8 min-h-[200px] transition-transform duration-300 hover:-translate-y-1"
+                className="group relative flex h-full flex-col justify-between overflow-hidden rounded-lg border-2 bg-black p-8 min-h-[200px] transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2"
                 style={{
                   borderColor: `${c.accent}70`,
                   boxShadow: `inset 0 0 34px ${c.accent}18, 0 0 34px ${c.accent}30`,
-                }}
+                  outlineColor: c.accent,
+                } as CSSProperties}
               >
                 <div>
                   <h2 className="font-serif text-2xl font-bold mb-3">{c.label}</h2>
