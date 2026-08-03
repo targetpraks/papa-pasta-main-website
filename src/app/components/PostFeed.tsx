@@ -54,6 +54,7 @@ const THEME: Record<FeedTheme, ThemeTokens> = {
  * (`urgency: "story"`) return null so the badge only appears where it earns its place.
  */
 function statusBadge(post: BlogPost): { text: string; live: boolean } | null {
+  if (post.badge) return { text: post.badge, live: false };
   if (post.urgency === "drop") return { text: "Live now", live: true };
   if (post.urgency === "launch") return { text: "Launching", live: false };
   return null;
@@ -89,6 +90,10 @@ export default function PostFeed({
 }: PostFeedProps) {
   const [category, setCategory] = useState<string>("All");
   const t = THEME[theme];
+  const otherFeed =
+    theme === "drops"
+      ? { href: "/news/", label: "Looking for brand news & stories? Visit News & Journal" }
+      : { href: "/drops/", label: "Looking for the latest drops? Visit Drops" };
 
   const filtered =
     category === "All" ? posts : posts.filter((post) => post.category === category);
@@ -240,6 +245,16 @@ export default function PostFeed({
               ))}
             </StaggerContainer>
           </AnimatePresence>
+
+          <div className="mt-16 pt-10 border-t border-white/10 text-center">
+            <Link
+              href={otherFeed.href}
+              className={`inline-flex items-center gap-2 text-sm font-medium transition-colors hover:text-white ${t.metaAccent}`}
+            >
+              {otherFeed.label}
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
         </div>
       </section>
     </>

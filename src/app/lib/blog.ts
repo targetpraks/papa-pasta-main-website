@@ -10,6 +10,12 @@ export type BlogPost = {
    * "news"  = brand news & editorial (store launches, partnerships, loyalty, brand stories).
    */
   section: "drops" | "news";
+  /**
+   * Optional status-badge override for the feed card. When set, this exact text
+   * is shown (non-pulsing) instead of the label derived from `urgency` — for
+   * states like "Coming soon" or "Waitlist" that are not truly live yet.
+   */
+  badge?: string;
   excerpt: string;
   img: string;
   alt: string;
@@ -72,6 +78,7 @@ export const blogPosts: BlogPost[] = [
     category: "Loyalty Updates",
     urgency: "drop",
     section: "news",
+    badge: "Coming soon",
     excerpt: "Earn rewards on pasta, unlock merch early access, and get collection-drop previews before the public queue.",
     img: "/images/digital-mobile-app.png",
     alt: "Papa Pasta Level Up loyalty program preview",
