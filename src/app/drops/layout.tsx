@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Drops",
+  title: { default: "Drops", template: "%s | Papa Pasta" },
   description:
-    "Papa Pasta drops, store launches, merch capsules, collection releases, loyalty updates, and brand stories.",
+    "Papa Pasta drops — limited merch capsules, numbered collection releases, and seasonal menu launches. Loyalty gets early access.",
   alternates: { canonical: "/drops/" },
 };
 

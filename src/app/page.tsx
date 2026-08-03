@@ -229,7 +229,7 @@ function JourneySwitchboard() {
     { href: "/locations/", title: "Order Pasta", label: "01", desc: "Find open stores, delivery zones, launch offers, and the fastest route to a bowl.", accent: "#00ffff" },
     { href: "/merch/", title: "Shop Merch", label: "02", desc: "Live capsules, coming-soon drops, sold-out archive pieces, and collectable gear.", accent: "#bf00ff" },
     { href: "/loyalty/", title: "Join Loyalty", label: "03", desc: "Rewards, birthday pasta, early access, store launch invites, and drop previews.", accent: "#ffd700" },
-    { href: "/drops/", title: "See Latest Drops", label: "04", desc: "New store launches, collection drops, merch capsules, loyalty updates, and brand stories.", accent: "#39ff14" },
+    { href: "/drops/", title: "See Latest Drops", label: "04", desc: "Limited merch capsules, numbered collections, and seasonal menu releases — dropped for a window, then gone.", accent: "#39ff14" },
     { href: "https://franchise.papapasta.co.za/", title: "Franchise", label: "05", desc: "Prospective operators go to the dedicated franchise portal.", accent: "#ff0080", external: true },
   ];
 
@@ -282,7 +282,8 @@ function JourneySwitchboard() {
    ───────────────────────────────────────────────────────────────────────────── */
 function ConversionBand() {
   const cards = [
-    { href: "/drops/", label: "Latest Drops", desc: "New store launches, capsule collections, and collab merch — the moment they go live.", cta: "See the drops", accent: "#39ff14" },
+    { href: "/drops/", label: "Latest Drops", desc: "Limited merch, capsule collections, and seasonal menu releases — the moment they go live.", cta: "See the drops", accent: "#39ff14" },
+    { href: "/news/", label: "News & Journal", desc: "Store launches, brand partnerships, loyalty updates, and the stories behind the system.", cta: "Read the news", accent: "#38bdf8" },
     { href: "/loyalty/", label: "Join Loyalty", desc: "Birthday pasta, early access to drops, and store-launch invites. Free to join.", cta: "Get rewards", accent: "#ffd700" },
   ];
 
@@ -292,7 +293,7 @@ function ConversionBand() {
         <p className="text-label-md uppercase tracking-label-md text-white/55 mb-8 text-center">
           Don&apos;t miss the next one
         </p>
-        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-5" staggerDelay={0.08}>
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" staggerDelay={0.08}>
           {cards.map((c) => (
             <motion.div key={c.href} variants={staggerChildScale}>
               <Link

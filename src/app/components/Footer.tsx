@@ -38,7 +38,8 @@ const exploreLinks = [
   { href: "/locations/", label: "Locations", neon: "#0080ff" },
   { href: "/merch/", label: "Merch", neon: "#bf00ff" },
   { href: "/loyalty/", label: "Loyalty", neon: "#ffd700" },
-  { href: "/drops/", label: "Drops & Journal", neon: "#39ff14" },
+  { href: "/drops/", label: "Drops", neon: "#39ff14" },
+  { href: "/news/", label: "News & Journal", neon: "#38bdf8" },
   { href: "/story/", label: "Story", neon: "#f8fafc" },
 ];
 
