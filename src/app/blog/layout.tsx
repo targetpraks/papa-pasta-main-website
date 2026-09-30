@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Drops & Journal",
-  description: "New Papa Pasta store launches, merch drops, collection releases, loyalty updates, seasonal menu signals, and brand stories.",
+  title: "Moved",
+  description: "This page has moved. Papa Pasta drops now live at /drops and brand news at /news.",
   alternates: { canonical: "/drops/" },
+  robots: { index: false, follow: true },
 };
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {

@@ -4,6 +4,18 @@ export type BlogPost = {
   date: string;
   category: "New Store Launches" | "Merch Drops" | "Collection Drops" | "Loyalty Updates" | "Menu/Seasonal Drops" | "Brand Stories";
   urgency: "drop" | "launch" | "story";
+  /**
+   * Which feed the post belongs to.
+   * "drops" = time-sensitive product & menu releases (merch, collections, seasonal food).
+   * "news"  = brand news & editorial (store launches, partnerships, loyalty, brand stories).
+   */
+  section: "drops" | "news";
+  /**
+   * Optional status-badge override for the feed card. When set, this exact text
+   * is shown (non-pulsing) instead of the label derived from `urgency` — for
+   * states like "Coming soon" or "Waitlist" that are not truly live yet.
+   */
+  badge?: string;
   excerpt: string;
   img: string;
   alt: string;
@@ -20,6 +32,7 @@ export const blogPosts: BlogPost[] = [
     date: "16 June 2026",
     category: "Collection Drops",
     urgency: "drop",
+    section: "drops",
     excerpt: "A numbered South African heritage bowl lands for one day only, with loyalty early access before public release.",
     img: "/images/bowl-03-sa-heritage-series.png",
     alt: "Papa Pasta heritage bowl collection drop",
@@ -34,6 +47,7 @@ export const blogPosts: BlogPost[] = [
     date: "July 2026",
     category: "New Store Launches",
     urgency: "launch",
+    section: "news",
     excerpt: "Papa Pasta expands the Cape Town network with a Gardens launch window, opening offer, and loyalty invite list.",
     img: "/images/franchisee-store-coral-teal.png",
     alt: "Papa Pasta Cape Town Gardens store launch",
@@ -48,6 +62,7 @@ export const blogPosts: BlogPost[] = [
     date: "June 2026",
     category: "Merch Drops",
     urgency: "drop",
+    section: "drops",
     excerpt: "The first black-on-black Papa Pasta outerwear piece is live with reflective crest details and limited sizing.",
     img: "/images/digital-stories-reels.png",
     alt: "Papa Pasta blackout bomber merch drop",
@@ -62,6 +77,8 @@ export const blogPosts: BlogPost[] = [
     date: "June 2026",
     category: "Loyalty Updates",
     urgency: "drop",
+    section: "news",
+    badge: "Coming soon",
     excerpt: "Earn rewards on pasta, unlock merch early access, and get collection-drop previews before the public queue.",
     img: "/images/digital-mobile-app.png",
     alt: "Papa Pasta Level Up loyalty program preview",
@@ -76,12 +93,13 @@ export const blogPosts: BlogPost[] = [
     date: "May 2026",
     category: "Menu/Seasonal Drops",
     urgency: "story",
+    section: "drops",
     excerpt: "Flat noodles hold cream. Tubes trap meat. The right shape makes or breaks a sauce.",
     img: "/images/menu-pasta-shape-pairing.png",
     alt: "Pasta shape and sauce pairing guide",
     ctaLabel: "View Menu",
     ctaHref: "/menu/",
-    content: "<p>Every shape of pasta was engineered for a reason. Fettuccini's flat ribbons cradle Alfredo cream. Penne's tubes trap chunky ragù. Farfalle's pinched middle creates textural contrast. At Papa Pasta, we obsess over this marriage — because a perfect sauce on the wrong shape is a missed opportunity.</p><p>Our commissary produces six core shapes daily, each matched to its ideal sauce partner. We call it the Golden Blend: the moment when pasta and sauce become inseparable.</p>",
+    content: "<p>Every shape of pasta was engineered for a reason. Fettuccini's flat ribbons cradle Alfredo cream. Penne's tubes trap chunky ragù. Farfalle's pinched middle creates textural contrast. At Papa Pasta, we obsess over this marriage — because a perfect sauce on the wrong shape is a missed opportunity.</p><p>Our stores extrude six core shapes daily, each matched to its ideal sauce partner. We call it the Golden Blend: the moment when pasta and sauce become inseparable.</p>",
   },
   {
     slug: "inside-commissary",
@@ -89,12 +107,13 @@ export const blogPosts: BlogPost[] = [
     date: "April 2026",
     category: "Brand Stories",
     urgency: "story",
+    section: "news",
     excerpt: "Behind-the-scenes at the central kitchen powering every bowl across the network.",
     img: "/images/central-kitchen-concept.png",
     alt: "Inside the Papa Pasta commissary",
     ctaLabel: "Read Our Story",
     ctaHref: "/story/",
-    content: "<p>At 4:00 AM, while Cape Town sleeps, our commissary comes alive. Fresh eggs are cracked, flour is weighed, and dough is kneaded by hand — then rolled through Italian extruders that shape it into ribbons, tubes, and shells.</p><p>Nothing is frozen. Nothing is pre-made. Every batch is dated, tasted, and approved before it leaves for our stores. This is the engine behind every Papa Pasta bowl.</p>",
+    content: "<p>At 4:00 AM, while Cape Town sleeps, our commissary comes alive. Sauces are built from fresh ingredients and simmered for hours; retail dough is weighed and kneaded, then rolled through Italian extruders into ribbons, tubes, and shells.</p><p>Nothing is pre-made. Every sauce batch is dated, tasted, and approved before it leaves for our stores. And in every store the same craft happens in front of the customer: dough extruded in the Pasta Theatre, dried in-store, cooked to order. This is the engine behind every Papa Pasta bowl.</p>",
   },
   {
     slug: "art-of-crest",
@@ -102,6 +121,7 @@ export const blogPosts: BlogPost[] = [
     date: "March 2026",
     category: "Brand Stories",
     urgency: "story",
+    section: "news",
     excerpt: "How Papa Pasta gives every franchise a unique visual identity through colour story.",
     img: "/images/colour-story-colour-wheel.png",
     alt: "Colour story wheel",
@@ -115,6 +135,7 @@ export const blogPosts: BlogPost[] = [
     date: "Feb 2026",
     category: "Brand Stories",
     urgency: "story",
+    section: "news",
     excerpt: "How brands like MTN, Vodacom and Nedbank light up a Papa Pasta for a day.",
     img: "/images/takeover-vodacom.png",
     alt: "Brand takeover partnership event",
@@ -128,12 +149,13 @@ export const blogPosts: BlogPost[] = [
     date: "Jan 2026",
     category: "Menu/Seasonal Drops",
     urgency: "story",
+    section: "drops",
     excerpt: "From test kitchen to fan favourite. The origin story of our crunchy pasta bites.",
     img: "/images/papa-pops-peri-peri.png",
     alt: "Papa Pops crunchy pasta bites",
     ctaLabel: "View Menu",
     ctaHref: "/menu/",
-    content: "<p>It started as an experiment: what if we deep-fried offcuts of fresh pasta and tossed them in spice? The first batch — Cheesy Braai flavour — disappeared in minutes during a staff tasting. We knew we had something.</p><p>Today, Papa Pops are one of our best-selling items. Peri-Peri, Sweet Chutney, and the original Cheesy Braai. Three flavours. One obsession.</p>",
+    content: "<p>It started as an experiment: what if we deep-fried offcuts of freshly extruded dough and tossed them in spice? The first batch — Cheesy Braai flavour — disappeared in minutes during a staff tasting. We knew we had something.</p><p>Today, Papa Pops are one of our best-selling items. Peri-Peri, Sweet Chutney, and the original Cheesy Braai. Three flavours. One obsession.</p>",
   },
   {
     slug: "franchise-forecast",
@@ -141,6 +163,7 @@ export const blogPosts: BlogPost[] = [
     date: "Dec 2025",
     category: "Brand Stories",
     urgency: "story",
+    section: "news",
     excerpt: "Market data, capital requirements and the first-mover gap in South African fast-casual.",
     img: "/images/franchise-store-concept.png",
     alt: "Papa Pasta franchise store concept",
@@ -150,6 +173,23 @@ export const blogPosts: BlogPost[] = [
   },
 ];
 
+/** Filter chips for the Drops feed (merch, collections, seasonal menu). */
+export const dropsCategories = [
+  "All",
+  "Merch Drops",
+  "Collection Drops",
+  "Menu/Seasonal Drops",
+] as const;
+
+/** Filter chips for the News & Journal feed (launches, partnerships, loyalty, stories). */
+export const newsCategories = [
+  "All",
+  "New Store Launches",
+  "Loyalty Updates",
+  "Brand Stories",
+] as const;
+
+/** Retained for backwards compatibility — the union of both feeds. */
 export const blogCategories = [
   "All",
   "New Store Launches",
@@ -159,6 +199,24 @@ export const blogCategories = [
   "Menu/Seasonal Drops",
   "Brand Stories",
 ] as const;
+
+/** Posts belonging to the time-sensitive Drops feed. */
+export function getDropsPosts(): BlogPost[] {
+  return blogPosts.filter((p) => p.section === "drops");
+}
+
+/** Posts belonging to the editorial News & Journal feed. */
+export function getNewsPosts(): BlogPost[] {
+  return blogPosts.filter((p) => p.section === "news");
+}
+
+export function getDropsSlugs(): string[] {
+  return getDropsPosts().map((p) => p.slug);
+}
+
+export function getNewsSlugs(): string[] {
+  return getNewsPosts().map((p) => p.slug);
+}
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((p) => p.slug === slug);

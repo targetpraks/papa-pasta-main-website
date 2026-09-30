@@ -21,13 +21,14 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL("https://papapasta.co.za"),
   title: {
-    default: "Papa Pasta — Fresh Pasta, Merch Drops & Loyalty",
+    default: "Papa Pasta — Dried Pasta Made In-Store, Merch Drops & Loyalty",
     template: "%s | Papa Pasta",
   },
   description:
-    "Papa Pasta serves fresh handmade pasta and runs cyber-bright merch drops, collectable launches, loyalty rewards, and store launch news across South Africa.",
+    "Papa Pasta makes its dried pasta in-store — extruded fresh and dried on site — and runs cyber-bright merch drops, collectable launches, loyalty rewards, and store launch news across South Africa.",
   keywords: [
-    "fresh pasta",
+    "dry pasta",
+    "dried pasta made in store",
     "Cape Town pasta",
     "pasta restaurant",
     "Italian fast food",
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
         url: "https://raw.githubusercontent.com/targetpraks/papa-pasta-assets/main/images/menu-core-8-dishes.png",
         width: 1200,
         height: 630,
-        alt: "Papa Pasta fresh pasta dishes",
+        alt: "Papa Pasta dried pasta dishes",
       },
     ],
   },

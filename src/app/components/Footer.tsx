@@ -38,7 +38,8 @@ const exploreLinks = [
   { href: "/locations/", label: "Locations", neon: "#0080ff" },
   { href: "/merch/", label: "Merch", neon: "#bf00ff" },
   { href: "/loyalty/", label: "Loyalty", neon: "#ffd700" },
-  { href: "/drops/", label: "Drops & Journal", neon: "#39ff14" },
+  { href: "/drops/", label: "Drops", neon: "#39ff14" },
+  { href: "/news/", label: "News & Journal", neon: "#38bdf8" },
   { href: "/story/", label: "Story", neon: "#f8fafc" },
 ];
 
@@ -69,7 +70,7 @@ export default function Footer() {
                 </span>
               </Link>
               <p className="text-sm leading-relaxed text-white/70 max-w-xs">
-                Fresh handmade pasta, cyber-bright drops, merch, loyalty rewards, and store launches across South Africa.
+                Dried pasta made in-store, cyber-bright drops, merch, loyalty rewards, and store launches across South Africa.
               </p>
               <div className="flex items-center gap-3 mt-6">
                 {socialLinks.map((social) => (

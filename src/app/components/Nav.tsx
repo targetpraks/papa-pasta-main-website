@@ -14,7 +14,8 @@ const navLinks = [
   { href: "/locations/", label: "Locations", accent: "#0080ff" }, // electric blue
   { href: "/merch/", label: "Merch", accent: "#bf00ff" },        // violet
   { href: "/loyalty/", label: "Loyalty", accent: "#ffd700", aliases: ["/level-up/"] }, // gold
-  { href: "/drops/", label: "Drops", accent: "#39ff14", aliases: ["/blog/"] },         // acid green
+  { href: "/drops/", label: "Drops", accent: "#39ff14" },         // acid green
+  { href: "/news/", label: "News", accent: "#38bdf8", aliases: ["/blog/"] }, // sky blue
   { href: "/story/", label: "Story", accent: "#f8fafc" },  // silver-white
 ];
 
