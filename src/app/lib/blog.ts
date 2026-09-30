@@ -99,7 +99,7 @@ export const blogPosts: BlogPost[] = [
     alt: "Pasta shape and sauce pairing guide",
     ctaLabel: "View Menu",
     ctaHref: "/menu/",
-    content: "<p>Every shape of pasta was engineered for a reason. Fettuccini's flat ribbons cradle Alfredo cream. Penne's tubes trap chunky ragù. Farfalle's pinched middle creates textural contrast. At Papa Pasta, we obsess over this marriage — because a perfect sauce on the wrong shape is a missed opportunity.</p><p>Our commissary produces six core shapes daily, each matched to its ideal sauce partner. We call it the Golden Blend: the moment when pasta and sauce become inseparable.</p>",
+    content: "<p>Every shape of pasta was engineered for a reason. Fettuccini's flat ribbons cradle Alfredo cream. Penne's tubes trap chunky ragù. Farfalle's pinched middle creates textural contrast. At Papa Pasta, we obsess over this marriage — because a perfect sauce on the wrong shape is a missed opportunity.</p><p>Our stores extrude six core shapes daily, each matched to its ideal sauce partner. We call it the Golden Blend: the moment when pasta and sauce become inseparable.</p>",
   },
   {
     slug: "inside-commissary",
@@ -113,7 +113,7 @@ export const blogPosts: BlogPost[] = [
     alt: "Inside the Papa Pasta commissary",
     ctaLabel: "Read Our Story",
     ctaHref: "/story/",
-    content: "<p>At 4:00 AM, while Cape Town sleeps, our commissary comes alive. Fresh eggs are cracked, flour is weighed, and dough is kneaded by hand — then rolled through Italian extruders that shape it into ribbons, tubes, and shells.</p><p>Nothing is frozen. Nothing is pre-made. Every batch is dated, tasted, and approved before it leaves for our stores. This is the engine behind every Papa Pasta bowl.</p>",
+    content: "<p>At 4:00 AM, while Cape Town sleeps, our commissary comes alive. Sauces are built from fresh ingredients and simmered for hours; retail dough is weighed and kneaded, then rolled through Italian extruders into ribbons, tubes, and shells.</p><p>Nothing is pre-made. Every sauce batch is dated, tasted, and approved before it leaves for our stores. And in every store the same craft happens in front of the customer: dough extruded in the Pasta Theatre, dried in-store, cooked to order. This is the engine behind every Papa Pasta bowl.</p>",
   },
   {
     slug: "art-of-crest",
@@ -155,7 +155,7 @@ export const blogPosts: BlogPost[] = [
     alt: "Papa Pops crunchy pasta bites",
     ctaLabel: "View Menu",
     ctaHref: "/menu/",
-    content: "<p>It started as an experiment: what if we deep-fried offcuts of fresh pasta and tossed them in spice? The first batch — Cheesy Braai flavour — disappeared in minutes during a staff tasting. We knew we had something.</p><p>Today, Papa Pops are one of our best-selling items. Peri-Peri, Sweet Chutney, and the original Cheesy Braai. Three flavours. One obsession.</p>",
+    content: "<p>It started as an experiment: what if we deep-fried offcuts of freshly extruded dough and tossed them in spice? The first batch — Cheesy Braai flavour — disappeared in minutes during a staff tasting. We knew we had something.</p><p>Today, Papa Pops are one of our best-selling items. Peri-Peri, Sweet Chutney, and the original Cheesy Braai. Three flavours. One obsession.</p>",
   },
   {
     slug: "franchise-forecast",

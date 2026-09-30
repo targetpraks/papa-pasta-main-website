@@ -64,17 +64,17 @@ export default function StoryPage() {
             <p className="story-kicker uppercase tracking-[0.2em] text-xs font-semibold mb-2">The Engine</p>
             <h2 className="text-white font-serif text-3xl sm:text-5xl font-bold">A Central Kitchen That Powers It All</h2>
             <p className="text-white/52 max-w-2xl mx-auto mt-4">
-              Every store is fed by one commissary. Every batch of pasta is extruded fresh.
-              Every sauce is simmered for hours. This is obsession at scale.
+              Every sauce is simmered for hours in the commissary. Every store extrudes its own dough
+              and dries it in-store — the pasta is made on site, not delivered. This is obsession at scale.
             </p>
           </MotionSection>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { step: "01", title: "Extrusion", desc: "Fresh pasta extruded daily using imported Italian dies. Shapes matched to specific sauces for optimal sauce retention." },
+              { step: "01", title: "Extrusion", desc: "Fresh dough extruded in-store through imported bronze dies, then dried the traditional low-temp way. Shapes matched to specific sauces for optimal sauce retention." },
               { step: "02", title: "Sauce Lab", desc: "The Golden Blend: 8 core sauces slow-simmered with precise spice blends. Seasonal rotations keep the menu alive." },
-              { step: "03", title: "Cold Chain", desc: "Sauces blast-chilled and vacuum-packed. Pasta portioned and sealed. HACCP-certified logistics guarantee freshness." },
-              { step: "04", title: "The Store", desc: "40 m\u00B2 footprint. No kitchen needed — just heat, toss and serve. 4-minute ticket time. 90% of Cape Town's rental costs." },
+              { step: "03", title: "Cold Chain", desc: "Sauces blast-chilled and vacuum-packed for the run. The pasta is made in-store — extruded, dried and cooked on site. HACCP-certified logistics guarantee freshness." },
+              { step: "04", title: "The Store", desc: "40 m² footprint. The Pasta Theatre extrudes and dries in-store — then it's cook, toss and serve. 4-minute ticket time. 90% of Cape Town's rental costs." },
             ].map((item) => (
               <MotionSection key={item.step}>
                 <div className="cyber-card story-card p-6 text-center">

@@ -175,7 +175,7 @@ function Hero() {
           }}
           className="w-full max-w-[680px] mx-auto text-white/55 text-base sm:text-xl mb-8 leading-[1.5] px-2"
         >
-          Fresh handmade pasta, cyber-bright merch drops, loyalty rewards, and
+          Dried pasta made in-store, cyber-bright merch drops, loyalty rewards, and
           collection launches wired into one black-and-white food network.
         </motion.p>
 

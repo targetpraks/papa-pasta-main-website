@@ -70,7 +70,7 @@ export default function Footer() {
                 </span>
               </Link>
               <p className="text-sm leading-relaxed text-white/70 max-w-xs">
-                Fresh handmade pasta, cyber-bright drops, merch, loyalty rewards, and store launches across South Africa.
+                Dried pasta made in-store, cyber-bright drops, merch, loyalty rewards, and store launches across South Africa.
               </p>
               <div className="flex items-center gap-3 mt-6">
                 {socialLinks.map((social) => (
